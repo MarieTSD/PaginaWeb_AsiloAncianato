@@ -28,28 +28,7 @@ error_reporting(0);
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body >
-        <!-- Navigation-->
-
-        <!--Pantalla del Administrador-->
-        <!--<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">PERSONA</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">ATENCION MEDICA</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>-->
-        <!--fin admin-->
-
-        
+               
 
        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
