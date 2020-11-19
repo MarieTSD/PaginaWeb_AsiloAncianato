@@ -104,7 +104,7 @@
                     $resultado = $conexion -> query($sql2); //aplicamos sentencia 
                     $fila = $resultado -> fetch_assoc();
                     if($fila){
-                        echo "<script>document.location='baja_emp.php';</script>";
+                        echo "<script>document.location='baja_empleado_bd.php';</script>";
                     }else{
                         echo '<script>swal("Id no encontrado", "El id que ingresaste no es existente", "error");</script>'; 
                     }
