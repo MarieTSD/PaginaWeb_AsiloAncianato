@@ -100,7 +100,7 @@
                 if(isset($_POST['submit'])){
                     $modificar = $_POST['idA'];
                     $_SESSION['mod']=$modificar;
-                    $sql2 = "select * from empleado where id='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+                    $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
                     $resultado = $conexion -> query($sql2); //aplicamos sentencia 
                     $fila = $resultado -> fetch_assoc();
                     if($fila){

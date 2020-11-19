@@ -31,22 +31,22 @@
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION['mod']; 
-        $sql2 = "select * from empleado where id='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+        $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
         $resultado = $conexion -> query($sql2); //aplicamos sentencia  
         while( $fila = $resultado -> fetch_assoc() ){
-            $_SESSION['id']=$fila['id'];
-            $_SESSION['nombre'] = $fila['nombre'];
-            $_SESSION['apellido_p'] = $fila['apellido_p'];
-            $_SESSION['apellido_p'] = $fila['apellido_m'];
-            $_SESSION['fecha_nac'] = $fila['fecha_nac'];
-            $_SESSION['calleno'] = $fila['calleno'];
-            $_SESSION['colonia'] = $fila['colonia'];
-            $_SESSION['cp'] = $fila['cp'];
-            $_SESSION['ciudad'] = $fila['ciudad'];
-            $_SESSION['estado'] = $fila['estado'];
-            $_SESSION['telefono'] = $fila['telefono'];
-            $_SESSION['sueldo'] = $fila['sueldo'];
-            $_SESSION['tipo'] = $fila['tipo'];
+            $_SESSION['id']=$fila['ID'];
+            $_SESSION['nombre'] = $fila['Nombre'];
+            $_SESSION['apellido_p'] = $fila['Apellido_P'];
+            $_SESSION['apellido_p'] = $fila['Apellido_M'];
+            $_SESSION['fecha_nac'] = $fila['Fecha_Nac'];
+            $_SESSION['calleno'] = $fila['CalleNo'];
+            $_SESSION['colonia'] = $fila['Colonia'];
+            $_SESSION['cp'] = $fila['CP'];
+            $_SESSION['ciudad'] = $fila['Ciudad'];
+            $_SESSION['estado'] = $fila['Estado'];
+            $_SESSION['telefono'] = $fila['Telefono'];
+            $_SESSION['sueldo'] = $fila['Sueldo'];
+            $_SESSION['tipo'] = $fila['Tipo'];
         } 
         if(isset($_POST['submit2'])){
             header("Location:baja_empleado.php");
@@ -129,6 +129,7 @@
                     }
                 });
             </script>';
+            }
         ?>
 
         <section class="container">

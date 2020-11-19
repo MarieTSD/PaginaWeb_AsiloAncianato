@@ -15,7 +15,7 @@
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION["mod"];
-        $sql =  "DELETE FROM empleado WHERE id='$modificar'";
+        $sql =  "DELETE FROM empleado WHERE ID='$modificar'";
             $conexion->query($sql); 
             if ($conexion->affected_rows >= 1){ 
                 $_SESSION['exito1'] = "si";
