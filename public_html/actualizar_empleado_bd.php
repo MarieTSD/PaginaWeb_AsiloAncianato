@@ -26,28 +26,25 @@
    $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
   if($conexion->connect_error){
       die('Ocurrio un error en la conexion con la BD');
-  }else{
-      
-          $modificar = $_SESSION['mod']; 
-     $sql2 = "select * from empleado where id='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-      $resultado = $conexion -> query($sql2); //aplicamos sentencia  
-              while( $fila = $resultado -> fetch_assoc() ){
-                alert($fila['id']);
-
-                      $_SESSION['id']= $fila['id'];
-                       $_SESSION['nombre'] = $fila['nombre'];
-                       $_SESSION['ap'] = $fila['apellido_p'];
-                       $_SESSION['am'] = $fila['apellido_m'];
-                       $_SESSION['nac']=$fila['fecha_nac'];
-                       $_SESSION['calle']=$fila['calleno'];
-                       $_SESSION['colonia']=$fila['colonia'];
-                       $_SESSION['cp']=$fila['cp'];
-                       $_SESSION['ciudad']=$fila['ciudad'];
-                       $_SESSION['estado']=$fila['estado'];
-                       $_SESSION['telefono']=$fila['telefono'];
-                       $_SESSION['sueldo']=$fila['sueldo'];
-                       $_SESSION['tipo']=$fila['tipo'];
-                } 
+  }else{  
+    $modificar = $_SESSION['mod']; 
+    $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $resultado = $conexion -> query($sql2); //aplicamos sentencia  
+            while( $fila = $resultado -> fetch_assoc() ){
+                $_SESSION['id']= $fila['ID'];
+                $_SESSION['nombre'] = $fila['Nombre'];
+                $_SESSION['ap'] = $fila['Apellido_P'];
+                $_SESSION['am'] = $fila['Apellido_M'];
+                $_SESSION['nac']=$fila['Fecha_Nac'];
+                $_SESSION['calle']=$fila['CalleNo'];
+                $_SESSION['colonia']=$fila['Colonia'];
+                $_SESSION['cp']=$fila['CP'];
+                $_SESSION['ciudad']=$fila['Ciudad'];
+                $_SESSION['estado']=$fila['Estado'];
+                $_SESSION['telefono']=$fila['Telefono'];
+                $_SESSION['sueldo']=$fila['Sueldo'];
+                $_SESSION['tipo']=$fila['Tipo'];
+            } 
          if(isset($_POST['submit'])){
             $uno = $_POST["idA"];
             $dos = $_POST["nomA"];
@@ -61,16 +58,17 @@
             $diez = $_POST["estadoA"];
             $once = $_POST["telA"];
             $doce = $_POST["sueldoA"];
-            $trece = $_POST["tipo"];
+            $trece = $_POST["tipoA"];
 
             $modificar = $_SESSION["mod"];
-            $ne="update empleado set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_P='$cuatro' Fecha_Nac = '$cinco', CalleNo='$seis', Colonia='$siete', CP='$ocho', Ciudad='$nueve', Estado='$diez', Telefono='$once', Sueldo='$doce', Tipo='$trece' WHERE id='$modificar'";
+            $ne="update empleado set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_M='$cuatro', Fecha_nac='$cinco', CalleNo='$seis', Colonia='$siete', CP='$ocho', Ciudad='$nueve', Estado='$diez', Telefono='$once', Sueldo='$doce', Tipo='$trece' WHERE ID='$modificar'";
+            
             $fin = $conexion -> query($ne);
              if ($conexion->affected_rows >= 1){ 
                    $_SESSION['exito2'] = "si";
                     header("Location: actualizar_empleado.php");
                 }
-         }
+        }
   }
 ?>
 
@@ -132,72 +130,72 @@
       <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" method="post" id="alta">
 				<div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">ID:</span>
-					<input class="input100" type="number" name="idA" value="<?php echo $_SESSION["id"]; ?>" required>
+					<input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Nombre(s):</span>
-					<input class="input100" type="text" name="nomA" value="<?php echo $_SESSION["nombre"]; ?>" required>
+					<input class="input100" type="text" name="nomA" value="<?php echo $_SESSION['nombre']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Apellido paterno:</span>
-					<input class="input100" type="text" name="apA" value="<?php echo $_SESSION["ap"]; ?>" required>
+					<input class="input100" type="text" name="apA" value="<?php echo $_SESSION['ap']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Apellido meterno:</span>
-					<input class="input100" type="text" name="amA" value="<?php echo $_SESSION["am"]; ?>">
+					<input class="input100" type="text" name="amA" value="<?php echo $_SESSION['am']; ?>">
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Fecha de nacimiento:</span>
-					<input class="input100" type="date" name="nacA" value="<?php echo $_SESSION["nac"]; ?>" required>
+					<input class="input100" type="date" name="nacA" value="<?php echo $_SESSION['nac']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Calle y No.:</span>
-					<input class="input100" type="text" name="calleA" value="<?php echo $_SESSION["calle"]; ?>" required>
+					<input class="input100" type="text" name="calleA" value="<?php echo $_SESSION['calle']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Colonia:</span>
-					<input class="input100" type="text" name="coloniaA" value="<?php echo $_SESSION["colonia"]; ?>" required>
+					<input class="input100" type="text" name="coloniaA" value="<?php echo $_SESSION['colonia']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Codigo postal:</span>
-					<input class="input100" type="number" name="cpA" value="<?php echo $_SESSION["cp"]; ?>" required>
+					<input class="input100" type="number" name="cpA" value="<?php echo $_SESSION['cp']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Ciudad:</span>
-					<input class="input100" type="text" name="ciudadA" value="<?php echo $_SESSION["ciudad"]; ?>" required>
+					<input class="input100" type="text" name="ciudadA" value="<?php echo $_SESSION['ciudad']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Estado:</span>
-					<input class="input100" type="text" name="estadoA" value="<?php echo $_SESSION["estado"]; ?>" required>
+					<input class="input100" type="text" name="estadoA" value="<?php echo $_SESSION['estado']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Telefono:</span>
-					<input class="input100" type="number" name="telA" value="<?php echo $_SESSION["telefono"]; ?>">
+					<input class="input100" type="number" name="telA" value="<?php echo $_SESSION['telefono']; ?>">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Requerido">
 					<span class="label-input100">Sueldo:</span>
-					<input class="input100" type="number" name="sueldoA" value="<?php echo $_SESSION["sueldo"]; ?>" required>
+					<input class="input100" type="number" name="sueldoA" value="<?php echo $_SESSION['sueldo']; ?>" required>
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Message is required">
 					<span class="label-input100">Categoria:</span>
 					<span><?php  echo $_SESSION['tipo'];?></span>
-					<select name="tipo" id="alta" class="input100">
+					<select name="tipoA" id="alta" class="input100">
 					    <option value="maestro">maestro</option>
 					    <option value="enfermero">enfermero</option>
                         <option value="voluntario">voluntario</option>
@@ -208,7 +206,7 @@
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" name="submit">
 						<span>
-							Actualizar Producto
+							Actualizar
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>

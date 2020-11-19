@@ -81,7 +81,7 @@
                 <div class="container-contact100-form-btn; contact100-form validate-form">
                     <button class="contact100-form-btn" name="submit">
                         <span>
-                            Buscar Producto
+                            Buscar
                             <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
                         </span>
                     </button>
@@ -103,7 +103,7 @@
                 if(isset($_POST['submit'])){
                     $modificar = $_POST['idA'];
                     $_SESSION['mod']=$modificar;
-                    $sql2 = "select * from empleado where id='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+                    $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
                     $resultado = $conexion -> query($sql2); //aplicamos sentencia  
                     $fila = $resultado -> fetch_assoc();
                         if($fila){ 

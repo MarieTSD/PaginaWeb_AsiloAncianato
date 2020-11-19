@@ -137,7 +137,7 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <td>ID: </td>
-                        <td><?php echo "$_SESSION['id']"; ?></td>
+                        <td><?php echo $_SESSION['id']; ?></td>
                     </tr>
                     <tr>
                         <td>Nombre: </td>
