@@ -25,6 +25,7 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="css/style.css">
         <link href="css/styles.css" rel="stylesheet" />
         <!--  Para el los menajes de confimacion ets-->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -57,10 +58,11 @@
                 </div>
             </div>
         </nav>
+        
         <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container text-center">
-                <h2 class="mb-4">ALTA EMPLEADO</h2>
+        <section class="bg-primary text-white h-25">
+            <div class="container text-center pt-5">
+                <h2 class="mb-2 pt-5">ALTA EMPLEADO</h2>
             </div>
         </section>
 
@@ -75,54 +77,54 @@
             }
         ?>
 
-        <div class="container">
+        <section class="hero3">
             <form class="contact100-form validate-form" action="altas_empleado_bd.php" enctype="multipart/form-data" method="POST" id="alta">
-				<div class="wrap-input100 validate-input" data-validate="Requerido">
+				<div class="wrap-input100 validate-input p-1" data-validate="Requerido">
 					<span class="label-input100">ID:</span>
 					<input class="input100" type="number" name="idA" placeholder="123" required>
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Requerido">
+				<div class="wrap-input100 validate-input p-1" data-validate = "Requerido">
 					<span class="label-input100">Nombre(s):</span>
 					<input class="input100" type="text" name="nomA" placeholder="Luis" required>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate = "Requerido">
 					<span class="label-input100">Apellido paterno:</span>
 					<input class="input100" type="text" name="apA" placeholder="Flores" required>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input">
+                <div class="wrap-input100 validate-input p-1">
 					<span class="label-input100">Apellido materno:</span>
 					<input class="input100" type="text" name="amA" placeholder="Serna">
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate="Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
 					<span class="label-input100">Fecha de nacimiento:</span>
 					<input class="input100" type="date" name="anoNA" required>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate = "Requerido">
 					<span class="label-input100">Calle y No.:</span>
 					<input class="input100" type="text" name="calleA" placeholder="" required>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate = "Requerido">
 					<span class="label-input100">Colonia:</span>
 					<input class="input100" type="text" name="coloniaA" placeholder="" required>
 					<span class="focus-input100"></span>
                     <span class="label-input100">CP:</span>
-					<input class="input100" type="number" name="cpA" placeholder="" required>
+					<input class="input100 w-25" type="number" name="cpA" placeholder="" required>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate = "Requerido">
 					<span class="label-input100">Ciudad:</span>
 					<input class="input100" type="text" name="ciudadA" placeholder="Aguascalientes" required>
 					<span class="focus-input100"></span>
@@ -131,20 +133,20 @@
 					<span class="focus-input100"></span>
 				</div>
                
-                <div class="wrap-input100 validate-input" data-validate="Requerido">
+                <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
 					<span class="label-input100">Telefono:</span>
 					<input class="input100" type="number" name="telA">
 					<span class="focus-input100"></span>
 				</div>
 
 				
-				<div class="wrap-input100 validate-input" data-validate="Name is required">
+				<div class="wrap-input100 validate-input p-1" data-validate="Name is required">
 					<span class="label-input100">Sueldo:</span>
-					<input class="input100" type="number" name="sueldoA" placeholder="Existencia">
+					<input class="input100 w-25" type="number" name="sueldoA" placeholder="$">
 					<span class="focus-input100"></span>
 				</div>
 				
-                <div class="wrap-input100 validate-input" data-validate = "Message is required">
+                <div class="wrap-input100 validate-input p-1" data-validate = "Message is required">
 					<span class="label-input100">Tipo:</span>
 					<select name="tipo" id="altaC" class="input100">
 					    <option value="maestro">Maestro</option>
@@ -154,17 +156,17 @@
 					<span class="focus-input100"></span>
 				</div>
 				
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn" name="submit">
+				<div class="container-contact100-form-btn p-1">
+                <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
 						<span>
-							Agregar Empleado
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							AGREGAR EMPLEADO
+							<i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
 				</div>
 
 			</form> 
-        </div>
+        </section>
 
         <!-- Footer-->
         <footer class="bg-light py-5">
