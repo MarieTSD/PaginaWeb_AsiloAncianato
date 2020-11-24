@@ -9,6 +9,7 @@ $password = '';
 $bd = 'ancianato';
 $conexion = new mysqli($servidor, $cuenta, $password, $bd);
 error_reporting(0);
+include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -86,14 +87,38 @@ error_reporting(0);
     <section class="hero3">
         <form class="contact100-form validate-form" action="altas_aparecen_sd_bd.php" enctype="multipart/form-data" method="POST" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Codigo Suministro: </span>
-                <input class="input100" type="number" id="idS" name="idS" placeholder="123" required>
+                <span class="label-input100">Suministro: </span>
+                <select name="idS" id="idS" class="input100">
+                    <option value="">Selecciona un suministro</option>
+                    <?php
+                    $result = mysqli_query($con, "SELECT * FROM `suministro`");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <option value="<?php echo $row['Codigo']; ?>">
+                            <?php echo $row['Codigo'], " - ", $row['Nombre']; ?>
+                        </option>
+                    <?php }
+                    //mysqli_close($con);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID Donacion:</span>
-                <input class="input100" type="number" id="idD" name="idD" placeholder="123" required>
+                <span class="label-input100">Donacion: </span>
+                <select name="idD" id="idD" class="input100">
+                    <option value="">Selecciona una donacion</option>
+                    <?php
+                    $result2 = mysqli_query($con, "SELECT * FROM `donacion`");
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                    ?>
+                        <option value="<?php echo $row2['ID']; ?>">
+                            <?php echo $row2['ID'], " - ", $row2['Aporte']; ?>
+                        </option>
+                    <?php }
+                    mysqli_close($con2);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
 

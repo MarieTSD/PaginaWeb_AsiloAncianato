@@ -2,6 +2,8 @@
 session_start();
 error_reporting(0);
 
+include('db.php');
+
 $serv = 'localhost';
 $cuenta = 'root';
 $contra = '';
@@ -11,6 +13,8 @@ $BaseD = 'ancianato';
 $_SESSION['idS'] = '';
 $_SESSION['idD'] = '';
 $_SESSION['cant'] = '';
+$_SESSION['nom'] = '';
+$_SESSION['apo'] = '';
 
 //Realiar la conexion con la base de datos 
 $conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
@@ -19,12 +23,14 @@ if ($conexion->connect_error) {
 } else {
     $modificar = $_SESSION['mod'];
     $modificar2 = $_SESSION['mod2'];
-    $sql2 = "select * from aparecen_sd where Codigo_Suministro='$modificar' and ID_Donacion='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "select * from Data_AparcenSD where Codigo_Suministro='$modificar' and ID_Donacion='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
         $_SESSION['idS'] = $fila['Codigo_Suministro'];
         $_SESSION['idD'] = $fila['ID_Donacion'];
         $_SESSION['cant'] = $fila['Cantidad'];
+        $_SESSION['nom'] = $fila['Nombre'];
+        $_SESSION['apo'] = $fila['Aporte'];
     }
     if (isset($_POST['submit'])) {
         $uno = $_POST["idS"];
@@ -104,14 +110,38 @@ if ($conexion->connect_error) {
     <section class="hero3">
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Codigo Suministro: </span>
-                <input class="input100" type="number" name="idS" value="<?php echo $_SESSION['idS']; ?>" required>
+                <span class="label-input100">Suministro: </span>
+                <select name="idS" id="idS" class="input100">
+                    <option value="<?php echo $_SESSION['idS']; ?>"><?php echo $_SESSION['idS'], " - ", $_SESSION['nom']; ?></option>
+                    <?php
+                    $result = mysqli_query($con, "SELECT * FROM `suministro`");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <option value="<?php echo $row['Codigo']; ?>">
+                            <?php echo $row['Codigo'], " - ", $row['Nombre']; ?>
+                        </option>
+                    <?php }
+                    //mysqli_close($con);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="wrap-input100 validate-input p-1" data-validate="Valid email is required: ex@abc.xyz">
-                <span class="label-input100">ID Donacion: </span>
-                <input class="input100" type="number" name="idD" value="<?php echo $_SESSION['idD']; ?>" required>
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Donacion: </span>
+                <select name="idD" id="idD" class="input100">
+                    <option value="<?php echo $_SESSION['idD']; ?>"><?php echo $_SESSION['idD'], " - ", $_SESSION['apo']; ?></option>
+                    <?php
+                    $result2 = mysqli_query($con, "SELECT * FROM `donacion`");
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                    ?>
+                        <option value="<?php echo $row2['ID']; ?>">
+                            <?php echo $row2['ID'], " - ", $row2['Aporte']; ?>
+                        </option>
+                    <?php }
+                    mysqli_close($con2);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
 
