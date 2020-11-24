@@ -29,6 +29,9 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!--  Para el los menajes de confimacion ets-->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="JS/actions.js"></script>
+    <script type="text/javascript" src="JS/employee.js"></script>
     </head>
     <body >
         <!-- Navigation-->
@@ -77,6 +80,7 @@
             }
         ?>
 
+<<<<<<< HEAD
         <section class="hero3">
             <form class="contact100-form validate-form" action="altas_empleado_bd.php" enctype="multipart/form-data" method="POST" id="alta">
 				<div class="wrap-input100 validate-input p-1" data-validate="Requerido">
@@ -167,7 +171,97 @@
 
 			</form> 
         </section>
+=======
+    <div class="container">
+        <form action="" id="form">
+        <div class="wrap-input100 validate-input" data-validate="Requerido">
+            <span class="label-input100">ID:</span>
+            <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
+            <span class="focus-input100"></span>
+        </div>
 
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Nombre(s):</span>
+            <input class="input100" type="text" id="nomA" name="nomA" placeholder="Luis" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Apellido paterno:</span>
+            <input class="input100" type="text" id="apA" name="apA" placeholder="Flores" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+            <span class="label-input100">Apellido materno:</span>
+            <input class="input100" type="text" id="amA" name="amA" placeholder="Serna">
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Requerido">
+            <span class="label-input100">Fecha de nacimiento:</span>
+            <input class="input100" type="date" id="anoNA" name="anoNA" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Calle y No.:</span>
+            <input class="input100" type="text" id="calleA" name="calleA" placeholder="" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Colonia:</span>
+            <input class="input100" type="text" id="coloniaA" name="coloniaA" placeholder="" required>
+            <span class="focus-input100"></span>
+            <span class="label-input100">CP:</span>
+            <input class="input100" type="number" id="cpA" name="cpA" placeholder="" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Ciudad:</span>
+            <input class="input100" type="text" id="ciudadA" name="ciudadA" placeholder="Aguascalientes" required>
+            <span class="focus-input100"></span>
+            <span class="label-input100">Estado:</span>
+            <input class="input100" type="text" id="estadoA" name="estadoA" placeholder="Aguascalientes" required>
+            <span class="focus-input100"></span>
+        </div>
+       
+        <div class="wrap-input100 validate-input" data-validate="Requerido">
+            <span class="label-input100">Telefono:</span>
+            <input class="input100" type="number" id="telA" name="telA">
+            <span class="focus-input100"></span>
+        </div>
+>>>>>>> e07323c90514aa4f30816be2e200a0698ab83aa8
+
+        
+        <div class="wrap-input100 validate-input" data-validate="Name is required">
+            <span class="label-input100">Sueldo:</span>
+            <input class="input100" type="number" id="sueldoA" name="sueldoA" placeholder="Existencia">
+            <span class="focus-input100"></span>
+        </div>
+        
+        <div class="wrap-input100 validate-input" data-validate = "Message is required">
+            <span class="label-input100">Tipo:</span>
+            <select name="tipo" id="altaC" class="input100">
+                <option value="maestro">Maestro</option>
+                <option value="enfermera">Enfermero</option>
+                <option value="voluntario">Voluntario</option>
+            </select>
+            <span class="focus-input100"></span>
+        </div>
+        
+        <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" onclick="getData()" name="submit">
+                <span>
+                    Agregar Empleado
+                    <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>   
+        </form>
+    </div>
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>

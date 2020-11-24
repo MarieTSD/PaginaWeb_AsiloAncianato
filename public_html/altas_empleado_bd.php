@@ -13,7 +13,7 @@
   }else{
       //Si entra aqui es que hubo una conexion existosa, Verificamos que haya dado enviar producto
       //Sacamos los valores con post
-      if(isset($_POST['submit'])){
+    
                 //obtenemos datos del formulario
                 $id = $_POST['idA'];
                 $nom =$_POST['nomA'];
@@ -42,6 +42,6 @@
                     $_SESSION['exito'] = "no";
                     echo "<script>document.location='altas_empleado.php';</script>";
                 }
-         }
+         
   }
 ?>
