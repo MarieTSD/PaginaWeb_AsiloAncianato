@@ -12,9 +12,7 @@ var getData = function(){
     var telA=document.getElementById("telA").value;
     var sueldoA=document.getElementById("sueldoA").value;
     var tipo=document.getElementById("altaC").value;
-    var Emp=new Employee(idA,nomA,apA,amA,anoNA,calleA,coloniaA,cpA,ciudadA,estadoA,telA,sueldoA,tipo,"altas_empleado_bd.php");
+    var Emp=new Empleado(idA,nomA,apA,amA,anoNA,calleA,coloniaA,cpA,ciudadA,estadoA,telA,sueldoA,tipo,"altas_empleado_bd.php");
     Emp.AddEmp();
     
-
-
 }

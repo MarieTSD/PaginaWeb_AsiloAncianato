@@ -30,7 +30,9 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/employee.js"></script>
+    <script type="text/javascript" src="JS/Personas.js"></script>
+    
+    <script type="text/javascript" src="JS/domicilio_tel.js"></script>
     </head>
     <body >
         <!-- Navigation-->
