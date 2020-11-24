@@ -31,7 +31,7 @@
                 
                 //hacemos cadena con la sentencia mysql para insertar datos
                 $sql = "INSERT INTO Empleado (id, Nombre, Apellido_P,Apellido_M, Fecha_Nac, calleNo, colonia, cp, ciudad, estado, telefono, sueldo, tipo) 
-                    VALUES('$id','$nom','$apP','$apM', '$anoN', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel', '$suldo', '$tipo')";
+                    VALUES('$id','$nom','$apP','$apM', '$anoN', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel', '$sueldo', '$tipo')";
                 
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  

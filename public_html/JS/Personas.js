@@ -26,7 +26,7 @@ class Empleado extends Persona{
         }
 
         AddEmp(){
-            console.log(this.idA+" "+this.nomA)
+            console.log(this.sueldoA)
             $.ajax({
             type: "POST",
             url: this.action,
@@ -52,6 +52,18 @@ class Empleado extends Persona{
             }
         })
         }
+
+        bajaEmpleado(){
+
+        }
+
+        modificaEmpleado(){
+
+        }
+
+        buscaEmpleado(){
+
+        }
 }
 
 //FAMILIAR ES UNA PERSONA
@@ -64,7 +76,7 @@ class Familiar extends Persona{
         this.dir=new Domicilio_tel(calleA,coloniaA,cpA,ciudadA,estadoA,telA);
     }
 
-    AddFamiliar(){
+    altaFamiliar(){
         
             $.ajax({
             type: "POST",
@@ -92,6 +104,18 @@ class Familiar extends Persona{
         })
     }
 
+    bajaFamiliar(){
+
+    }
+
+    modificaFamiliar(){
+
+    }
+
+    buscaFamiliar(){
+
+    }
+
     Donate(){
 
     }
@@ -107,7 +131,8 @@ class Residente extends Persona{
 
     }
 
-    Asignar(){
+
+    altaResidente(){
         $.ajax({
             type: "POST",
             url: this.action,
@@ -126,5 +151,21 @@ class Residente extends Persona{
             }
             }
         })
+    }
+
+    bajaResidente(){
+
+    }
+
+    modificaResidente(){
+
+    }
+
+    buscaResidente(){
+
+    }
+
+    asignar(){
+        
     }
 }
