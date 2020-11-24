@@ -36,7 +36,7 @@ class Empleado extends Persona{
                     apA: this.apA,
                     amA: this.amA,
                     anoNA: this.anoNA,
-                    calleA: this.dir.calleAcalleA,
+                    calleA: this.dir.calleA,
                     coloniaA: this.dir.coloniaA,
                     cpA: this.dir.cpA,
                     ciudadA: this.dir.ciudadA,
