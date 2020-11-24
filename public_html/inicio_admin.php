@@ -49,6 +49,23 @@ error_reporting(0);
                             <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown link
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" id="navbarDropdownMenuLink"  data-toggle="dropdown" href="#">Something else here</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">A</a></li>
+                                    <li><a class="dropdown-item" href="#">b</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
