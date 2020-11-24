@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$usuario = "Administrador"; 
+$contra = "ancianitosalrescate";
 ?>
 
 <?php
@@ -18,9 +21,6 @@ if ($conexion->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$usuario = "Administrador"; 
-$contra = "ancianitosalrescate";
-
 if( strcmp($username,$usuario) === 0){
 
     if(strcmp($password,$contra) === 0 ){
@@ -29,7 +29,7 @@ if( strcmp($username,$usuario) === 0){
         $_SESSION['username'] = $username;
         $_SESSION['start'] = time();
         $_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
-        echo "<br><br><a href = inicio_admin.php> Administrador </a>"; 
+        header("location: inicio_admin.php");
     } 
 }else { 
     echo "Username o Password estan incorrectos.";
