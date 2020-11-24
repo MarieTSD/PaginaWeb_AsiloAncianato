@@ -80,7 +80,6 @@
             }
         ?>
 
-<<<<<<< HEAD
         <section class="hero3">
             <form class="contact100-form validate-form" action="altas_empleado_bd.php" enctype="multipart/form-data" method="POST" id="alta">
 				<div class="wrap-input100 validate-input p-1" data-validate="Requerido">
@@ -171,7 +170,6 @@
 
 			</form> 
         </section>
-=======
     <div class="container">
         <form action="" id="form">
         <div class="wrap-input100 validate-input" data-validate="Requerido">
@@ -233,7 +231,6 @@
             <input class="input100" type="number" id="telA" name="telA">
             <span class="focus-input100"></span>
         </div>
->>>>>>> e07323c90514aa4f30816be2e200a0698ab83aa8
 
         
         <div class="wrap-input100 validate-input" data-validate="Name is required">
