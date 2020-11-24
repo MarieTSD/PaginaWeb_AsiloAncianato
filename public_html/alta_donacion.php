@@ -1,6 +1,5 @@
 <?php
 //Admin
-$_SESSION['usuario'] = "";
 session_start();
 
 //conexion a la base de datos
@@ -27,7 +26,14 @@ error_reporting(0);
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
+    <!--  Para el los menajes de confimacion ets-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Clases-->
+    <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="JS/actions.js"></script>
+    <script type="text/javascript" src="JS/employee.js"></script>
 </head>
 
 <body>
@@ -49,34 +55,19 @@ error_reporting(0);
                             <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" id="navbarDropdownMenuLink"  data-toggle="dropdown" href="#">Something else here</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">A</a></li>
-                                    <li><a class="dropdown-item" href="#">b</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
+                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
                             <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                         </div>
                     </li>
+
+
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">ATENCION MEDICA</a></li>
@@ -86,13 +77,79 @@ error_reporting(0);
         </div>
     </nav>
 
-
-    <section class="bg-primary text-white h-50">
+    <!-- Call to action-->
+    <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">BIENVENIDO ADMINISTRADOR</h2>
+            <h2 class="mb-2 pt-5">ALTA DONACION</h2>
         </div>
     </section>
 
+    <?php
+    if ($_SESSION['exito'] == "si") {
+        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
+
+        $_SESSION['exito'] = "";
+    } else if ($_SESSION['exito'] == "no") {
+        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
+        $_SESSION['exito'] = "";
+    }
+    ?>
+
+    <section class="hero3">
+        <form class="contact100-form validate-form" action="altas_empleado_bd.php" enctype="multipart/form-data" method="POST" id="alta">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">ID:</span>
+                <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">APORTE :</span>
+                <input class="input100" type="number" id="idA" name="idA" placeholder="$1000" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Fecha de Aporte:</span>
+                <input class="input100" type="date" id="anoNA" name="anoNA" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Hora :</span>
+                <input class="input100" type="time" id="anoNA" name="anoNA" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Residente :</span>
+                <select name="tipo" id="altaC" class="input100">
+                    <option value="maestro">Seleccion Residente</option>
+                    <option value="enfermera">Residente 1</option>
+                    <option value="voluntario">Residente 2</option>
+                </select>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Benefactor :</span>
+                <select name="tipo" id="altaC" class="input100">
+                    <option value="maestro">Seleccion Benefactor</option>
+                    <option value="enfermera">Benefactor 1</option>
+                    <option value="voluntario">Benefactor 2</option>
+                </select>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
+                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
+                    <span>
+                        AGREGAR DONACION
+                        <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+    
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">
