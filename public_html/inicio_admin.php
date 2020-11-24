@@ -49,28 +49,50 @@ error_reporting(0);
                             <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SUMINISTRO
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" id="navbarDropdownMenuLink"  data-toggle="dropdown" href="#">Something else here</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">A</a></li>
-                                    <li><a class="dropdown-item" href="#">b</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_suministro.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_suministro.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_suministro.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_suministro.php">VISUALIZAR</a>
+                        </div>
                     </li>
-
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">ATENCION MEDICA</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        APARECEN_SD
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_aparecen_sd.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_aparecen_sd.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_aparecen_sd.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_aparecen_sd.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SE_ENCARGA
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASISTE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
