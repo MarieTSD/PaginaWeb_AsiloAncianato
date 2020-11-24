@@ -14,7 +14,4 @@ var getData = function(){
     var tipo=document.getElementById("altaC").value;
     var Emp=new Employee(idA,nomA,apA,amA,anoNA,calleA,coloniaA,cpA,ciudadA,estadoA,telA,sueldoA,tipo,"altas_empleado_bd.php");
     Emp.AddEmp();
-    
-
-
 }

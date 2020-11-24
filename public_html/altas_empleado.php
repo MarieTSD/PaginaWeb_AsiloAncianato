@@ -84,16 +84,16 @@ error_reporting(0);
     ?>
 
     <section class="hero3">
-        <form class="contact100-form validate-form" action="altas_empleado_bd.php" enctype="multipart/form-data" method="POST" id="alta">
+        <form class="contact100-form validate-form" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
+                <input class="input100" type="number" id="idA" placeholder="123" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Nombre(s):</span>
-                <input class="input100" type="text" id="nomA" name="nomA" placeholder="Luis" required>
+                <input class="input100" type="text" id="nomA" placeholder="Luis" required>
                 <span class="focus-input100"></span>
             </div>
 
