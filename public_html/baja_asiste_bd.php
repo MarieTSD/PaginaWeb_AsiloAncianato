@@ -11,11 +11,11 @@
 
     //varibales para la consulta
     //Variables de session
-    $_SESSION['idE']='';
+    $_SESSION['idC']='';
     $_SESSION['idR'] ='';
     $_SESSION['fecha'] = '';
     $_SESSION['hora'] = '';
-    $_SESSION['fnE'] = '';
+    $_SESSION['des'] = '';
     $_SESSION['fnR'] = '';
     
     //Realiar la conexion con la base de datos 
@@ -25,18 +25,18 @@
     }else{
         $modificar2 = $_SESSION['mod2']; 
         $modificar = $_SESSION['mod']; 
-        $sql2 = "select * from Data_SeEncarga where ID_Empleado='$modificar' and ID_Residente='$modificar2'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+        $sql2 = "select * from Data_Asiste where ID_Clase='$modificar' and ID_Residente='$modificar2'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
         $resultado = $conexion -> query($sql2); //aplicamos sentencia  
         while( $fila = $resultado -> fetch_assoc() ){
-            $_SESSION['idE']=$fila['ID_Empleado'];
-            $_SESSION['fnE'] = $fila['FullNameEmpleado'];
+            $_SESSION['idC']=$fila['ID_Clase'];
+            $_SESSION['des'] = $fila['Descripcion'];
             $_SESSION['idR'] = $fila['ID_Residente'];
             $_SESSION['fnR'] = $fila['FullNameResidente'];
             $_SESSION['fecha'] = $fila['fecha'];
             $_SESSION['hora'] = $fila['hora'];
         } 
         if(isset($_POST['submit2'])){
-            header("Location:baja_se_encarga.php");
+            header("Location:baja_asiste.php");
         }
     }
 ?>
@@ -91,7 +91,7 @@
         <!-- Call to action-->
         <section class="bg-primary text-white h-25">
             <div class="container text-center pt-5">
-                <h2 class="mb-2 pt-5">CONFIRMAR BAJA SE_ENCARGA</h2>
+                <h2 class="mb-2 pt-5">CONFIRMAR BAJA ASISTE</h2>
             </div>
         </section>
 
@@ -111,10 +111,10 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         swal("Eliminado", { icon: "success"});
-                        document.location="baja_se_encar.php";
+                        document.location="baja_asis.php";
                     } else {
                         swal("No eliminado");
-                        document.location="baja_se_encarga_bd.php";  
+                        document.location="baja_asiste_bd.php";  
                     }
                 });
             </script>';
@@ -127,7 +127,7 @@
                 <table class="table table-hover table-bordered w-50">
                     <tr>
                         <td>Empleado: </td>
-                        <td><?php echo $_SESSION['idE'], " - ", $_SESSION['fnE']; ?></td>
+                        <td><?php echo $_SESSION['idC'], " - ", $_SESSION['des']; ?></td>
                     </tr>
                     <tr>
                         <td>Residente: </td>

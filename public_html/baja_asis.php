@@ -16,11 +16,11 @@
     }else{
         $modificar = $_SESSION["mod"];
         $modificar2 = $_SESSION["mod2"];
-        $sql =  "DELETE FROM se_encarga WHERE ID_Empleado='$modificar' and ID_Residente='$modificar2'";
+        $sql =  "DELETE FROM asiste WHERE ID_Clase='$modificar' and ID_Residente='$modificar2'";
             $conexion->query($sql); 
             if ($conexion->affected_rows >= 1){ 
                 $_SESSION['exito1'] = "si";
-                header("Location: baja_se_encarga.php");
+                header("Location: baja_asiste.php");
             }
     }
  ?>
