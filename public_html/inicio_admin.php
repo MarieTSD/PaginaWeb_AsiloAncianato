@@ -76,10 +76,10 @@ error_reporting(0);
                         SE_ENCARGA
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="altas_se_encarga.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_se_encarga.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_se_encarga.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_se_encarga.php">VISUALIZAR</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
@@ -87,10 +87,10 @@ error_reporting(0);
                         ASISTE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_asiste.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_asiste.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_asiste.php">VISUALIZAR</a>
                         </div>
                     </li>
                 </ul>
