@@ -1,15 +1,7 @@
 <?php
-    //Admin
-    $_SESSION['usuario']="";
     session_start();
-
-    //conexion a la base de datos
-    $servidor = 'localhost';
-    $cuenta = 'root';
-    $password = '';
-    $bd = 'ancianato';
-    $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     error_reporting(0);
+    include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +19,9 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--  Para el los menajes de confimacion ets-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
     </head>
     <body >
         <!-- Navigation-->
@@ -47,28 +42,6 @@
                                 <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BENEFACTOR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_benefactor.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FAMILIAR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_familiar.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
-                            </div>
-                        </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
@@ -78,12 +51,37 @@
                 </div>
             </div>
         </nav>
-
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">NUESTRAS CLASES</h2>
+                <h2 class="mb-4">VER CLASE</h2>
             </div>
+        </section>
+        <br><br>
+        <section class="characteristics">  
+            <section class="characteristics__container" style="display: flex; padding: 0px 40px; max-width: 1100px
+                margin: 0px;
+                flex-wrap: wrap;">
+                <?php 
+                    $result = mysqli_query($con,"SELECT * FROM `clase`");
+                    while($row = mysqli_fetch_assoc($result)){
+		        ?>
+
+	            <article class="characteristics__item; card">
+		            <ul class="list-group list-group-flush">
+			            <form method='post' action=''>
+                            <li class="list-group-item"><div>ID: <div><?php echo $row['ID'];?></div></li>
+                            <li class="list-group-item"><div>Descripcion: <?php echo $row['Descripcion'];?></div></li>
+				            <li class="list-group-item"><div>Area: <?php echo $row['Area'];?></div></li>
+                            <li class="list-group-item"><div>ID Empleado: <?php echo $row['ID_Empledao'];?></div></li>
+                            
+			            </form>
+			        </ul>
+                </article>
+                <?php } 
+                    mysqli_close($con);
+                ?>
+            </section>
         </section>
 
         <!-- Footer-->

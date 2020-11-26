@@ -1,6 +1,5 @@
 <?php
     //Admin
-    $_SESSION['usuario']="";
     session_start();
 
     //conexion a la base de datos
@@ -27,6 +26,13 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--  Para el los menajes de confimacion ets-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="JS/actions.js"></script>
+    <script type="text/javascript" src="JS/Personas.js"></script>
+    <script type="text/javascript" src="JS/classO.js"></script>
+    <script type="text/javascript" src="JS/domicilio_tel.js"></script>
     </head>
     <body >
         <!-- Navigation-->
@@ -47,28 +53,6 @@
                                 <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BENEFACTOR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_benefactor.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FAMILIAR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_familiar.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
-                            </div>
-                        </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
@@ -78,14 +62,66 @@
                 </div>
             </div>
         </nav>
-
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">NUESTRAS CLASES</h2>
+                <h2 class="mb-4">ALTA CLASE</h2>
             </div>
         </section>
 
+        <?php
+            if($_SESSION['exito'] == "si"){
+                echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
+                          
+                $_SESSION['exito'] = "";
+            }else if($_SESSION['exito'] == "no"){
+                echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
+                $_SESSION['exito']="";
+            }else if($_SESSION['exito']="x"){
+                echo '<script>swal("ID de empleado incorrecto", "El id no existe", "error");</script>';
+                $_SESSION['exito']="";
+            }
+        ?>
+
+    <div class="container">
+        <form action="" id="form">
+        <div class="wrap-input100 validate-input" data-validate="Requerido">
+            <span class="label-input100">ID:</span>
+            <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Descripcion:</span>
+            <input class="input100" type="text" id="nomA" name="nomA" placeholder="Luis" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Requerido">
+            <span class="label-input100">Area:</span>
+            <input class="input100" type="text" id="apA" name="apA" placeholder="Flores" required>
+            <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+            <span class="label-input100">ID Empleado:</span>
+            <input class="input100" type="text" id="amA" name="amA" placeholder="Serna">
+            <span class="focus-input100"></span>
+        </div>
+
+        
+        
+        
+        <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" onclick="getDataCla()" name="submit">
+                <span>
+                    Agregar clase
+                    <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>   
+        </form>
+    </div>
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>

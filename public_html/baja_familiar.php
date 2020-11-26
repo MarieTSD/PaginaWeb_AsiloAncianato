@@ -1,14 +1,7 @@
 <?php
     //Admin
-    $_SESSION['usuario']="";
     session_start();
 
-    //conexion a la base de datos
-    $servidor = 'localhost';
-    $cuenta = 'root';
-    $password = '';
-    $bd = 'ancianato';
-    $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     error_reporting(0);
 ?>
 
@@ -27,6 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--  Para el los menajes de confimacion ets-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body >
         <!-- Navigation-->
@@ -47,28 +42,6 @@
                                 <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BENEFACTOR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_benefactor.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FAMILIAR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_familiar.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
-                            </div>
-                        </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
@@ -79,13 +52,66 @@
             </div>
         </nav>
 
-        <!-- Call to action-->
+        <!-- Encabezado-->
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">NUESTRAS CLASES</h2>
+                <h2 class="mb-4">BAJA FAMILIAR</h2>
             </div>
         </section>
 
+        <!--Dialogo-->
+        <?php
+            if($_SESSION['exito1'] == "si"){
+                echo '<script>swal("Baja Exitosa", "Los cambios se guardaron", "success");</script>';
+                $_SESSION['exito1'] = "";
+            }
+        ?>
+
+        <section class="hero3 hero7">
+            <p class="hero__paragraph">Ingresa id a eliminar</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
+                    <input class="input100" type="number" name="idA" placeholder="Ingresa id">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="container-contact100-form-btn; contact100-form validate-form">
+                    <button class="contact100-form-btn" name="submit">
+                        <span>
+                            BUSCAR
+                            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </section>
+     
+        <?php
+            //conexion a la base de datos
+            $serv = 'localhost';
+            $cuenta = 'root';
+            $contra = '';
+            $BaseD = 'ancianato';
+            
+            //Realiar la conexion con la base de datos 
+            $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
+            if($conexion->connect_error){
+                die('Ocurrio un error en la conexion con la BD');
+            }else{
+                if(isset($_POST['submit'])){
+                    $modificar = $_POST['idA'];
+                    $_SESSION['mod']=$modificar;
+                    $sql2 = "select * from familiar where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+                    $resultado = $conexion -> query($sql2); //aplicamos sentencia 
+                    $fila = $resultado -> fetch_assoc();
+                    if($fila){
+                        echo "<script>document.location='baja_familiar_bd.php';</script>";
+                    }else{
+                        echo '<script>swal("Id no encontrado", "El id que ingresaste no es existente", "error");</script>'; 
+                    }
+                }
+            }
+        ?>
+ 
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>

@@ -60,12 +60,12 @@ class Benefactor extends Domicilio_tel{
             data: {
                     idB: this.idB,
                     nombre: this.nombre,
-                    calleA: this.dir.calleAcalleA,
-                    coloniaA: this.dir.coloniaA,
-                    cpA: this.dir.cpA,
-                    ciudadA: this.dir.ciudadA,
-                    estadoA: this.dir.estadoA,
-                    telA: this.dir.telA,
+                    calleA: this.calleA,
+                    coloniaA: this.coloniaA,
+                    cpA: this.cpA,
+                    ciudadA: this.ciudadA,
+                    estadoA: this.estadoA,
+                    telA: this.telA,
                 },
             success: function(response){
             if(response==1){

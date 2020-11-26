@@ -1,15 +1,51 @@
 <?php
-    //Admin
-    $_SESSION['usuario']="";
     session_start();
-
-    //conexion a la base de datos
-    $servidor = 'localhost';
-    $cuenta = 'root';
-    $password = '';
-    $bd = 'ancianato';
-    $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     error_reporting(0);
+    
+    $serv = 'localhost';
+    $cuenta = 'root';
+    $contra = '';
+    $BaseD = 'ancianato';
+   
+   //Variables de session
+   $_SESSION['id']='';
+   $_SESSION['nombre'] ='';
+   $_SESSION['desc'] = '';
+   $_SESSION['via'] = '';
+  
+
+  //Realiar la conexion con la base de datos 
+   $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
+  if($conexion->connect_error){
+      die('Ocurrio un error en la conexion con la BD');
+  }else{  
+    $modificar = $_SESSION['mod']; 
+    $sql2 = "select * from medicina where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $resultado = $conexion -> query($sql2); //aplicamos sentencia  
+            while( $fila = $resultado -> fetch_assoc() ){
+                $_SESSION['id']= $fila['ID'];
+                $_SESSION['nombre'] = $fila['Nombre'];
+                $_SESSION['desc'] = $fila['Descripcion'];
+                $_SESSION['via'] = $fila['Via'];
+                
+            } 
+         if(isset($_POST['submit'])){
+            $uno = $_POST["idA"];
+            $dos = $_POST["nomA"];
+            $tres = $_POST["desc"];
+            $cuatro= $_POST['via'];
+            
+
+            $modificar = $_SESSION["mod"];
+            $ne="update medicina set ID='$uno', Nombre='$dos', Descripcion='$tres',Via='$cuatro' WHERE ID='$modificar'";
+            
+            $fin = $conexion -> query($ne);
+             if ($conexion->affected_rows >= 1){ 
+                   $_SESSION['exito2'] = "si";
+                    header("Location: actualizar_medicina.php");
+                }
+        }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +63,8 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--  Para el los menajes de confimacion ets-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body >
         <!-- Navigation-->
@@ -47,28 +85,6 @@
                                 <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                BENEFACTOR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_benefactor.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                FAMILIAR
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_familiar.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
-                            </div>
-                        </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
@@ -78,14 +94,54 @@
                 </div>
             </div>
         </nav>
-
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">NUESTRAS CLASES</h2>
+                <h2 class="mb-4">ACTUALIZAR CAMPOS MEDICINA</h2>
             </div>
         </section>
 
+
+    <section class="hero3 hero8">      
+      <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" method="post" id="alta">
+				<div class="wrap-input100 validate-input" data-validate="Requerido">
+					<span class="label-input100">ID:</span>
+					<input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Nombre(s):</span>
+					<input class="input100" type="text" name="nomA" value="<?php echo $_SESSION['nombre']; ?>" required>
+					<span class="focus-input100"></span>
+				</div>
+
+                <div class="wrap-input100 validate-input" data-validate="Requerido">
+					<span class="label-input100">Descripcion:</span>
+					<input class="input100" type="text" name="desc" value="<?php echo $_SESSION['desc']; ?>" required>
+					<span class="focus-input100"></span>
+				</div>
+                <div class="wrap-input100 validate-input" data-validate="Requerido">
+					<span class="label-input100">Via:</span>
+					<input class="input100" type="text" name="via" value="<?php echo $_SESSION['via']; ?>">
+					<span class="focus-input100"></span>
+				</div>
+                
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn" name="submit">
+						<span>
+							Actualizar
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+    </section>
+
+
+
+       
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>

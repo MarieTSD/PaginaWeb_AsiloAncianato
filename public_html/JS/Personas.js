@@ -53,10 +53,6 @@ class Empleado extends Persona{
         })
         }
 
-        bajaEmpleado(){
-
-        }
-
         modificaEmpleado(){
 
         }
@@ -68,7 +64,7 @@ class Empleado extends Persona{
 
 //FAMILIAR ES UNA PERSONA
 class Familiar extends Persona{
-    constructor(idA,nomA,apA,amA,anoNA,Paren,idR,action){
+    constructor(idA,nomA,apA,amA,anoNA,Paren,calleA,coloniaA,cpA,ciudadA,estadoA,telA,idR,action){
         super(idA,nomA,apA,amA,anoNA);
         this.Paren=Paren;
         this.idR=idR;
@@ -87,7 +83,7 @@ class Familiar extends Persona{
                     apA: this.apA,
                     amA: this.amA,
                     anoNA: this.anoNA,
-                    calleA: this.dir.calleAcalleA,
+                    calleA: this.dir.calleA,
                     coloniaA: this.dir.coloniaA,
                     cpA: this.dir.cpA,
                     ciudadA: this.dir.ciudadA,
