@@ -10,6 +10,7 @@ $contra = '';
 $BaseD = 'ancianato';
 
 //Variables de session
+$_SESSION['idA'] = '';
 $_SESSION['idE'] = '';
 $_SESSION['idR'] = '';
 $_SESSION['fecha'] = '';
@@ -23,10 +24,10 @@ if ($conexion->connect_error) {
     die('Ocurrio un error en la conexion con la BD');
 } else {
     $modificar = $_SESSION['mod'];
-    $modificar2 = $_SESSION['mod2'];
-    $sql2 = "select * from Data_SeEncarga where ID_Empleado='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "select * from Data_SeEncarga where ID = '$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
+        $_SESSION['idA'] = $fila['ID'];
         $_SESSION['idE'] = $fila['ID_Empleado'];
         $_SESSION['fnE'] = $fila['FullNameEmpleado'];
         $_SESSION['idR'] = $fila['ID_Residente'];
@@ -35,17 +36,20 @@ if ($conexion->connect_error) {
         $_SESSION['hora'] = $fila['hora'];
     }
     if (isset($_POST['submit'])) {
+        $cero = $_POST["idA"];
         $uno = $_POST["idE"];
         $dos = $_POST["idR"];
         $tres = $_POST["fechaA"];
         $cuatro = $_POST["horaA"];
         $modificar = $_SESSION["mod"];
-        $modificar2 = $_SESSION["mod2"];
-        $ne = "update se_encarga set ID_Empleado='$uno', ID_Residente='$dos', Fecha='$tres', Hora='$cuatro' where ID_Empleado='$modificar' and ID_Residente='$modificar2'";
+        $ne = "update se_encarga set ID='$cero', ID_Empleado='$uno', ID_Residente='$dos', Fecha='$tres', Hora='$cuatro' where ID='$modificar'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
             $_SESSION['exito2'] = "si";
+            header("Location: actualizar_se_encarga.php");
+        }else{
+            $_SESSION['exito2'] = "no";
             header("Location: actualizar_se_encarga.php");
         }
     }
@@ -112,6 +116,12 @@ if ($conexion->connect_error) {
 
     <section class="hero3">
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">ID: </span>
+                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['idA']; ?>" required>
+                <span class="focus-input100"></span>
+            </div>
+
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Empleado: </span>
                 <select name="idE" id="idE" class="input100">

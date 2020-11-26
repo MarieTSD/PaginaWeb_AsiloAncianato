@@ -16,14 +16,15 @@ if ($conexion->connect_error) {
     //Sacamos los valores con post
 
     //obtenemos datos del formulario
+    $ida = $_POST['idA'];
     $ide = $_POST['idE'];
     $idr = $_POST['idR'];
     $fecha = $_POST['fechaA'];
     $hora = $_POST['horaA'];
 
     //hacemos cadena con la sentencia mysql para insertar datos
-    $sql = "INSERT INTO se_encarga (ID_Empleado, ID_Residente, Fecha, Hora) 
-                    VALUES('$ide','$idr','$fecha', '$hora')";
+    $sql = "INSERT INTO se_encarga (ID, ID_Empleado, ID_Residente, Fecha, Hora) 
+                    VALUES('$ida', '$ide','$idr','$fecha', '$hora')";
 
     $_SESSION['exito'] = "si";
 

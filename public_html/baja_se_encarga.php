@@ -74,44 +74,14 @@ include('db.php');
     <section class="hero3 hero7">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Empleado: </span>
-                <select name="idE" id="idE" class="input100">
-                    <option value="">Selecciona un empleado</option>
-                    <?php
-                    $result2 = mysqli_query($con, "SELECT * FROM `DataEmpleado`");
-                    while ($row2 = mysqli_fetch_assoc($result2)) {
-                    ?>
-                        <option value="<?php echo $row2['ID']; ?>">
-                            <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
-                        </option>
-                    <?php }
-                    mysqli_close($con2);
-                    ?>
-                </select>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Residente: </span>
-                <select name="idR" id="idR" class="input100">
-                    <option value="">Selecciona un residente</option>
-                    <?php
-                    $result2 = mysqli_query($con, "SELECT * FROM `DataResidente`");
-                    while ($row2 = mysqli_fetch_assoc($result2)) {
-                    ?>
-                        <option value="<?php echo $row2['ID']; ?>">
-                            <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
-                        </option>
-                    <?php }
-                    mysqli_close($con2);
-                    ?>
-                </select>
+                <span class="label-input100">ID: </span>
+                <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
                 <span class="focus-input100"></span>
             </div>
             <div class="contact100-form validate-form">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        BUSCAR APARECEN_SD
+                        BUSCAR
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
@@ -132,11 +102,9 @@ include('db.php');
         die('Ocurrio un error en la conexion con la BD');
     } else {
         if (isset($_POST['submit'])) {
-            $modificar = $_POST['idE'];
-            $modificar2 = $_POST['idR'];
+            $modificar = $_POST['idA'];
             $_SESSION['mod'] = $modificar;
-            $_SESSION['mod2'] = $modificar2;
-            $sql2 = "select * from se_encarga where ID_Empleado='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $sql2 = "select * from se_encarga where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
             $resultado = $conexion->query($sql2); //aplicamos sentencia 
             $fila = $resultado->fetch_assoc();
             if ($fila) {

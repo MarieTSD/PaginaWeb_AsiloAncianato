@@ -1,6 +1,5 @@
 <?php
 //Admin
-$_SESSION['usuario'] = "";
 session_start();
 
 //conexion a la base de datos
@@ -20,24 +19,29 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .logo {
+            width: 70px;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2" id="mainNav">
+        <div class="container ml-1">
+            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" alt=""></a>
+            <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <div class="collapse navbar-collapse ml-5" id="navbarResponsive">
+                <ul class="navbar-nav nav justify-content-center mr-5">
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             EMPLEADO
@@ -51,7 +55,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        SUMINISTRO
+                            SUMINISTRO
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_suministro.php">ALTA</a>
@@ -62,7 +66,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        APARECEN_SD
+                            APARECEN_SD
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_aparecen_sd.php">ALTA</a>
@@ -73,7 +77,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        SE_ENCARGA
+                            SE_ENCARGA
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_se_encarga.php">ALTA</a>
@@ -84,7 +88,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ASISTE
+                            ASISTE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
@@ -95,9 +99,12 @@ error_reporting(0);
                     </li>
                 </ul>
             </div>
+            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
+
+
         </div>
     </nav>
-
 
     <section class="bg-primary text-white h-50">
         <div class="container text-center pt-5">

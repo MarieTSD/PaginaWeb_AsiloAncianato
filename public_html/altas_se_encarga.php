@@ -87,6 +87,12 @@ include('db.php');
     <section class="hero3">
         <form class="contact100-form validate-form" action="altas_se_encarga_bd.php" enctype="multipart/form-data" method="POST" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">ID: </span>
+                <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Empleado: </span>
                 <select name="idE" id="idE" class="input100">
                     <option value="">Selecciona un empleado</option>

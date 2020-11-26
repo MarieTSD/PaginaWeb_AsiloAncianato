@@ -1,40 +1,36 @@
-.hero3{
-	text-align: left;
-	opacity: 0.8;
-    padding: 0 0 0 20%;
-    margin: 10px;
+.hero3 {
+  text-align: left;
+  opacity: 0.8;
+  padding: 0 0 0 20%;
+  margin: 10px;
 }
 
-.characteristics{
-	padding: 20px 20px;
-    text-align: left;
-    font-size: 13px;
+.characteristics {
+  padding: 20px 20px;
+  text-align: left;
+  font-size: 13px;
 }
 
-.characteristics .characteristics__container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.characteristics .characteristics__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.characteristics .card{
-    flex: 0 0  22%;
-    margin: 10px;
-    border: 2px solid;
-    padding: 0;
-    text-decoration: 1.0;
+.characteristics .card {
+  flex: 0 0 22%;
+  margin: 10px;
+  border: 2px solid;
+  padding: 0;
+  text-decoration: 1;
 }
-.list-group-item{
-    inline-size: 2;
+.list-group-item {
+  inline-size: 2;
 }
-body{
-    line-height: 1;
+body {
+  line-height: 1;
 }
 
-/*
-MARIELA 
-Suministro
-Aparecen_sd
-Se_encarga
-Asiste
-*/
+.logo{
+    width: 100px;
+}
