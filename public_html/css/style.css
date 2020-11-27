@@ -31,6 +31,36 @@ body {
   line-height: 1;
 }
 
-.logo{
-    width: 100px;
+#logo {
+  width: 50px;
+}
+
+.hero_act,
+.hero_salud,
+.hero_alma,
+.hero_cola {
+  background-size: cover;
+  height: 64%;
+}
+
+.hero_cola {
+  background-image: url(../img/cola.jpeg);
+}
+
+.hero_act {
+  background-image: url(../img/actividad.jpg);
+}
+
+.hero_salud {
+  background-image: url(../img/salud.jpg);
+}
+
+.hero_alma {
+  background-image: url(../img/alma.jpg);
+}
+
+.hero_admin {
+  background-image: url(../img/admin.jpg);
+  background-size: cover;
+  height: 60%;
 }

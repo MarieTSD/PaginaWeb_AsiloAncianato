@@ -12,8 +12,7 @@ $BaseD = 'ancianato';
 //Variables de session
 $_SESSION['idC'] = '';
 $_SESSION['idR'] = '';
-$_SESSION['fecha'] = '';
-$_SESSION['hora'] = '';
+$_SESSION['horario'] = '';
 $_SESSION['des'] = '';
 $_SESSION['fnR'] = '';
 
@@ -24,24 +23,22 @@ if ($conexion->connect_error) {
 } else {
     $modificar = $_SESSION['mod'];
     $modificar2 = $_SESSION['mod2'];
-    $sql2 = "select * from Data_Asiste where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "select * from Data_Inscrito where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
         $_SESSION['idC'] = $fila['ID_Clase'];
         $_SESSION['des'] = $fila['Descripcion'];
         $_SESSION['idR'] = $fila['ID_Residente'];
         $_SESSION['fnR'] = $fila['FullNameResidente'];
-        $_SESSION['fecha'] = $fila['fecha'];
-        $_SESSION['hora'] = $fila['hora'];
+        $_SESSION['horario'] = $fila['Horario'];
     }
     if (isset($_POST['submit'])) {
         $uno = $_POST["idC"];
         $dos = $_POST["idR"];
-        $tres = $_POST["fechaA"];
-        $cuatro = $_POST["horaA"];
+        $tres = $_POST["horarioA"];
         $modificar = $_SESSION["mod"];
         $modificar2 = $_SESSION["mod2"];
-        $ne = "update asiste set ID_Clase='$uno', ID_Residente='$dos', Fecha='$tres', Hora='$cuatro' where ID_Clase='$modificar' and ID_Residente='$modificar2'";
+        $ne = "update inscrito set ID_Clase='$uno', ID_Residente='$dos', Horario='$tres' where ID_Clase='$modificar' and ID_Residente='$modificar2'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
@@ -59,14 +56,10 @@ if ($conexion->connect_error) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
-    <link rel="stylesheet" href="css/styles.css">
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
@@ -76,12 +69,13 @@ if ($conexion->connect_error) {
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-0 " id="mainNav">
+        <div class="container ml-1">
+            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
+            <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <div class="collapse navbar-collapse ml-5" id="navbarResponsive">
+                <ul class="navbar-nav nav justify-content-center mr-5">
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             EMPLEADO
@@ -93,20 +87,49 @@ if ($conexion->connect_error) {
                             <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">ATENCION MEDICA</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            RESIDENTE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_residente.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_residente.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_residente.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_residente.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CLASE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_clase.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_clase.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            INSCRIPCIONES A CLASE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_asiste.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_asiste.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_asiste.php">VISUALIZAR</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
+            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
         </div>
     </nav>
 
-
-    <section class="bg-primary text-white h-25">
+    <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ACTUALIZAR CAMPOS ASISTE</h2>
+            <h2 class="mb-2 pt-5">ACTUALIZAR CAMPOS INSCRIPCION</h2>
         </div>
     </section>
 
@@ -149,14 +172,8 @@ if ($conexion->connect_error) {
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha: </span>
-                <input class="input100" type="date" name="fechaA" value="<?php echo $_SESSION['fecha']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora: </span>
-                <input class="input100" type="time" name="horaA" value="<?php echo $_SESSION['hora']; ?>" required>
+                <span class="label-input100">Horario: </span>
+                <input class="input100" type="text" name="horarioA" value="<?php echo $_SESSION['horario']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
 
