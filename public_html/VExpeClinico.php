@@ -1,14 +1,7 @@
 <?php
-//Admin
 session_start();
-
-//conexion a la base de datos
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'ancianato';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 error_reporting(0);
+include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +19,11 @@ error_reporting(0);
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
     <!--  Para el los menajes de confimacion ets-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--Clases-->
-    <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/employee.js"></script>
+
 </head>
 
 <body>
@@ -97,9 +87,9 @@ error_reporting(0);
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="AlExpClinico.php">ALTA</a>
-                            <a class="dropdown-item" href="BExpClinico">BAJA</a>
+                            <a class="dropdown-item" href="BExpeClinico.php">BAJA</a>
                             <a class="dropdown-item" href="AExpClinico.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="VExpClinico">VISUALIZAR</a>
+                            <a class="dropdown-item" href="VExpClinico.php">VISUALIZAR</a>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
@@ -108,89 +98,48 @@ error_reporting(0);
         </div>
     </nav>
 
-    <!-- Call to action-->
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ALTA DONACION</h2>
+            <h2 class="mb-2 pt-5">VER EXPEDIENTE CLINICO</h2>
         </div>
     </section>
 
-    <?php
-    if ($_SESSION['exito'] == "si") {
-        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
-        $_SESSION['exito'] = "";
-    } else if ($_SESSION['exito'] == "no") {
-        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
-        $_SESSION['exito'] = "";
-    }
-    ?>
-
-    <section class="hero3">
-        <form class="contact100-form validate-form" action="alta_donacionbase.php" enctype="multipart/form-data" method="POST" id="alta">
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idD" name="idD" placeholder="123" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">APORTE :</span>
-                <input class="input100" type="text" id="aporte" name="aporte" placeholder="Monetario, Vestimenta..." required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha de Aporte:</span>
-                <input class="input100" type="date" id="fec" name="fec" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora :</span>
-                <input class="input100" type="time" id="hr" name="hr" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Residente :</span>
-                <select name="id_residente" id="id_residente" class="input100">
-                    <option>Seleccion Residente</option>
-                    <?php 
-                            $sql = $conexion->query( "select * from residente"); 
-
-                            while($fila = $sql->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Benefactor :</span>
-                <select name="id_benefactor" id="id_benefactor" class="input100">
-                    <option >Seleccion Benefactor</option>
-                    <?php 
-                            $sql2 = $conexion->query( "select * from benefactor"); 
-
-                            while($fila = $sql2->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
-                    <span>
-                        AGREGAR DONACION
-                        <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
-                    </span>
-                </button>
-            </div>
-        </form>
+    <section class="characteristics">
+        <section class="characteristics__container">
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM `exp_clinico`");
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <article class="characteristics__item; card bg-light mb-3 border-dark">
+                    <ul class="list-group list-group-flush">
+                        <form method='post' action=''>
+                            <div class="card-header font-weight-bold">
+                                ID RESIDENTE: <?php echo $row['ID_Residente']; ?>
+                            </div>
+                            <li class="list-group-item">
+                                ID MEDICINA: <?php echo $row['ID_Medicina']; ?>
+                            </li>
+                            <li class="list-group-item">
+                                <div>ID ATENCION MEDICA: <?php echo $row['ID_Atencion_Medica']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>DOSIS:  <?php echo $row['Dosis']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>MOTIVO: <?php echo $row['Motivo']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>FECHA: <?php echo $row['Fecha']; ?></div>
+                            </li>
+                        </form>
+                    </ul>
+                </article>
+            <?php }
+            mysqli_close($con);
+            ?>
+        </section>
     </section>
-    
+
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">

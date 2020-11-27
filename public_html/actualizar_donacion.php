@@ -1,6 +1,7 @@
 <?php
 //Admin
 session_start();
+error_reporting(0);
 
 //conexion a la base de datos
 $servidor = 'localhost';
@@ -8,7 +9,6 @@ $cuenta = 'root';
 $password = '';
 $bd = 'ancianato';
 $conexion = new mysqli($servidor, $cuenta, $password, $bd);
-error_reporting(0);
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +30,6 @@ error_reporting(0);
     <link href="css/styles.css" rel="stylesheet" />
     <!--  Para el los menajes de confimacion ets-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--Clases-->
-    <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/employee.js"></script>
 </head>
 
 <body>
@@ -97,9 +93,9 @@ error_reporting(0);
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="AlExpClinico.php">ALTA</a>
-                            <a class="dropdown-item" href="BExpClinico">BAJA</a>
+                            <a class="dropdown-item" href="BExpeClinico.php">BAJA</a>
                             <a class="dropdown-item" href="AExpClinico.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="VExpClinico">VISUALIZAR</a>
+                            <a class="dropdown-item" href="VExpClinico.php">VISUALIZAR</a>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
@@ -107,90 +103,66 @@ error_reporting(0);
             </div>
         </div>
     </nav>
-
     <!-- Call to action-->
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ALTA DONACION</h2>
+            <h2 class="mb-2 pt-5">ACTUALIZAR DONACION</h2>
         </div>
     </section>
 
     <?php
-    if ($_SESSION['exito'] == "si") {
-        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
-        $_SESSION['exito'] = "";
-    } else if ($_SESSION['exito'] == "no") {
-        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
-        $_SESSION['exito'] = "";
+    if ($_SESSION['exito2'] == "si") {
+        echo '<script>swal("Actualizacion Exitosa", "Continua Actualizando", "success");</script>';
+        $_SESSION['exito2'] = "";
     }
     ?>
 
-    <section class="hero3">
-        <form class="contact100-form validate-form" action="alta_donacionbase.php" enctype="multipart/form-data" method="POST" id="alta">
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idD" name="idD" placeholder="123" required>
+    <section class="hero3 hero8">
+        <p class="hero__paragraph">Ingresa id de Donacion a actualizar:</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">
+                <input class="input100 w-25" type="number" name="idD" placeholder="Ingresa id">
                 <span class="focus-input100"></span>
             </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">APORTE :</span>
-                <input class="input100" type="text" id="aporte" name="aporte" placeholder="Monetario, Vestimenta..." required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha de Aporte:</span>
-                <input class="input100" type="date" id="fec" name="fec" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora :</span>
-                <input class="input100" type="time" id="hr" name="hr" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Residente :</span>
-                <select name="id_residente" id="id_residente" class="input100">
-                    <option>Seleccion Residente</option>
-                    <?php 
-                            $sql = $conexion->query( "select * from residente"); 
-
-                            while($fila = $sql->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Benefactor :</span>
-                <select name="id_benefactor" id="id_benefactor" class="input100">
-                    <option >Seleccion Benefactor</option>
-                    <?php 
-                            $sql2 = $conexion->query( "select * from benefactor"); 
-
-                            while($fila = $sql2->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
+            <div class="container-contact100-form-btn; contact100-form validate-form">
+                <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        AGREGAR DONACION
+                        BUSCAR DONACION
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
             </div>
         </form>
     </section>
-    
+
+    <?php
+    $serv = 'localhost';
+    $cuenta = 'root';
+    $contra = '';
+    $BaseD = 'ancianato';
+
+    //Realiar la conexion con la base de datos 
+    $conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
+    if ($conexion->connect_error) {
+        die('Ocurrio un error en la conexion con la BD');
+    } else {
+        if (isset($_POST['submit'])) {
+            $modificar = $_POST['idD'];
+            $_SESSION['mod'] = $modificar;
+            $sql2 = "select * from donacion where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $resultado = $conexion->query($sql2); //aplicamos sentencia  
+            $fila = $resultado->fetch_assoc();
+            if ($fila) {
+                echo "<script>
+                                        document.location='actualizar_donacionbase.php';
+                                    </script>";
+            } else {
+                echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
+            }
+        }
+    }
+    ?>
+
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">

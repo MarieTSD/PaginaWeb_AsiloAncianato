@@ -16,14 +16,8 @@
     $_SESSION['apellido_p'] = '';
     $_SESSION['apellido_m'] = '';
     $_SESSION['fecha_nac']='';
-    $_SESSION['calleno']='';
-    $_SESSION['colonia']='';
-    $_SESSION['cp']='';
-    $_SESSION['ciudad']='';
-    $_SESSION['estado']='';
-    $_SESSION['telefono']='';
-    $_SESSION['sueldo']='';
-    $_SESSION['tipo']='';
+    $_SESSION['genero']='';
+    $_SESSION['civil']='';
     
     //Realiar la conexion con la base de datos 
     $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
@@ -31,25 +25,19 @@
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION['mod']; 
-        $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+        $sql2 = "SELECT * from residente where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
         $resultado = $conexion -> query($sql2); //aplicamos sentencia  
         while( $fila = $resultado -> fetch_assoc() ){
             $_SESSION['id']=$fila['ID'];
             $_SESSION['nombre'] = $fila['Nombre'];
             $_SESSION['apellido_p'] = $fila['Apellido_P'];
-            $_SESSION['apellido_p'] = $fila['Apellido_M'];
+            $_SESSION['apellido_m'] = $fila['Apellido_M'];
             $_SESSION['fecha_nac'] = $fila['Fecha_Nac'];
-            $_SESSION['calleno'] = $fila['CalleNo'];
-            $_SESSION['colonia'] = $fila['Colonia'];
-            $_SESSION['cp'] = $fila['CP'];
-            $_SESSION['ciudad'] = $fila['Ciudad'];
-            $_SESSION['estado'] = $fila['Estado'];
-            $_SESSION['telefono'] = $fila['Telefono'];
-            $_SESSION['sueldo'] = $fila['Sueldo'];
-            $_SESSION['tipo'] = $fila['Tipo'];
+            $_SESSION['genero'] = $fila['Genero'];
+            $_SESSION['civil'] = $fila['Estado_civil'];
         } 
         if(isset($_POST['submit2'])){
-            header("Location:baja_empleado.php");
+            header("Location:bResidente.php");
         }
     }
 ?>
@@ -147,7 +135,7 @@
         <!-- Call to action-->
         <section class="bg-primary text-white h-25">
             <div class="container text-center pt-5">
-                <h2 class="mb-2 pt-5">CONFIRMAR BAJA EMPLEADO</h2>
+                <h2 class="mb-2 pt-5">CONFIRMAR BAJA RESIDENTE</h2>
             </div>
         </section>
 
@@ -166,10 +154,10 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         swal("Eliminado", { icon: "success"});
-                        document.location="baja_emp.php";
+                        document.location="bResi.php";
                     } else {
                         swal("No eliminado");
-                        document.location="baja_empleado_bd.php";  
+                        document.location="bResidente_base.php";  
                     }
                 });
             </script>';
@@ -201,42 +189,18 @@
                         <td><?php echo $_SESSION['fecha_nac']; ?></td>
                     </tr>
                     <tr>
-                        <td>Calle y No.: </td>
-                        <td><?php echo $_SESSION['calleno']; ?></td>
+                        <td>Genero: </td>
+                        <td><?php echo $_SESSION['genero']; ?></td>
                     </tr>
                     <tr>
-                        <td>Colonia: </td>
-                        <td><?php echo $_SESSION['colonia']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Codigo postal: </td>
-                        <td><?php echo $_SESSION['cp']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Ciudad: </td>
-                        <td><?php echo $_SESSION['ciudad']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Estado: </td>
-                        <td><?php echo $_SESSION['estado']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Telefono: </td>
-                        <td><?php echo $_SESSION['telefono']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Sueldo: </td>
-                        <td><?php echo $_SESSION['sueldo']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Tipo: </td>
-                        <td><?php echo $_SESSION['tipo']; ?></td>
+                        <td>Estado Civil : </td>
+                        <td><?php echo $_SESSION['civil']; ?></td>
                     </tr>
                 </table>
                 <div class="container-contact100-form-btn; contact100-form validate-form">
                     <button class="btn btn-outline-danger w-50 p-3 m-1" name="submit">
 						<span>
-							ELIMINAR EMPLEADO
+							ELIMINAR
 							<i class="fan fan-long-arrow-right w-50 m-l-7" aria-hidden="true"></i>
 						</span>
                     </button>
@@ -258,5 +222,3 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    </body>
-</html>

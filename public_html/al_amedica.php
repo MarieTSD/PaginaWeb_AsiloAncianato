@@ -111,7 +111,7 @@ error_reporting(0);
     <!-- Call to action-->
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ALTA DONACION</h2>
+            <h2 class="mb-2 pt-5">ALTA ATENCION MEDICA</h2>
         </div>
     </section>
 
@@ -127,67 +127,69 @@ error_reporting(0);
     ?>
 
     <section class="hero3">
-        <form class="contact100-form validate-form" action="alta_donacionbase.php" enctype="multipart/form-data" method="POST" id="alta">
+        <form class="contact100-form validate-form" id="alta" action="al_amedicabd.php" enctype="multipart/form-data" method="POST">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idD" name="idD" placeholder="123" required>
+                <input class="input100" type="number" id="idA"  name="idA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">APORTE :</span>
-                <input class="input100" type="text" id="aporte" name="aporte" placeholder="Monetario, Vestimenta..." required>
+                <span class="label-input100">Nombre(s):</span>
+                <input class="input100" type="text" id="nomA" name="nomA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha de Aporte:</span>
-                <input class="input100" type="date" id="fec" name="fec" required>
+                <span class="label-input100">Calle y No:</span>
+                <input class="input100" type="text" id="apA" name="apA" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1">
+                <span class="label-input100">Colonia</span>
+                <input class="input100" type="text" id="amA" name="amA" >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora :</span>
-                <input class="input100" type="time" id="hr" name="hr" required>
+                <span class="label-input100">CP</span>
+                <input class="input100" type="number" id="anoNA" name="anoNA" required>
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Residente :</span>
-                <select name="id_residente" id="id_residente" class="input100">
-                    <option>Seleccion Residente</option>
-                    <?php 
-                            $sql = $conexion->query( "select * from residente"); 
-
-                            while($fila = $sql->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Ciudad:</span>
+                <input class="input100" type="text" id="calleA" name="calleA"  required>
+                <span class="focus-input100"></span>
             </div>
 
-            <div class="container-contact100-form-btn p-1">
-                <span class="label-input100">Benefactor :</span>
-                <select name="id_benefactor" id="id_benefactor" class="input100">
-                    <option >Seleccion Benefactor</option>
-                    <?php 
-                            $sql2 = $conexion->query( "select * from benefactor"); 
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Estado</span>
+                <input class="input100" type="text" id="coloniaA" name="coloniaA" required>
+                <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">RFC:</span>
+                <input class="input100 w-25" type="text" id="cpA" name="cpA" required>
+                <span class="focus-input100"></span>
+            </div>
 
-                            while($fila = $sql2->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
-                    ?>
-                </select>
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Telefono:</span>
+                <input class="input100" type="number" id="ciudadA" name="ciudadA" required>
+                <span class="focus-input100"></span>
             </div>
 
             <div class="container-contact100-form-btn p-1">
                 <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
                     <span>
-                        AGREGAR DONACION
+                        AGREGAR ATENCION Medica
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
             </div>
+
         </form>
     </section>
     
