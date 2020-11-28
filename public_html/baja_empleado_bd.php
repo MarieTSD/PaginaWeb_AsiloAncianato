@@ -68,6 +68,7 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="css/style.css">
         <link href="css/styles.css" rel="stylesheet" />
         <!--  Para el los menajes de confimacion ets-->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -101,9 +102,9 @@
             </div>
         </nav>
         <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container text-center">
-                <h2 class="mb-4">CONFIRMAR BAJA EMPLEADO</h2>
+        <section class="bg-primary text-white h-25">
+            <div class="container text-center pt-5">
+                <h2 class="mb-2 pt-5">CONFIRMAR BAJA EMPLEADO</h2>
             </div>
         </section>
 
@@ -132,10 +133,10 @@
             }
         ?>
 
-        <section class="container">
+        <section class="hero3">
             <p class="">Datos a eliminar:</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered w-50">
                     <tr>
                         <td>ID: </td>
                         <td><?php echo $_SESSION['id']; ?></td>
@@ -190,18 +191,18 @@
                     </tr>
                 </table>
                 <div class="container-contact100-form-btn; contact100-form validate-form">
-					<button class="contact100-form-btn" name="submit">
+                    <button class="btn btn-outline-danger w-50 p-3 m-1" name="submit">
 						<span>
-							Eliminar
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							ELIMINAR EMPLEADO
+							<i class="fan fan-long-arrow-right w-50 m-l-7" aria-hidden="true"></i>
 						</span>
-					</button>
-					<button class="contact100-form-btn" name="submit2">
+                    </button>
+                    <button class="btn btn-outline-info w-25 p-3 m-1" name="submit2">
 						<span>
-							Regresar
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							REGRESAR
+							<i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
-					</button>
+                    </button>
 				</div>
             </form>
         </section>

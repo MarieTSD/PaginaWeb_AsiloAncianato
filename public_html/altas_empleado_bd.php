@@ -36,6 +36,8 @@
                 $conexion->query($sql);  
                 if ($conexion->affected_rows >= 1){ //revisamos que se inserto un registro
                     $_SESSION['exito'] = "si";
+                    echo "<script>document.location='altas_empleado.php';</script>";
+
                     header("Location: altas_empleado.php");
                 }else{
                     $_SESSION['exito'] = "no";

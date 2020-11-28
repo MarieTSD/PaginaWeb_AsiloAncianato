@@ -1,8 +1,37 @@
 <?php
     //Admin
     session_start();
-
     error_reporting(0);
+
+    //conexion a la base de datos
+    $serv = 'localhost';
+    $cuenta = 'root';
+    $contra = '';
+    $BaseD = 'ancianato';
+
+    //varibales para la consulta
+    //Variables de session
+    $_SESSION['id']='';
+    $_SESSION['nombre'] ='';
+    $_SESSION['des'] = '';
+    
+    //Realiar la conexion con la base de datos 
+    $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
+    if($conexion->connect_error){
+        die('Ocurrio un error en la conexion con la BD');
+    }else{
+        $modificar = $_SESSION['mod']; 
+        $sql2 = "select * from suministro where Codigo='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+        $resultado = $conexion -> query($sql2); //aplicamos sentencia  
+        while( $fila = $resultado -> fetch_assoc() ){
+            $_SESSION['id']=$fila['Codigo'];
+            $_SESSION['nombre'] = $fila['Nombre'];
+            $_SESSION['des'] = $fila['Descripcion'];
+        } 
+        if(isset($_POST['submit2'])){
+            header("Location:baja_suministro.php");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +68,8 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
                                 <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                                <a class="dropdown-item" href="#">ACTUALIZAR</a>
+                                <a class="dropdown-item" href="#">VISUALIZAR</a>
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
@@ -52,67 +81,72 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Encabezado-->
+        <!-- Call to action-->
         <section class="bg-primary text-white h-25">
             <div class="container text-center pt-5">
-                <h2 class="mb-2 pt-5">BAJA EMPLEADO</h2>
+                <h2 class="mb-2 pt-5">CONFIRMAR BAJA SUMINISTRO</h2>
             </div>
         </section>
 
-        <!--Dialogo-->
         <?php
-            if($_SESSION['exito1'] == "si"){
-                echo '<script>swal("Baja Exitosa", "Los cambios se guardaron", "success");</script>';
-                $_SESSION['exito1'] = "";
+            if(isset($_POST['submit'])){
+            $modificar = $_SESSION["mod"];
+            //hacemos cadena con la sentencia mysql para insertar datos
+            echo '
+            <script>
+                swal({
+                    title: "¿Estas seguro de eliminarlo?",
+                    text: "Una vez eliminado, no se podra recuperar",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        swal("Eliminado", { icon: "success"});
+                        document.location="baja_sum.php";
+                    } else {
+                        swal("No eliminado");
+                        document.location="baja_suministro_bd.php";  
+                    }
+                });
+            </script>';
             }
         ?>
 
-        <section class="hero3 hero7">
-            <p class="hero__paragraph">Ingresa id a eliminar: </p>
+        <section class="hero3">
+            <p class="">Datos a eliminar:</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
-                    <input class="input100" type="number" name="idA" placeholder="Ingresa id">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="contact100-form validate-form">
-                    <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
+                <table class="table table-hover table-bordered w-50">
+                    <tr>
+                        <td>ID: </td>
+                        <td><?php echo $_SESSION['id']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre: </td>
+                        <td><?php echo $_SESSION['nombre']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Apellido paterno: </td>
+                        <td><?php echo $_SESSION['des']; ?></td>
+                    </tr>
+                </table>
+                <div class="container-contact100-form-btn; contact100-form validate-form">
+                    <button class="btn btn-outline-danger w-50 p-3 m-1" name="submit">
 						<span>
-							BUSCAR EMPLEADO
+							ELIMINAR 
+							<i class="fan fan-long-arrow-right w-50 m-l-7" aria-hidden="true"></i>
+						</span>
+                    </button>
+                    <button class="btn btn-outline-info w-25 p-3 m-1" name="submit2">
+						<span>
+							REGRESAR
 							<i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
-					</button>
-                </div>
+                    </button>
+				</div>
             </form>
         </section>
-     
-        <?php
-            //conexion a la base de datos
-            $serv = 'localhost';
-            $cuenta = 'root';
-            $contra = '';
-            $BaseD = 'ancianato';
-            
-            //Realiar la conexion con la base de datos 
-            $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
-            if($conexion->connect_error){
-                die('Ocurrio un error en la conexion con la BD');
-            }else{
-                if(isset($_POST['submit'])){
-                    $modificar = $_POST['idA'];
-                    $_SESSION['mod']=$modificar;
-                    $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-                    $resultado = $conexion -> query($sql2); //aplicamos sentencia 
-                    $fila = $resultado -> fetch_assoc();
-                    if($fila){
-                        echo "<script>document.location='baja_empleado_bd.php';</script>";
-                    }else{
-                        echo '<script>swal("Id no encontrado", "El id que ingresaste no es existente", "error");</script>'; 
-                    }
-                }
-            }
-        ?>
- 
+
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>

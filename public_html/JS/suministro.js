@@ -1,6 +1,5 @@
 class Suministro{
-    constructor(cod,nom,desc,action){
-        this.cod=cod;
+    constructor(nom,desc,action){
         this.nom=nom;
         this.desc=desc;
         this.action=action
@@ -11,7 +10,6 @@ class Suministro{
             type: "POST",
             url: this.action,
             data: {
-                    cod: this.cod,
                     nom: this.nom,
                     desc: this.desc
                 },

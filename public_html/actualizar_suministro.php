@@ -63,7 +63,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     <!-- Call to action-->
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ACTUALIZAR EMPLEADO</h2>
+            <h2 class="mb-2 pt-5">ACTUALIZAR SUMINISTRO</h2>
         </div>
     </section>
 
@@ -75,7 +75,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     ?>
 
     <section class="hero3 hero8">
-        <p class="hero__paragraph">Ingresa id de producto a actualizar:</p>
+        <p class="hero__paragraph">Ingresa codigo a actualizar:</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">
                 <input class="input100 w-25" type="number" name="idA" placeholder="Ingresa id">
@@ -84,7 +84,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
             <div class="container-contact100-form-btn; contact100-form validate-form">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        BUSCAR EMPLEADO
+                        BUSCAR SUMINISTRO
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
@@ -106,12 +106,12 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
         if (isset($_POST['submit'])) {
             $modificar = $_POST['idA'];
             $_SESSION['mod'] = $modificar;
-            $sql2 = "select * from empleado where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $sql2 = "select * from suministro where Codigo='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
             $resultado = $conexion->query($sql2); //aplicamos sentencia  
             $fila = $resultado->fetch_assoc();
             if ($fila) {
                 echo "<script>
-                                        document.location='actualizar_empleado_bd.php';
+                                        document.location='actualizar_suministro_bd.php';
                                     </script>";
             } else {
                 echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';

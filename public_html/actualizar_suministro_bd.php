@@ -1,14 +1,45 @@
 <?php
-//Admin
 session_start();
 error_reporting(0);
 
-//conexion a la base de datos
-$servidor = 'localhost';
+$serv = 'localhost';
 $cuenta = 'root';
-$password = '';
-$bd = 'ancianato';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+$contra = '';
+$BaseD = 'ancianato';
+
+//Variables de session
+$_SESSION['id'] = '';
+$_SESSION['nombre'] = '';
+$_SESSION['des'] = '';
+
+//Realiar la conexion con la base de datos 
+$conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
+if ($conexion->connect_error) {
+    die('Ocurrio un error en la conexion con la BD');
+} else {
+    $modificar = $_SESSION['mod'];
+    $sql2 = "select * from suministro where Codigo='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $resultado = $conexion->query($sql2); //aplicamos sentencia  
+    while ($fila = $resultado->fetch_assoc()) {
+        $_SESSION['id'] = $fila['Codigo'];
+        $_SESSION['nombre'] = $fila['Nombre'];
+        $_SESSION['des'] = $fila['Descripcion'];
+    }
+    if (isset($_POST['submit'])) {
+        $uno = $_POST["idA"];
+        $dos = $_POST["nomA"];
+        $tres = $_POST["desA"];
+
+        $modificar = $_SESSION["mod"];
+        $ne = "update suministro set Codigo='$uno', Nombre='$dos', Descripcion='$tres' WHERE Codigo='$modificar'";
+
+        $fin = $conexion->query($ne);
+        if ($conexion->affected_rows >= 1) {
+            $_SESSION['exito2'] = "si";
+            header("Location: actualizar_suministro.php");
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +49,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -60,65 +92,44 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
             </div>
         </div>
     </nav>
-    <!-- Call to action-->
+
+
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ACTUALIZAR EMPLEADO</h2>
+            <h2 class="mb-2 pt-5">ACTUALIZAR CAMPOS SUMINISTRO</h2>
         </div>
     </section>
 
-    <?php
-    if ($_SESSION['exito2'] == "si") {
-        echo '<script>swal("Actualizacion Exitosa", "Continua Actualizando", "success");</script>';
-        $_SESSION['exito2'] = "";
-    }
-    ?>
-
-    <section class="hero3 hero8">
-        <p class="hero__paragraph">Ingresa id de producto a actualizar:</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">
-                <input class="input100 w-25" type="number" name="idA" placeholder="Ingresa id">
+    <section class="hero3">
+        <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Codigo: </span>
+                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
-            <div class="container-contact100-form-btn; contact100-form validate-form">
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Valid email is required: ex@abc.xyz">
+                <span class="label-input100">Nombre: </span>
+                <input class="input100" type="text" name="nomA" value="<?php echo $_SESSION['nombre']; ?>" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Descripcion: </span>
+                <input class="input100" type="text" name="desA" value="<?php echo $_SESSION['des']; ?>" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        BUSCAR EMPLEADO
+                        ACTUALIZAR SUMINISTRO
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
             </div>
         </form>
     </section>
-
-    <?php
-    $serv = 'localhost';
-    $cuenta = 'root';
-    $contra = '';
-    $BaseD = 'ancianato';
-
-    //Realiar la conexion con la base de datos 
-    $conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
-    if ($conexion->connect_error) {
-        die('Ocurrio un error en la conexion con la BD');
-    } else {
-        if (isset($_POST['submit'])) {
-            $modificar = $_POST['idA'];
-            $_SESSION['mod'] = $modificar;
-            $sql2 = "select * from empleado where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-            $resultado = $conexion->query($sql2); //aplicamos sentencia  
-            $fila = $resultado->fetch_assoc();
-            if ($fila) {
-                echo "<script>
-                                        document.location='actualizar_empleado_bd.php';
-                                    </script>";
-            } else {
-                echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
-            }
-        }
-    }
-    ?>
 
     <!-- Footer-->
     <footer class="bg-light py-5">

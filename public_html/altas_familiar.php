@@ -1,14 +1,15 @@
 <?php
-    //Admin
-    session_start();
+//Admin
+session_start();
 
-    //conexion a la base de datos
-    $servidor = 'localhost';
-    $cuenta = 'root';
-    $password = '';
-    $bd = 'ancianato';
-    $conexion = new mysqli($servidor, $cuenta, $password, $bd);
-    error_reporting(0);
+//conexion a la base de datos
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'ancianato';
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+error_reporting(0);
+include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -147,11 +148,23 @@
             <span class="focus-input100"></span>
         </div>
         
-        <div class="wrap-input100 validate-input" data-validate="Requerido">
-            <span class="label-input100">ID Residente:</span>
-            <input class="input100" type="number" id="idR" name="idR">
-            <span class="focus-input100"></span>
-        </div>
+        <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Residente: </span>
+                <select name="idR" id="idR" class="input100">
+                    <option value="">Selecciona un residente</option>
+                    <?php
+                    $result2 = mysqli_query($con, "SELECT * FROM `DataResidente`");
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                    ?>
+                        <option value="<?php echo $row2['ID']; ?>">
+                            <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
+                        </option>
+                    <?php }
+                    mysqli_close($con2);
+                    ?>
+                </select>
+                <span class="focus-input100"></span>
+            </div>
         
         
         

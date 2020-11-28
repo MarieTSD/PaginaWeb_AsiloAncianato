@@ -23,35 +23,22 @@ error_reporting(0);
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2" id="mainNav">
         <div class="container ml-1">
-            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" id="logo" alt=""></a>
+            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
             <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse ml-5" id="navbarResponsive">
                 <ul class="navbar-nav nav justify-content-center mr-5">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_colaboradores.php" role="button">COLABORADORES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_actividades.php" role="button">ACTIVIDADES Y <br> PERSONAL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_salud.php" role="button">SALUD Y <br> RITMO DE VIDA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_alma.php" role="button">ALMACENAMIENTO</a>
-                    </li>
-                    <!--
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            EMPLEADO
+                            DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
@@ -62,7 +49,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            SUMINISTRO
+                            FAMILIAR
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_suministro.php">ALTA</a>
@@ -73,7 +60,7 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            APARECEN_SD
+                            BENEFACTOR
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_aparecen_sd.php">ALTA</a>
@@ -82,29 +69,6 @@ error_reporting(0);
                             <a class="dropdown-item" href="ver_aparecen_sd.php">VISUALIZAR</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            SE_ENCARGA
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_se_encarga.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_se_encarga.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_se_encarga.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_se_encarga.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ASISTE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_asiste.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_asiste.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_asiste.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-    -->
                 </ul>
             </div>
             <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
@@ -114,16 +78,15 @@ error_reporting(0);
         </div>
     </nav>
 
-    <section class="bg-dark text-white h-20 " style="height:25%;">
+    <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">BIENVENIDO ADMINISTRADOR</h2>
+            <h2 class="mb-2 pt-5">COLABORADORES</h2>
         </div>
     </section>
-
-    <section class="bg-ligth text-dark h-40 hero_admin">
+    <section class="bg-ligth text-dark h-40 hero_cola"">
         <div class="container text-center pt-4">
             <h4>
-                ...
+               ...
             </h4>
         </div>
     </section>

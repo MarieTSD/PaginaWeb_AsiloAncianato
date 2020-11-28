@@ -1,5 +1,5 @@
 class Asiste{
-    constructor(id_Residente,Id_Clase,fecha,hora,action){
+    constructor(Id_Clase,id_Residente,fecha,hora,action){
         this.id_Residente=id_Residente;
         this.id_Clase=Id_Clase;
         this.fecha=fecha;

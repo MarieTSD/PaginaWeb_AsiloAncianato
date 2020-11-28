@@ -61,3 +61,28 @@ var getDataCla=function(){
     clase.altaClase();
 }
 
+var getDataSE=function(){
+    var idE=document.getElementById("idE").value;
+    var idR=document.getElementById("idR").value;
+    var fecha=document.getElementById("fechaA").value;
+    var hora=document.getElementById("horaA").value;
+    var sen=new Se_encarga(idE,idR,fecha,hora,"altas_se_encarga_bd.php");
+    sen.altase_encarga();
+}
+
+var getDataAs=function(){
+    var idC=document.getElementById("idC").value;
+    var idR=document.getElementById("idR").value;
+    var fecha=document.getElementById("fechaA").value;
+    var hora=document.getElementById("horaA").value;
+    var asi=new Asiste(idC,idR,fecha,hora,"altas_asiste_bd.php");
+    asi.altaAsiste();
+
+}
+
+var getDataSu=function(){
+    var idC=document.getElementById("nomA").value;
+    var idR=document.getElementById("desA").value;
+    var sum=new Suministro(idC,idR,"altas_suministro_bd.php");
+    sum.altaSuministro();
+}

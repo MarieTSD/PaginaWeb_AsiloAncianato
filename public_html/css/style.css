@@ -1,0 +1,66 @@
+.hero3 {
+  text-align: left;
+  opacity: 0.8;
+  padding: 0 0 0 20%;
+  margin: 10px;
+}
+
+.characteristics {
+  padding: 20px 20px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.characteristics .characteristics__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.characteristics .card {
+  flex: 0 0 22%;
+  margin: 10px;
+  border: 2px solid;
+  padding: 0;
+  text-decoration: 1;
+}
+.list-group-item {
+  inline-size: 2;
+}
+body {
+  line-height: 1;
+}
+
+#logo {
+  width: 50px;
+}
+
+.hero_act,
+.hero_salud,
+.hero_alma,
+.hero_cola {
+  background-size: cover;
+  height: 64%;
+}
+
+.hero_cola {
+  background-image: url(../img/cola.jpeg);
+}
+
+.hero_act {
+  background-image: url(../img/actividad.jpg);
+}
+
+.hero_salud {
+  background-image: url(../img/salud.jpg);
+}
+
+.hero_alma {
+  background-image: url(../img/alma.jpg);
+}
+
+.hero_admin {
+  background-image: url(../img/admin.jpg);
+  background-size: cover;
+  height: 60%;
+}
