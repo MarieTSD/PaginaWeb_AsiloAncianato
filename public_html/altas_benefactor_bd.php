@@ -15,7 +15,6 @@
       //Sacamos los valores con post
     
                 //obtenemos datos del formulario
-                $id = $_POST['idB'];
                 $nom =$_POST['nombre'];
                 $calleNo = $_POST['calleA'];
                 $colonia = $_POST['coloniaA'];
@@ -25,8 +24,8 @@
                 $tel = $_POST['telA'];
                 
                 //hacemos cadena con la sentencia mysql para insertar datos
-                $sql = "INSERT INTO Benefactor VALUES('$id','$nom', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel')";
-                
+                $sql = "INSERT INTO benefactor (Nombre,CalleNo,Colonia,CP,Cuidad,Estado,Telefono) VALUES('$nom', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel')";
+                echo "alert('$sql')";
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  
                 if ($conexion->affected_rows >= 1){ //revisamos que se inserto un registro
@@ -34,6 +33,8 @@
                     header("Location: altas_benefactor.php");
                 }else{
                     $_SESSION['exito'] = "no";
+                    
+
                     echo "<script>document.location='altas_benefactor.php';</script>";
                 }
          

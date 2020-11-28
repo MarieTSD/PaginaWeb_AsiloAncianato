@@ -46,9 +46,8 @@ class Atencion_medica extends Domicilio_tel{
 }
 
 class Benefactor extends Domicilio_tel{
-    constructor(idB,nombre,calleA,coloniaA,cpA,ciudadA,estadoA,telA,action){
+    constructor(nombre,calleA,coloniaA,cpA,ciudadA,estadoA,telA,action){
         super(calleA,coloniaA,cpA,ciudadA,estadoA,telA);
-        this.idB=idB;
         this.nombre=nombre;
         this.action=action;
     }
@@ -58,7 +57,6 @@ class Benefactor extends Domicilio_tel{
             type: "POST",
             url: this.action,
             data: {
-                    idB: this.idB,
                     nombre: this.nombre,
                     calleA: this.calleA,
                     coloniaA: this.coloniaA,

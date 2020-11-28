@@ -1,6 +1,6 @@
 class Clase{
-    constructor(idC,desc,area,idE,action){
-        this.idC=idC;
+    constructor(desc,area,idE,action){
+        
         this.desc=desc;
         this.area=area;
         this.idE=idE;
@@ -12,7 +12,7 @@ class Clase{
             type: "POST",
             url: this.action,
             data: {
-                    idC: this.idC,
+                    
                     desc: this.desc,
                     area: this.area,
                     idE: this.idE

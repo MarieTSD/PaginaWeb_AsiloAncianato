@@ -15,7 +15,6 @@
       //Sacamos los valores con post
     
                 //obtenemos datos del formulario
-                $id = $_POST['idA'];
                 $nom =$_POST['nomA'];
                 $apM =$_POST['amA'];
                 $apP =$_POST['apA'];
@@ -30,8 +29,8 @@
                 $tipo = $_POST['tipo'];
                 
                 //hacemos cadena con la sentencia mysql para insertar datos
-                $sql = "INSERT INTO Empleado (id, Nombre, Apellido_P,Apellido_M, Fecha_Nac, calleNo, colonia, cp, ciudad, estado, telefono, sueldo, tipo) 
-                    VALUES('$id','$nom','$apP','$apM', '$anoN', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel', '$sueldo', '$tipo')";
+                $sql = "INSERT INTO empleado (Nombre, Apellido_P,Apellido_M, Fecha_Nac, CalleNo, Colonia, CP, Ciudad, Estado, Telefono, Sueldo, Tipo) 
+                    VALUES('$nom','$apP','$apM', '$anoN', '$calleNo', '$colonia', '$cp', '$ciudad', '$estado', '$tel', '$sueldo', '$tipo')";
                 
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  

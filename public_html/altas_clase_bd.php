@@ -15,7 +15,7 @@
       //Sacamos los valores con post
     
                 //obtenemos datos del formulario
-                $id = $_POST['idC'];
+               
                 $des =$_POST['desc'];
                 $area =$_POST['area'];
                 $idE =$_POST['idE'];
@@ -24,19 +24,21 @@
                 $conexion->query($sql3);
                 if($conexion->affected_rows>=1){
                     //hacemos cadena con la sentencia mysql para insertar datos
-                $sql = "insert into clase values('$id', '$des', '$area', '$idE')";
+                    $sql = "insert into clase (Descripcion,Area,ID_Empledao) values('$des','$area', '$idE')";
                 
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  
-                if ($conexion->affected_rows >= 1){ //revisamos que se inserto un registro
-                    $_SESSION['exito'] = "si";
-                    header("Location: altas_clase.php");
+                    if ($conexion->affected_rows >= 1){ //revisamos que se inserto un registro
+                        $_SESSION['exito'] = "si";
+                        header("Location: altas_clase.php");
+                    }else{
+                        $_SESSION['exito'] = "no";
+                        echo "<script>document.location='altas_clase.php';</script>";
+                    }
                 }else{
-                    $_SESSION['exito'] = "no";
-                    echo "<script>document.location='altas_clase.php';</script>";
-                }
-                }else{
-                    $_SESSION['exito']="x";
+                    echo '<script>swal("ID de empleado incorrecto", "El id no existe", "error");</script>';
+
+
                 }
                 
          

@@ -15,15 +15,14 @@
       //Sacamos los valores con post
     
                 //obtenemos datos del formulario
-                $id = $_POST['cod'];
                 $nom =$_POST['nom'];
                 $des =$_POST['desc'];
                 $via =$_POST['via'];
                 
                 
                 //hacemos cadena con la sentencia mysql para insertar datos
-                $sql = "INSERT INTO medicina (ID, Nombre,Descripcion,Via) 
-                    VALUES('$id','$nom','$des','$via')";
+                $sql = "INSERT INTO medicina (Nombre,Descripcion,Via) 
+                    VALUES('$nom','$des','$via')";
                 
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  

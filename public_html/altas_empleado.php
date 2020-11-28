@@ -82,11 +82,7 @@
 
     <div class="container">
         <form action="" id="form">
-        <div class="wrap-input100 validate-input" data-validate="Requerido">
-            <span class="label-input100">ID:</span>
-            <input class="input100" type="number" id="idA" name="idA" placeholder="123" required>
-            <span class="focus-input100"></span>
-        </div>
+        
 
         <div class="wrap-input100 validate-input" data-validate = "Requerido">
             <span class="label-input100">Nombre(s):</span>

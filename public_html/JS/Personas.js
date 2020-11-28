@@ -1,8 +1,7 @@
 //DATOS DE PERSONA
 class Persona{
-    constructor(idA,nomA,apA,amA,anoNA){
+    constructor(nomA,apA,amA,anoNA){
         
-        this.idA=idA;
         this.nomA=nomA;
         this.apA=apA;
         this.amA=amA;
@@ -15,9 +14,9 @@ class Persona{
 class Empleado extends Persona{
     
 
-    constructor(idA,nomA,apA,amA,anoNA,calleA,coloniaA,cpA,ciudadA,estadoA,telA,sueldoA,altaC,action)
+    constructor(nomA,apA,amA,anoNA,calleA,coloniaA,cpA,ciudadA,estadoA,telA,sueldoA,altaC,action)
         {
-        super(idA,nomA,apA,amA,anoNA);
+        super(nomA,apA,amA,anoNA);
         this.sueldoA=sueldoA;
         this.altaC=altaC;
         this.action=action;
@@ -64,8 +63,8 @@ class Empleado extends Persona{
 
 //FAMILIAR ES UNA PERSONA
 class Familiar extends Persona{
-    constructor(idA,nomA,apA,amA,anoNA,Paren,calleA,coloniaA,cpA,ciudadA,estadoA,telA,idR,action){
-        super(idA,nomA,apA,amA,anoNA);
+    constructor(nomA,apA,amA,anoNA,Paren,calleA,coloniaA,cpA,ciudadA,estadoA,telA,idR,action){
+        super(nomA,apA,amA,anoNA);
         this.Paren=Paren;
         this.idR=idR;
         this.action=action;
@@ -78,7 +77,6 @@ class Familiar extends Persona{
             type: "POST",
             url: this.action,
             data: {
-                    idA: this.idA,
                     nomA: this.nomA,
                     apA: this.apA,
                     amA: this.amA,
@@ -119,7 +117,7 @@ class Familiar extends Persona{
 
 //RESIDENTE ES UNA PERSONA
 class Residente extends Persona{
-    constructor(idA,nomA,apA,amA,anoNA,gen,estC,action){
+    constructor(nomA,apA,amA,anoNA,gen,estC,action){
         super(idA,nomA,apA,amA,anoNA);
         this.gen=gen;
         this.estC=estC;
@@ -133,7 +131,6 @@ class Residente extends Persona{
             type: "POST",
             url: this.action,
             data: {
-                    idA: this.idA,
                     nomA: this.nomA,
                     apA: this.apA,
                     amA: this.amA,

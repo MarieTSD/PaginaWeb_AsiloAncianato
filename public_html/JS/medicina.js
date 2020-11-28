@@ -1,6 +1,5 @@
 class Medicina{
-    constructor(cod,nom,desc,via,action){
-        this.cod=cod;
+    constructor(nom,desc,via,action){
         this.nom=nom;
         this.desc=desc;
         this.via=via;
@@ -12,7 +11,6 @@ class Medicina{
             type: "POST",
             url: this.action,
             data: {
-                    cod: this.cod,
                     nom: this.nom,
                     desc: this.desc,
                     via: this.via
