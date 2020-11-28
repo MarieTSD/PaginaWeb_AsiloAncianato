@@ -1,14 +1,7 @@
 <?php
-//Admin
 session_start();
-
-//conexion a la base de datos
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'ancianato';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 error_reporting(0);
+include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,36 +12,28 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
+    <!--  Para el los menajes de confimacion ets-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2" id="mainNav">
-        <div class="container ml-1">
-            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" id="logo" alt=""></a>
-            <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse ml-5" id="navbarResponsive">
-                <ul class="navbar-nav nav justify-content-center mr-5">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_colaboradores.php" role="button">COLABORADORES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_actividades.php" role="button">ACTIVIDADES Y <br> PERSONAL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_salud.php" role="button">SALUD Y <br> RITMO DE VIDA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_alma.php" role="button">ALMACENAMIENTO</a>
-                    </li>
-                    <!--
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             EMPLEADO
@@ -62,26 +47,6 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
-                            SUMINISTRO
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_suministro.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_suministro.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_suministro.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_suministro.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            APARECEN_SD
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_aparecen_sd.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_aparecen_sd.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_aparecen_sd.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_aparecen_sd.php">VISUALIZAR</a>
-=======
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -102,34 +67,10 @@ error_reporting(0);
                             <a class="dropdown-item" href="b_amedica.php">BAJA</a>
                             <a class="dropdown-item" href="a_amedica.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
->>>>>>> ADRIANA
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
-                            SE_ENCARGA
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_se_encarga.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_se_encarga.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_se_encarga.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_se_encarga.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ASISTE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_asiste.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_asiste.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_asiste.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-    -->
-=======
                             RESIDENTE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -152,28 +93,54 @@ error_reporting(0);
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
->>>>>>> ADRIANA
                 </ul>
             </div>
-            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
-            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
-
-
         </div>
     </nav>
 
-    <section class="bg-dark text-white h-20 " style="height:25%;">
+    <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">BIENVENIDO ADMINISTRADOR</h2>
+            <h2 class="mb-2 pt-5">VER RESIDENTE</h2>
         </div>
     </section>
 
-    <section class="bg-ligth text-dark h-40 hero_admin">
-        <div class="container text-center pt-4">
-            <h4>
-                ...
-            </h4>
-        </div>
+    <section class="characteristics">
+        <section class="characteristics__container">
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM `residente`");
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <article class="characteristics__item; card bg-light mb-3 border-dark">
+                    <ul class="list-group list-group-flush">
+                        <form method='post' action=''>
+                            <div class="card-header font-weight-bold">
+                                ID: <?php echo $row['ID']; ?>
+                            </div>
+                            <li class="list-group-item">
+                                Nombre(s): <?php echo $row['Nombre']; ?>
+                            </li>
+                            <li class="list-group-item">
+                                <div>Apellido paterno: <?php echo $row['Apellido_P']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>Apellido materno: <?php echo $row['Apellido_M']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>Fecha de nacimiento: <?php echo $row['Fecha_Nac']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>Genero: <?php echo $row['Genero']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>Estado Civil: <?php echo $row['Estado_civil']; ?></div>
+                            </li>
+                        </form>
+                    </ul>
+                </article>
+            <?php }
+            mysqli_close($con);
+            ?>
+        </section>
     </section>
 
     <!-- Footer-->

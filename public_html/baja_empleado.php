@@ -27,31 +27,74 @@
     <body >
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                EMPLEADO
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                                <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                                <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                                <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">DONACION</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">ATENCION MEDICA</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
-                    </ul>
-                </div>
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EMPLEADO
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DONACION
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ATENCION MEDICA
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="al_amedica.php">ALTA</a>
+                            <a class="dropdown-item" href="b_amedica.php">BAJA</a>
+                            <a class="dropdown-item" href="a_amedica.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            RESIDENTE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="alResidente.php">ALTA</a>
+                            <a class="dropdown-item" href="bResidente.php">BAJA</a>
+                            <a class="dropdown-item" href="aResidente.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="vResidente.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Expediente Cinico
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="AlExpClinico.php">ALTA</a>
+                            <a class="dropdown-item" href="BExpClinico">BAJA</a>
+                            <a class="dropdown-item" href="AExpClinico.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="VExpClinico">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
         <!-- Encabezado-->
         <section class="bg-primary text-white h-25">

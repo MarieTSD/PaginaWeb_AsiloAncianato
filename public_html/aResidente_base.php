@@ -13,60 +13,42 @@
    $_SESSION['ap'] = '';
    $_SESSION['am'] = '';
    $_SESSION['nac']='';
-   $_SESSION['calle']='';
-   $_SESSION['colonia']='';
-   $_SESSION['cp']='';
-   $_SESSION['ciudad']='';
-   $_SESSION['estado']='';
-   $_SESSION['telefono']='';
-   $_SESSION['sueldo']='';
-   $_SESSION['tipo']='';
+   $_SESSION['gen']='';
+   $_SESSION['civil']='';
 
   //Realiar la conexion con la base de datos 
-   $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
-  if($conexion->connect_error){
+   $conexion5 = new mysqli($serv,$cuenta,$contra,$BaseD);
+  if($conexion5->connect_error){
       die('Ocurrio un error en la conexion con la BD');
   }else{  
     $modificar = $_SESSION['mod']; 
-    $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-    $resultado = $conexion -> query($sql2); //aplicamos sentencia  
+    $sql2 = "SELECT * from residente where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $resultado = $conexion5 -> query($sql2); //aplicamos sentencia  
             while( $fila = $resultado -> fetch_assoc() ){
                 $_SESSION['id']= $fila['ID'];
                 $_SESSION['nombre'] = $fila['Nombre'];
                 $_SESSION['ap'] = $fila['Apellido_P'];
                 $_SESSION['am'] = $fila['Apellido_M'];
                 $_SESSION['nac']=$fila['Fecha_Nac'];
-                $_SESSION['calle']=$fila['CalleNo'];
-                $_SESSION['colonia']=$fila['Colonia'];
-                $_SESSION['cp']=$fila['CP'];
-                $_SESSION['ciudad']=$fila['Ciudad'];
-                $_SESSION['estado']=$fila['Estado'];
-                $_SESSION['telefono']=$fila['Telefono'];
-                $_SESSION['sueldo']=$fila['Sueldo'];
-                $_SESSION['tipo']=$fila['Tipo'];
+                $_SESSION['gen']=$fila['Genero'];
+                $_SESSION['civil']=$fila['Estado_civil'];
             } 
          if(isset($_POST['submit'])){
-            $uno = $_POST["idA"];
+            $uno = $_POST["id"];
             $dos = $_POST["nomA"];
             $tres = $_POST["apA"];
             $cuatro = $_POST["amA"];
             $cinco = $_POST["nacA"];
-            $seis = $_POST['calleA'];
-            $siete = $_POST["coloniaA"];
-            $ocho = $_POST["cpA"];
-            $nueve = $_POST["ciudadA"];
-            $diez = $_POST["estadoA"];
-            $once = $_POST["telA"];
-            $doce = $_POST["sueldoA"];
-            $trece = $_POST["tipoA"];
+            $seis = $_POST['genero'];
+            $siete = $_POST["civila"];
 
             $modificar = $_SESSION["mod"];
-            $ne="update empleado set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_M='$cuatro', Fecha_nac='$cinco', CalleNo='$seis', Colonia='$siete', CP='$ocho', Ciudad='$nueve', Estado='$diez', Telefono='$once', Sueldo='$doce', Tipo='$trece' WHERE ID='$modificar'";
+            $ne="UPDATE residente set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_M='$cuatro', Fecha_Nac='$cinco', Genero='$seis', Estado_civil='$siete' WHERE ID='$modificar'";
             
-            $fin = $conexion -> query($ne);
-             if ($conexion->affected_rows >= 1){ 
+            $fin = $conexion5->query($ne);
+             if ($conexion5->affected_rows >= 1){ 
                    $_SESSION['exito2'] = "si";
-                    header("Location: actualizar_empleado.php");
+                    header("Location: aResidente.php");
                 }
         }
   }
@@ -167,6 +149,7 @@
         </div>
     </nav>
 
+
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
             <h2 class="mb-2 pt-5">ACTUALIZAR CAMPOS EMPLEADO</h2>
@@ -178,7 +161,7 @@
             enctype="multipart/form-data" method="post" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">ID:</span>
-                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
+                <input class="input100" type="number" name="id" value="<?php echo $_SESSION['id']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
 
@@ -204,47 +187,19 @@
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Calle y No.:</span>
-                <input class="input100" type="text" name="calleA" value="<?php echo $_SESSION['calle']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Colonia:</span>
-                <input class="input100" type="text" name="coloniaA" value="<?php echo $_SESSION['colonia']; ?>" required>
-                <span class="label-input100">Codigo postal:</span>
-                <input class="input100 w-20px" type="number" name="cpA" value="<?php echo $_SESSION['cp']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Ciudad:</span>
-                <input class="input100" type="text" name="ciudadA" value="<?php echo $_SESSION['ciudad']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Estado:</span>
-                <input class="input100" type="text" name="estadoA" value="<?php echo $_SESSION['estado']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Telefono:</span>
-                <input class="input100" type="number" name="telA" value="<?php echo $_SESSION['telefono']; ?>">
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Sueldo:</span>
-                <input class="input100 w-25" type="number" name="sueldoA" value="<?php echo $_SESSION['sueldo']; ?>"
-                    required>
+                <span class="label-input100">Genero:</span>
+                <input class="input100" type="text" name="genero" value="<?php echo $_SESSION['gen']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Message is required">
                 <span class="label-input100">Categoria:</span>
-                <span><?php  echo $_SESSION['tipo'];?></span>
-                <select name="tipoA" id="alta" class="input100 w-75px">
-                    <option value="maestro">maestro</option>
-                    <option value="enfermero">enfermero</option>
-                    <option value="voluntario">voluntario</option>
+                <span><?php  echo $_SESSION['civil'];?></span>
+                <select name="civila" id="alta" class="input100 w-75px">
+                    <option value="Soltero">Soltero</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Divorciado">Divorciado</option>
+                    <option value="Viudo">Viudo</option>
                 </select>
                 <span class="focus-input100"></span>
             </div>

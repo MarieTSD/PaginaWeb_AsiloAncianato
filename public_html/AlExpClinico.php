@@ -19,36 +19,31 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/styles.css" rel="stylesheet" />
+    <!--  Para el los menajes de confimacion ets-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Clases-->
+    <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="JS/actions.js"></script>
+    <script type="text/javascript" src="JS/employee.js"></script>
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2" id="mainNav">
-        <div class="container ml-1">
-            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" id="logo" alt=""></a>
-            <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse ml-5" id="navbarResponsive">
-                <ul class="navbar-nav nav justify-content-center mr-5">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_colaboradores.php" role="button">COLABORADORES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_actividades.php" role="button">ACTIVIDADES Y <br> PERSONAL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_salud.php" role="button">SALUD Y <br> RITMO DE VIDA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="admin_alma.php" role="button">ALMACENAMIENTO</a>
-                    </li>
-                    <!--
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             EMPLEADO
@@ -62,26 +57,6 @@ error_reporting(0);
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
-                            SUMINISTRO
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_suministro.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_suministro.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_suministro.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_suministro.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            APARECEN_SD
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_aparecen_sd.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_aparecen_sd.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_aparecen_sd.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_aparecen_sd.php">VISUALIZAR</a>
-=======
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -102,34 +77,10 @@ error_reporting(0);
                             <a class="dropdown-item" href="b_amedica.php">BAJA</a>
                             <a class="dropdown-item" href="a_amedica.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
->>>>>>> ADRIANA
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
-                            SE_ENCARGA
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_se_encarga.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_se_encarga.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_se_encarga.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_se_encarga.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ASISTE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_asiste.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_asiste.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_asiste.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_asiste.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-    -->
-=======
                             RESIDENTE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -146,36 +97,109 @@ error_reporting(0);
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="AlExpClinico.php">ALTA</a>
-                            <a class="dropdown-item" href="BExpClinico">BAJA</a>
+                            <a class="dropdown-item" href="BExpeClinico.php">BAJA</a>
                             <a class="dropdown-item" href="AExpClinico.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="VExpClinico">VISUALIZAR</a>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
->>>>>>> ADRIANA
                 </ul>
             </div>
-            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
-            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
-
-
         </div>
     </nav>
 
-    <section class="bg-dark text-white h-20 " style="height:25%;">
+    <!-- Call to action-->
+    <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">BIENVENIDO ADMINISTRADOR</h2>
+            <h2 class="mb-2 pt-5">ALTA EXPEDIENTE CLINICO</h2>
         </div>
     </section>
 
-    <section class="bg-ligth text-dark h-40 hero_admin">
-        <div class="container text-center pt-4">
-            <h4>
-                ...
-            </h4>
-        </div>
-    </section>
+    <?php
+    if ($_SESSION['exito'] == "si") {
+        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
 
+        $_SESSION['exito'] = "";
+    } else if ($_SESSION['exito'] == "no") {
+        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
+        $_SESSION['exito'] = "";
+    }
+    ?>
+
+    <section class="hero3">
+        <form class="contact100-form validate-form" action="alexp_base.php" enctype="multipart/form-data" method="POST" id="alta">
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Residente:</span>
+                <select name="residente" id="residente" class="input100">
+                    <option >Seleccion Benefactor</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * FROM benefactor"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Medicina:</span>
+                <select name="medicina" id="medicina" class="input100">
+                    <option >Seleccion Medicina</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * FROM  medicina"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">ATENCION MEDICA:</span>
+                <select name="atencionmedica" id="atencionmedica" class="input100">
+                    <option >Seleccion Atencion Medica</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * FROM atencion_medica"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Dosis :</span>
+                <input class="input100" type="char" id="dosis" name="dosis" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Motivo:</span>
+                <input class="input100" type="char" id="motivo" name="motivo" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Fecha:</span>
+                <input class="input100" type="date" id="fecha" name="fecha" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            
+            <div class="container-contact100-form-btn p-1">
+                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
+                    <span>
+                        AGREGAR EXPEDIENTE CLINICO
+                        <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+    
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">

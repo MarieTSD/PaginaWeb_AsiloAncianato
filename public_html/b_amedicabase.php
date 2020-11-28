@@ -13,43 +13,35 @@
     //Variables de session
     $_SESSION['id']='';
     $_SESSION['nombre'] ='';
-    $_SESSION['apellido_p'] = '';
-    $_SESSION['apellido_m'] = '';
-    $_SESSION['fecha_nac']='';
-    $_SESSION['calleno']='';
-    $_SESSION['colonia']='';
+    $_SESSION['calleno'] = '';
+    $_SESSION['colonia'] = '';
     $_SESSION['cp']='';
     $_SESSION['ciudad']='';
     $_SESSION['estado']='';
+    $_SESSION['rfc']='';
     $_SESSION['telefono']='';
-    $_SESSION['sueldo']='';
-    $_SESSION['tipo']='';
     
     //Realiar la conexion con la base de datos 
-    $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
-    if($conexion->connect_error){
+    $conexion3 = new mysqli($serv,$cuenta,$contra,$BaseD);
+    if($conexion3->connect_error){
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION['mod']; 
-        $sql2 = "select * from empleado where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-        $resultado = $conexion -> query($sql2); //aplicamos sentencia  
+        $sql2 = "SELECT * from atencion_medica where ID='$modificar'";
+        $resultado = $conexion3 -> query($sql2);  
         while( $fila = $resultado -> fetch_assoc() ){
             $_SESSION['id']=$fila['ID'];
             $_SESSION['nombre'] = $fila['Nombre'];
-            $_SESSION['apellido_p'] = $fila['Apellido_P'];
-            $_SESSION['apellido_p'] = $fila['Apellido_M'];
-            $_SESSION['fecha_nac'] = $fila['Fecha_Nac'];
             $_SESSION['calleno'] = $fila['CalleNo'];
             $_SESSION['colonia'] = $fila['Colonia'];
             $_SESSION['cp'] = $fila['CP'];
-            $_SESSION['ciudad'] = $fila['Ciudad'];
+            $_SESSION['ciudad'] = $fila['Cuidad'];
             $_SESSION['estado'] = $fila['Estado'];
+            $_SESSION['rfc'] = $fila['RFC'];
             $_SESSION['telefono'] = $fila['Telefono'];
-            $_SESSION['sueldo'] = $fila['Sueldo'];
-            $_SESSION['tipo'] = $fila['Tipo'];
         } 
         if(isset($_POST['submit2'])){
-            header("Location:baja_empleado.php");
+            header("Location:b_amedica.php");
         }
     }
 ?>
@@ -143,11 +135,11 @@
                 </ul>
             </div>
         </div>
-    </nav>
+        </nav>
         <!-- Call to action-->
         <section class="bg-primary text-white h-25">
             <div class="container text-center pt-5">
-                <h2 class="mb-2 pt-5">CONFIRMAR BAJA EMPLEADO</h2>
+                <h2 class="mb-2 pt-5">CONFIRMAR BAJA ATENCION MEDICA</h2>
             </div>
         </section>
 
@@ -166,10 +158,10 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         swal("Eliminado", { icon: "success"});
-                        document.location="baja_emp.php";
+                        document.location="b_amedic.php";
                     } else {
                         swal("No eliminado");
-                        document.location="baja_empleado_bd.php";  
+                        document.location="b_amedicabase.php";  
                     }
                 });
             </script>';
@@ -190,53 +182,37 @@
                     </tr>
                     <tr>
                         <td>Apellido paterno: </td>
-                        <td><?php echo $_SESSION['apellido_p']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Apellido materno: </td>
-                        <td><?php echo $_SESSION['apellido_m']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Fecha de nacimiento: </td>
-                        <td><?php echo $_SESSION['fecha_nac']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Calle y No.: </td>
                         <td><?php echo $_SESSION['calleno']; ?></td>
                     </tr>
                     <tr>
-                        <td>Colonia: </td>
+                        <td>Apellido materno: </td>
                         <td><?php echo $_SESSION['colonia']; ?></td>
                     </tr>
                     <tr>
-                        <td>Codigo postal: </td>
+                        <td>Fecha de nacimiento: </td>
                         <td><?php echo $_SESSION['cp']; ?></td>
                     </tr>
                     <tr>
-                        <td>Ciudad: </td>
+                        <td>Calle y No.: </td>
                         <td><?php echo $_SESSION['ciudad']; ?></td>
                     </tr>
                     <tr>
-                        <td>Estado: </td>
+                        <td>Colonia: </td>
                         <td><?php echo $_SESSION['estado']; ?></td>
                     </tr>
                     <tr>
-                        <td>Telefono: </td>
+                        <td>Codigo postal: </td>
+                        <td><?php echo $_SESSION['rfc']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Ciudad: </td>
                         <td><?php echo $_SESSION['telefono']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Sueldo: </td>
-                        <td><?php echo $_SESSION['sueldo']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Tipo: </td>
-                        <td><?php echo $_SESSION['tipo']; ?></td>
                     </tr>
                 </table>
                 <div class="container-contact100-form-btn; contact100-form validate-form">
                     <button class="btn btn-outline-danger w-50 p-3 m-1" name="submit">
 						<span>
-							ELIMINAR EMPLEADO
+							ELIMINAR 
 							<i class="fan fan-long-arrow-right w-50 m-l-7" aria-hidden="true"></i>
 						</span>
                     </button>
