@@ -61,9 +61,14 @@ error_reporting(0);
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
+                            <!--<a class="dropdown-item" href="baja_donacion.php">BAJA</a>-->
                             <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <!--<a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>-->
                             <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <ul>
+								<li><a href="">Familiar</a></li>
+								<li><a href="">Benefactor</a></li>
+							</ul>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
@@ -76,7 +81,7 @@ error_reporting(0);
                             <a class="dropdown-item" href="al_amedica.php">ALTA</a>
                             <a class="dropdown-item" href="b_amedica.php">BAJA</a>
                             <a class="dropdown-item" href="a_amedica.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>    
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
@@ -155,9 +160,9 @@ error_reporting(0);
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Residente :</span>
                 <select name="id_residente" id="id_residente" class="input100">
-                    <option>Seleccion Residente</option>
+                    <option value = "0">Seleccion Residente</option>
                     <?php 
-                            $sql = $conexion->query( "select * from residente"); 
+                            $sql = $conexion->query( "SELECT * from residente"); 
 
                             while($fila = $sql->fetch_array()){
                                 echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
@@ -169,9 +174,9 @@ error_reporting(0);
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Benefactor :</span>
                 <select name="id_benefactor" id="id_benefactor" class="input100">
-                    <option >Seleccion Benefactor</option>
+                    <option value = "0">Seleccion Benefactor</option>
                     <?php 
-                            $sql2 = $conexion->query( "select * from benefactor"); 
+                            $sql2 = $conexion->query( "SELECT * from benefactor"); 
 
                             while($fila = $sql2->fetch_array()){
                                 echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
@@ -179,6 +184,29 @@ error_reporting(0);
                     ?>
                 </select>
             </div>
+
+            <hr>
+            <span>SI El SUMINISTRO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="#suministro">Suministro</a></span>
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Suministro:</span>
+                <select name="id_suministro" id="id_suministro" class="input100">
+                    <option value = "0">Seleccion Suministro</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * from suministro"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['Codigo']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Cantidad:</span>
+                <input class="input100" type="number" id="idC" name="idC" placeholder="123" required>
+                <span class="focus-input100"></span>
+            </div>
+
 
             <div class="container-contact100-form-btn p-1">
                 <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">

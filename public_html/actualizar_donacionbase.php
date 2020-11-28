@@ -14,12 +14,17 @@
    $_SESSION['hora'] = '';
    $_SESSION['residente']='';
    $_SESSION['benefactor']='';
+   //$_SESSION['']; 
+   $_SESSION['suministro']; 
+   $_SESSION['cant']; 
 
   //Realiar la conexion con la base de datos 
    $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
   if($conexion->connect_error){
       die('Ocurrio un error en la conexion con la BD');
   }else{  
+
+    //tabla de DONACION
     $modificar = $_SESSION['mod'];  
     $sql2 = "SELECT * from donacion where ID='$modificar'";
     $resultado = $conexion -> query($sql2);
@@ -30,27 +35,53 @@
         $_SESSION['hora'] = $fila['Hora'];
         $_SESSION['residente']=$fila['ID_Residente'];
         $_SESSION['benefactor']=$fila['ID_Benefactor'];
-    } 
- if(isset($_POST['submit'])){
-    $uno = $_POST["id"];
-    $dos = $_POST["aport"];
-    $tres = $_POST["fecha"];
-    $cuatro = $_POST["hr"];
-    $cinco = $_POST["resi"];
-    $seis = $_POST['bene'];
-
-    $modificar = $_SESSION["mod"];
-    $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
-    Hora='$cuatro', ID_Residente='$cinco', ID_Benefactor='$seis'
-    WHERE ID='$modificar'";
+    }
     
-    echo $ne; 
-    $fin = $conexion -> query($ne);
-     if ($conexion->affected_rows >= 1){ 
-           $_SESSION['exito2'] = "si";
-            header("Location: actualizar_donacion.php");
+    //tabla de aparecen_sd
+    $sql4 = "SELECT * FROM aparecen_sd WHERE ID_Donacion = '$modificar'";
+    //echo $sql4; 
+    
+    $res2 = $conexion-> query($sql4);
+    while($fila = $res2 -> fetch_assoc() ){
+        $_SESSION['suministro'] = $fila['Codigo_Suministro'];
+
+        $_SESSION['cant'] = $fila['Cantidad'];      
+    } /*echo $_SESSION['suministro']; 
+    echo $_SESSION['cant']; */
+     
+ if(isset($_POST['submit'])){
+        $uno = $_POST["id"];
+        $dos = $_POST["aport"];
+        $tres = $_POST["fecha"];
+        $cuatro = $_POST["hr"];
+        $cinco = $_POST["resi"];
+        $seis = $_POST['bene'];
+        $siete = $_POST['id_suministro']; 
+        $ocho = $_POST['idC']; 
+
+        $modificar = $_SESSION["mod"];
+
+        if($cinco == "0")
+        {
+            $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
+            Hora='$cuatro', ID_Residente = NULL, ID_Benefactor='$seis' WHERE ID='$modificar'";
+        }else{
+            $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
+            Hora='$cuatro', ID_Residente='$cinco', ID_Benefactor = NULL WHERE ID='$modificar'";
         }
-}
+
+        $ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion = '$uno', Cantidad = $ocho 
+        where ID_Donacion = '$modificar'"; 
+        
+        //echo $ne2; 
+        
+        $fin = $conexion -> query($ne);
+        $fin2 = $conexion -> query($ne2); 
+        if ($conexion->affected_rows >= 1){ 
+            $_SESSION['exito2'] = "si";
+                header("Location: actualizar_donacion.php");
+            }
+    }
 }
 ?>
 
@@ -97,16 +128,21 @@ rel="stylesheet" type="text/css" />
                 </div>
             </li>
             <li class="nav-item dropdown show">
-                <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    DONACION
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
-                    <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
-                    <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
-                    <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
-                </div>
-            </li>
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DONACION
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
+                            <!--<a class="dropdown-item" href="baja_donacion.php">BAJA</a>-->
+                            <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <!--<a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>-->
+                            <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <ul>
+								<li><a href="">Familiar</a></li>
+								<li><a href="">Benefactor</a></li>
+							</ul>
+                        </div>
+                    </li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
             <li class="nav-item dropdown show">
@@ -187,7 +223,7 @@ rel="stylesheet" type="text/css" />
     <div class="container-contact100-form-btn p-1">
         <span class="label-input100">Residente:</span>
         <select name="resi" id="residente" class="input100">
-            <option >Seleccion Residente: </option>
+            <option value="0">Seleccion Residente: </option>
             <?php 
                     $sql2 = $conexion->query( "SELECT * FROM residente"); 
 
@@ -201,7 +237,7 @@ rel="stylesheet" type="text/css" />
     <div class="container-contact100-form-btn p-1">
         <span class="label-input100">Medicina:</span>
         <select name="bene" id="medicina" class="input100">
-            <option >Seleccion Benefactor:</option>
+            <option value="0">Seleccion Benefactor:</option>
             <?php 
                     $sql2 = $conexion->query( "SELECT * FROM benefactor"); 
 
@@ -211,8 +247,25 @@ rel="stylesheet" type="text/css" />
             ?>
         </select>
     </div>
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Suministro:</span>
+                <select name="id_suministro" id="id_suministro" class="input100">
+                    <option value = "0">Seleccion Suministro</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * from suministro"); 
 
-    
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['Codigo']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Cantidad:</span>
+                <input class="input100" type="number" name="idC" value="<?php echo $_SESSION['cant']; ?>" required>
+                <span class="focus-input100"></span>
+            </div>
     <div class="container-contact100-form-btn p-1">
         <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
             <span>

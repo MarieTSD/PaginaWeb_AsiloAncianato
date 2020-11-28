@@ -21,14 +21,27 @@ $_SESSION['exito'] = "";
             $hora = $_POST['hr']; 
             $residente = $_POST['id_residente']; 
             $benefactor = $_POST['id_benefactor'];  
-            
-            $sql = "INSERT INTO donacion (ID, Aporte, Fecha, Hora, ID_Residente, ID_Benefactor) 
-            VALUES('$id','$aporte','$fecha','$hora', '$residente', '$benefactor')";
+            $cantidad = $_POST['idC']; 
+            $suministro = $_POST['id_suministro']; 
+            if($residente == "0"){
+                $sql = "INSERT INTO donacion (ID, Aporte, Fecha, Hora, ID_Benefactor) 
+            VALUES('$id','$aporte','$fecha','$hora','$benefactor')";
             $_SESSION['exito'] = "si";
+            }else{
+                $sql = "INSERT INTO donacion (ID, Aporte, Fecha, Hora, ID_Residente) 
+                VALUES('$id','$aporte','$fecha','$hora', '$residente')";
+                $_SESSION['exito'] = "si";
+            }
+            
+            $sql2 = "INSERT INTO aparecen_sd( Codigo_Suministro, ID_Donacion, Cantidad)
+                VALUES('$suministro','$id', '$cantidad')";
 
+            echo $sql2; 
+            
     $conexion->query($sql);
+    $conexion->query($sql2); 
 
-   if ($conexion->affected_rows >= 1) { 
+   if ($conexion->affected_rows >= 1) {
         $_SESSION['exito'] = "si";
         header("Location: alta_donacion.php");
     } else {

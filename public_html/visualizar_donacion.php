@@ -51,9 +51,14 @@ include('db.php');
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
+                            <!--<a class="dropdown-item" href="baja_donacion.php">BAJA</a>-->
                             <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <!--<a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>-->
                             <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <ul>
+								<li><a href="">Familiar</a></li>
+								<li><a href="">Benefactor</a></li>
+							</ul>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>

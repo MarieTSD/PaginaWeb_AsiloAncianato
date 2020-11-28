@@ -98,7 +98,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
+                          <!--  <a class="dropdown-item" href="baja_donacion.php">BAJA</a>-->
                             <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
                         </div>
