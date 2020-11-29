@@ -33,7 +33,7 @@ error_reporting(0);
     <!--Clases-->
     <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/employee.js"></script>
+    <script type="text/javascript" src="JS/domicilio_tel.js"></script>
 </head>
 
 <body>
@@ -127,12 +127,7 @@ error_reporting(0);
     ?>
 
     <section class="hero3">
-        <form class="contact100-form validate-form" id="alta" action="al_amedicabd.php" enctype="multipart/form-data" method="POST">
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idA"  name="idA" required>
-                <span class="focus-input100"></span>
-            </div>
+        <form class="contact100-form validate-form" id="alta">
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Nombre(s):</span>
@@ -142,47 +137,47 @@ error_reporting(0);
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Calle y No:</span>
-                <input class="input100" type="text" id="apA" name="apA" required>
+                <input class="input100" type="text" id="calleA" name="apA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1">
                 <span class="label-input100">Colonia</span>
-                <input class="input100" type="text" id="amA" name="amA" >
+                <input class="input100" type="text" id="coloniaA" name="amA" >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">CP</span>
-                <input class="input100" type="number" id="anoNA" name="anoNA" required>
+                <input class="input100" type="number" id="cp" name="anoNA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Ciudad:</span>
-                <input class="input100" type="text" id="calleA" name="calleA"  required>
+                <input class="input100" type="text" id="ciudadA" name="calleA"  required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Estado</span>
-                <input class="input100" type="text" id="coloniaA" name="coloniaA" required>
+                <input class="input100" type="text" id="estadoA" name="coloniaA" required>
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">RFC:</span>
-                <input class="input100 w-25" type="text" id="cpA" name="cpA" required>
+                <input class="input100 w-25" type="text" id="rfc" name="cpA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Telefono:</span>
-                <input class="input100" type="number" id="ciudadA" name="ciudadA" required>
+                <input class="input100" type="number" id="tel" name="ciudadA" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
+                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataATM()" name="submit">
                     <span>
                         AGREGAR ATENCION Medica
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>

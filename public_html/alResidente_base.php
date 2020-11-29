@@ -16,17 +16,16 @@ if ($conexion4->connect_error) {
     //Sacamos los valores con post
 
     //obtenemos datos del formulario
-    $id = $_POST['id'];
-    $nom = $_POST['nombre'];
+    $nom = $_POST['nomA'];
     $apM = $_POST['amA'];
     $apP = $_POST['apA'];
     $anoN = $_POST['anoNA'];
-    $genero = $_POST['genero'];
-    $civil = $_POST['ecivil'];
+    $genero = $_POST['gen'];
+    $civil = $_POST['estC'];
     
     //hacemos cadena con la sentencia mysql para insertar datos
-    $sql = "INSERT INTO residente (ID, Nombre, Apellido_P,Apellido_M, Fecha_Nac, Genero, Estado_civil) 
-                    VALUES('$id','$nom','$apP','$apM', '$anoN', '$genero', '$civil')";
+    $sql = "INSERT INTO residente (Nombre, Apellido_P,Apellido_M, Fecha_Nac, Genero, Estado_civil) 
+                    VALUES('$nom','$apP','$apM', '$anoN', '$genero', '$civil')";
 
     $_SESSION['exito'] = "si";
 

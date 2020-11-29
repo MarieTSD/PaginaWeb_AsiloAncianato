@@ -118,7 +118,7 @@ class Familiar extends Persona{
 //RESIDENTE ES UNA PERSONA
 class Residente extends Persona{
     constructor(nomA,apA,amA,anoNA,gen,estC,action){
-        super(idA,nomA,apA,amA,anoNA);
+        super(nomA,apA,amA,anoNA);
         this.gen=gen;
         this.estC=estC;
         this.action=action;

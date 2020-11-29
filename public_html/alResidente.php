@@ -33,7 +33,7 @@ error_reporting(0);
     <!--Clases-->
     <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/employee.js"></script>
+    <script type="text/javascript" src="JS/Personas.js"></script>
 </head>
 
 <body>
@@ -127,12 +127,8 @@ error_reporting(0);
     ?>
 
     <section class="hero3">
-        <form class="contact100-form validate-form" id="alta" action="alResidente_base.php" enctype="multipart/form-data" method="POST">
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID:</span>
-                <input class="input100" type="number" id="idA" name="id" placeholder="123" required>
-                <span class="focus-input100"></span>
-            </div>
+        <form class="contact100-form validate-form" id="alta" >
+            
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Nombre(s):</span>
@@ -176,7 +172,7 @@ error_reporting(0);
             </div>
 
             <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
+                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataRes()" name="submit">
                     <span>
                         AGREGAR RESIDENTE
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>

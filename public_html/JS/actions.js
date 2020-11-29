@@ -86,3 +86,36 @@ var getDataSu=function(){
     var sum=new Suministro(idC,idR,"altas_suministro_bd.php");
     sum.altaSuministro();
 }
+
+var getDataEx=function(){
+    var idC=document.getElementById("nomA").value;
+    var idR=document.getElementById("desA").value;
+    var idC=document.getElementById("nomA").value;
+    
+}
+
+var getDataATM=function(){
+    var nom=document.getElementById("nomA").value;
+    var calle=document.getElementById("calleA").value;
+    var colonia=document.getElementById("coloniaA").value;
+    var cp=document.getElementById("cp").value;
+    var ciudad=document.getElementById("ciudadA").value;
+    var estado=document.getElementById("estadoA").value;
+    var rfc=document.getElementById("rfc").value;
+    var tel=document.getElementById("tel").value;
+
+    var atm=new Atencion_medica(nom,calle,colonia,cp,ciudad,estado,rfc,tel,"al_amedicabd.php");
+    atm.altaAtencion_Medica();
+}
+
+var getDataRes=function(){
+    var nom=document.getElementById("nomA").value;
+    var aP=document.getElementById("apA").value;
+    var aM=document.getElementById("amA").value;
+    var aNa=document.getElementById("anoNA").value;
+    var gen=document.getElementById("calleA").value;
+    var eC=document.getElementById("altaC").value;
+    var res=new Residente(nom,aP,aM,aNa,gen,eC,"alResidente_base.php");
+    res.altaResidente();
+
+}

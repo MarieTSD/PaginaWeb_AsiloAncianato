@@ -12,9 +12,8 @@ class Domicilio_tel{
 }
 
 class Atencion_medica extends Domicilio_tel{
-    constructor(idD,nombre,rfc,calleA,coloniaA,cpA,ciudadA,estadoA,telA,action){
+    constructor(nombre,calleA,coloniaA,cpA,ciudadA,estadoA,rfc,telA,action){
         super(calleA,coloniaA,cpA,ciudadA,estadoA,telA);
-        this.idD=idD;
         this.nombre=nombre;
         this.rfc=rfc;
         this.action=action;
@@ -26,15 +25,14 @@ class Atencion_medica extends Domicilio_tel{
             type: "POST",
             url: this.action,
             data: {
-                    idD: this.idD,
                     nombre: this.nombre,
                     rfc: this.rfc,
-                    calleA: this.dir.calleAcalleA,
-                    coloniaA: this.dir.coloniaA,
-                    cpA: this.dir.cpA,
-                    ciudadA: this.dir.ciudadA,
-                    estadoA: this.dir.estadoA,
-                    telA: this.dir.telA,
+                    calleA: this.calleA,
+                    coloniaA: this.coloniaA,
+                    cpA: this.cpA,
+                    ciudadA: this.ciudadA,
+                    estadoA: this.estadoA,
+                    telA: this.telA,
                 },
             success: function(response){
             if(response==1){

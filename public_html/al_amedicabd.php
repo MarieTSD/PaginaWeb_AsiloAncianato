@@ -16,18 +16,17 @@ if ($conexion2->connect_error) {
     //Sacamos los valores con post
 
     //obtenemos datos del formulario
-    $id = $_POST['idA'];
-    $nombre = $_POST['nomA'];
-    $calle = $_POST['apA'];
-    $col = $_POST['amA'];
-    $CodigoPostal = $_POST['anoNA'];
-    $ciud = $_POST['calleA'];
-    $est = $_POST['coloniaA'];
-    $rfc = $_POST['cpA'];
-    $telefono = $_POST['ciudadA'];
+    $nombre = $_POST['nombre'];
+    $calle = $_POST['calle'];
+    $col = $_POST['coloniaA'];
+    $CodigoPostal = $_POST['cpA'];
+    $ciud = $_POST['ciudadA'];
+    $est = $_POST['estadoA'];
+    $rfc = $_POST['rfc'];
+    $telefono = $_POST['telA'];
 
-    $sql = "INSERT INTO atencion_medica (ID, Nombre, CalleNo, Colonia, CP, Cuidad, Estado, RFC, Telefono) 
-            VALUES('$id','$nombre','$calle','$col', '$CodigoPostal', '$ciud', '$est', '$rfc', '$telefono')";
+    $sql = "INSERT INTO atencion_medica (Nombre, CalleNo, Colonia, CP, Cuidad, Estado, RFC, Telefono) 
+            VALUES('$nombre','$calle','$col', '$CodigoPostal', '$ciud', '$est', '$rfc', '$telefono')";
    /* echo $id; 
     echo $nombre;
     echo $calle; 

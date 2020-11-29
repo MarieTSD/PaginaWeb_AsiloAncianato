@@ -23,6 +23,9 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!--  Para el los menajes de confimacion ets-->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="JS/actions.js"></script>
+        <script type="text/javascript" src="JS/expediente_clinico.js"></script>
     </head>
     <body >
         <!-- Navigation-->
@@ -113,7 +116,7 @@
 
         <section class="hero3 hero7">
             <p class="hero__paragraph">Ingresa id a actualizar: </p>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <form action="" >
                 <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
                     <input class="input100" type="number" name="idR" placeholder="Ingresa id Residente">
                     <span class="focus-input100"></span>
@@ -127,7 +130,7 @@
                     <span class="focus-input100"></span>
                 </div>
                 <div class="contact100-form validate-form">
-                    <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
+                    <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataEx()" name="submit">
 						<span>
 							BUSCAR EXPEDIENTE CLINICO
 							<i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
