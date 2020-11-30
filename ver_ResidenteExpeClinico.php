@@ -2,12 +2,6 @@
 //Admin
 session_start();
 
-//conexion a la base de datos
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'ancianato';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 error_reporting(0);
 include('db.php');
 ?>
@@ -20,20 +14,17 @@ include('db.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
     <!--  Para el los menajes de confimacion ets-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--Clases-->
-    <script type="text/javascript" src="JS/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="JS/actions.js"></script>
-    <script type="text/javascript" src="JS/Personas.js"></script>
-    <script type="text/javascript" src="JS/classO.js"></script>
-    <script type="text/javascript" src="JS/domicilio_tel.js"></script>
 </head>
 
 <body>
@@ -112,65 +103,106 @@ include('db.php');
 
     <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ALTAS CLASE</h2>
+            <h2 class="mb-2 pt-5">EXPEDIENTE CLINICO POR RESIDENTES</h2>
         </div>
     </section>
 
-    <?php
-    if ($_SESSION['exito'] == "si") {
-        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
-        $_SESSION['exito'] = "";
-    } else if ($_SESSION['exito'] == "no") {
-        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
-        $_SESSION['exito'] = "";
-    }
-
-
-    ?>
-
-    <div class="hero3">
-        <form action="" id="form">
+    <section class="hero3">
+        <form class="contact100-form validate-form" method="POST">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Descripcion:</span>
-                <input class="input100" type="text" id="nomA" name="nomA" placeholder="Yoga" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Area:</span>
-                <input class="input100" type="text" id="apA" name="apA" placeholder="Jardines" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Empleado: </span>
-                <select name="idE" id="idE" class="input100">
-                    <option value="">Selecciona un empleado</option>
+                <span class="label-input100">Residente: </span>
+                <select name="idR" id="idR" class="input100">
+                    <option value="">Selecciona un residente</option>
                     <?php
-                    $result2 = mysqli_query($con, "SELECT * FROM DataEmpleado");
+                    $result2 = mysqli_query($con, "SELECT * FROM `DataResidente`");
                     while ($row2 = mysqli_fetch_assoc($result2)) {
                     ?>
                         <option value="<?php echo $row2['ID']; ?>">
                             <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
                         </option>
                     <?php }
-                    mysqli_close($con2);
+                    //mysqli_close($con2);
                     ?>
                 </select>
                 <span class="focus-input100"></span>
             </div>
-
             <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataCla()" name="submit">
+                <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        AGREGAR
+                        BUSCAR
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>
             </div>
         </form>
-    </div>
+    </section>
+
+    <?php
+    //conexion a la base de datos
+    $serv = 'localhost';
+    $cuenta = 'root';
+    $contra = '';
+    $BaseD = 'ancianato';
+
+    //Realiar la conexion con la base de datos 
+    $conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
+    if ($conexion->connect_error) {
+        die('Ocurrio un error en la conexion con la BD');
+    } else {
+        if (isset($_POST['submit'])) {
+            $modificar = $_POST['idR'];
+            $_SESSION['mod'] = $modificar;
+            $sql2 = "select * from Res_ExpedienteClinico where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $resultado = $conexion->query($sql2); //aplicamos sentencia 
+            $fila = $resultado->fetch_assoc();
+            if ($fila) {
+                echo '<section class="m-5">
+                <h3 class="m-3">';
+                echo $fila['ID'], " - ", $fila['NombreCompleto'];
+                echo ' </h3>
+                <table class="table w-100 align-items-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Medicina</th>
+                            <th scope="col">Dosis</th>
+                            <th scope="col">Motivo</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Responsable Medico</th>
+                        </tr>
+                    </thead>
+                    <tbody> ';
+                $result2 = mysqli_query($con, "SELECT * FROM `Res_ExpedienteClinico` where ID='$modificar'");
+                while ($row2 = mysqli_fetch_assoc($result2)) {
+                    echo '
+                            <tr>
+                                <td><imput name="iD">';
+                    echo $row2['Nombre'];
+                    echo '</td>
+                                <td>';
+                    echo $row2['Dosis'];
+                    echo '</td>
+                                <td>';
+                    echo $row2['Motivo'];
+                    echo '</td>
+                                <td>';
+                    echo $row2['fecha'];
+                    echo '</td>
+                                <td>';
+                    echo $row2['Responsable'];
+                    echo '</td>
+                            </tr>
+                        ';
+                }
+                echo '
+                    </tbody>
+                </table>
+            </section>';
+            } else {
+                echo '<script>swal("Id no encontrado", "El id que ingresaste no es existente", "error");</script>';
+            }
+        }
+    }
+    ?>
 
     <!-- Footer-->
     <footer class="bg-light py-5">

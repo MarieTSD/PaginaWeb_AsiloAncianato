@@ -121,6 +121,8 @@ if ($conexion->connect_error) {
                             <a class="dropdown-item" href="bResidente.php">BAJA</a>
                             <a class="dropdown-item" href="aResidente.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="vResidente.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="ver_FamiliaresDeResidente.php">FAMILIARES</a>
+                            <a class="dropdown-item" href="ver_ResidenteExpeClinico.php">EXPEDIENTE CLINICO</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
@@ -132,6 +134,7 @@ if ($conexion->connect_error) {
                             <a class="dropdown-item" href="baja_clase.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="ver_clase.php">LISTAS DE ALUMNOS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
