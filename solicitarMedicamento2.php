@@ -22,7 +22,7 @@ if ($conexion->connect_error) {
     die('Ocurrio un error en la conexion con la BD');
 } else {
     $modificar = $_SESSION['mod'];
-    $sql2 = "select * from Data_SeEncarga where ID = '$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "select * from Medicina where ID = '$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
         $_SESSION['idR'] = $fila['ID'];
@@ -32,16 +32,10 @@ if ($conexion->connect_error) {
         $_SESSION['Existencia'] = $fila['Existencia'];
     }
     if (isset($_POST['submit'])) {
-
-        $exis = $_SESSION['Existencia'];
-        $aux = $_POST["exist"];
-
-        $n1 = (int) $exis;
-        $n1 = (int) $aux;
-
-        $cero = ($n1 - $n2);
+        //$value['quantity'] = $_SESSION["Existencia"] - $_POST["exist"];//se hace la eliminacion
+        $cuatro = $_SESSION["Existencia"] - $_POST["exist"];
         $modificar = $_SESSION["mod"];
-        $ne = "update medicina set Existencia='$n1' - '$n2' where ID='$modificar'";
+        $ne = "update medicina set Existencia='$cuatro' where ID='$modificar'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
