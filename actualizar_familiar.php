@@ -133,13 +133,13 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
         if (isset($_POST['submit'])) {
             $modificar = $_POST['idA'];
             $_SESSION['mod'] = $modificar;
-            $sql2 = "select * from empleado where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $sql2 = "select * from Familiar where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
             $resultado = $conexion->query($sql2); //aplicamos sentencia  
             $fila = $resultado->fetch_assoc();
             if ($fila) {
                 echo "<script>
-                                        document.location='actualizar_familiar_bd.php';
-                                    </script>";
+                        document.location='actualizar_familiar_bd.php';
+                    </script>";
             } else {
                 echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
             }

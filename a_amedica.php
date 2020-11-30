@@ -102,7 +102,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     }
     ?>
 
-    <section class="hero3 hero8">
+    <section class="hero3">
         <p class="hero__paragraph">Ingresa id de atencion medica a actualizar:</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">

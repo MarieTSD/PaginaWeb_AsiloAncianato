@@ -161,7 +161,7 @@ rel="stylesheet" type="text/css" />
 
     <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
         <span class="label-input100">ID:</span>
-        <input class="input100" type="number" name="id" value="<?php echo $_SESSION['id']; ?>" required>
+        <input class="input100" type="number" name="id" value="<?php echo $_SESSION['id']; ?>" readonly>
         <span class="focus-input100"></span>
     </div>
 

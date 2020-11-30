@@ -31,7 +31,6 @@ if ($conexion->connect_error) {
 } else {
     $modificar = $_SESSION['mod'];
     $sql2 = "select * from familiar where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
         $_SESSION['id'] = $fila['ID'];
@@ -43,7 +42,7 @@ if ($conexion->connect_error) {
         $_SESSION['calle'] = $fila['CalleNo'];
         $_SESSION['colonia'] = $fila['Colonia'];
         $_SESSION['cp'] = $fila['CP'];
-        $_SESSION['ciudad'] = $fila['Cuidad'];
+        $_SESSION['ciudad'] = $fila['Ciudad'];
         $_SESSION['estado'] = $fila['Estado'];
         $_SESSION['telefono'] = $fila['Telefono'];
         $_SESSION['idR'] = $fila['ID_Residente'];
@@ -62,21 +61,13 @@ if ($conexion->connect_error) {
         $once = $_POST["telA"];
         $doce = $_POST["idR"];
         $trece = $_POST["paren"];
-        $sql3 = "select ID from residente WHERE ID='$doce'";
-        $rev = $conexion->query($sql3);
 
+        $modificar = $_SESSION["mod"];
+        $ne = "update familiar set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_M='$cuatro', Fecha_Nac='$cinco',Parentezco='$trece', CalleNo='$seis', Colonia='$siete', CP='$ocho', Ciudad='$nueve', Estado='$diez', Telefono='$once', ID_Residente='$doce' WHERE ID='$modificar'";
+        $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
-            $modificar = $_SESSION["mod"];
-            $ne = "update familiar set ID='$uno', Nombre='$dos', Apellido_P='$tres', Apellido_M='$cuatro', Fecha_Nac='$cinco',Parentezco='$trece', CalleNo='$seis', Colonia='$siete', CP='$ocho', Cuidad='$nueve', Estado='$diez', Telefono='$once', ID_Residente='$doce' WHERE ID='$modificar'";
-            $fin = $conexion->query($ne);
-            if ($conexion->affected_rows >= 1) {
-                $_SESSION['exito2'] = "si";
-                header("Location: actualizar_familiar.php");
-            }
-        } else {
-            echo '<script> 
-                        alert("El Residente indicado no existe")
-                        </script> ';
+            $_SESSION['exito2'] = "si";
+            header("Location: actualizar_familiar.php");
         }
     }
 }
@@ -171,7 +162,7 @@ if ($conexion->connect_error) {
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
             <div class="wrap-input100 validate-input p-2" data-validate="Requerido">
                 <span class="label-input100">ID:</span>
-                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
+                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" readonly>
                 <span class="focus-input100"></span>
             </div>
 

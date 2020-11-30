@@ -110,7 +110,7 @@ if ($conexion->connect_error) {
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Codigo: </span>
-                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" required>
+                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['id']; ?>" readonly>
                 <span class="focus-input100"></span>
             </div>
 
