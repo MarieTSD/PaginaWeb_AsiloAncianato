@@ -16,7 +16,7 @@
     }else{
         $modificar = $_SESSION["mod"];
         $modificar2 = $_SESSION["mod2"];
-        $sql =  "DELETE FROM asiste WHERE ID_Clase='$modificar' and ID_Residente='$modificar2'";
+        $sql =  "DELETE FROM inscrito WHERE ID_Clase='$modificar' and ID_Residente='$modificar2'";
             $conexion->query($sql); 
             if ($conexion->affected_rows >= 1){ 
                 $_SESSION['exito1'] = "si";

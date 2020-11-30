@@ -49,7 +49,6 @@ if ($conexion->connect_error) {
     Dosis='$cuatro', Motivo='$cinco', Fecha='$seis'
     WHERE ID_Residente='$modificar' and ID_Medicina='$modificar2' and ID_Atencion_Medica = '$modificar3'";
 
-        echo $ne;
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
             $_SESSION['exito2'] = "si";
@@ -116,11 +115,10 @@ if ($conexion->connect_error) {
 
     <section class="hero3">
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
-
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Residente:</span>
                 <select name="residente" id="residente" class="input100">
-                    <option>Seleccion Residente</option>
+                    <option value="<?php echo $_SESSION['idR']; ?>"><?php echo $_SESSION['idR']; ?></option>
                     <?php
                     $sql2 = $conexion->query("SELECT * FROM residente");
 
@@ -134,7 +132,7 @@ if ($conexion->connect_error) {
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Medicina:</span>
                 <select name="medicina" id="medicina" class="input100">
-                    <option>Seleccion Medicina</option>
+                    <option value="<?php echo $_SESSION['idM']; ?>"><?php echo $_SESSION['idM']; ?></option>
                     <?php
                     $sql2 = $conexion->query("SELECT * FROM  medicina");
 
@@ -148,7 +146,7 @@ if ($conexion->connect_error) {
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">ATENCION MEDICA:</span>
                 <select name="atencion" id="atencionmedica" class="input100">
-                    <option>Seleccion Atencion Medica</option>
+                    <option value="<?php echo $_SESSION['idA']; ?>"><?php echo $_SESSION['idA']; ?></option>
                     <?php
                     $sql2 = $conexion->query("SELECT * FROM atencion_medica");
 

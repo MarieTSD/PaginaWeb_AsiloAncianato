@@ -35,7 +35,7 @@ if ($conexion3->connect_error) {
         $_SESSION['calleno'] = $fila['CalleNo'];
         $_SESSION['colonia'] = $fila['Colonia'];
         $_SESSION['cp'] = $fila['CP'];
-        $_SESSION['ciudad'] = $fila['Cuidad'];
+        $_SESSION['ciudad'] = $fila['Ciudad'];
         $_SESSION['estado'] = $fila['Estado'];
         $_SESSION['rfc'] = $fila['RFC'];
         $_SESSION['telefono'] = $fila['Telefono'];

@@ -203,7 +203,7 @@ if ($conexion5->connect_error) {
             <div class="container-contact100-form-btn p-1">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        ACTUALIZAR EMPLEADO
+                        ACTUALIZAR
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>

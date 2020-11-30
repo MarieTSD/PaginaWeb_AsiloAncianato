@@ -174,7 +174,7 @@ include('db.php');
             $modificar2 = $_POST['idR'];
             $_SESSION['mod'] = $modificar;
             $_SESSION['mod2'] = $modificar2;
-            $sql2 = "select * from asiste where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+            $sql2 = "select * from inscrito where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
             $resultado = $conexion->query($sql2); //aplicamos sentencia 
             $fila = $resultado->fetch_assoc();
             if ($fila) {

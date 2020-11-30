@@ -25,15 +25,15 @@ if ($conexion->connect_error) {
 } else {
     $modificar2 = $_SESSION['mod2'];
     $modificar = $_SESSION['mod'];
-    $sql2 = "select * from Data_Asiste where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "select * from Data_Inscrito where ID_Clase='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
         $_SESSION['idC'] = $fila['ID_Clase'];
         $_SESSION['des'] = $fila['Descripcion'];
         $_SESSION['idR'] = $fila['ID_Residente'];
         $_SESSION['fnR'] = $fila['FullNameResidente'];
-        $_SESSION['fecha'] = $fila['fecha'];
-        $_SESSION['hora'] = $fila['hora'];
+        $_SESSION['fecha'] = $fila['Fecha'];
+        $_SESSION['hora'] = $fila['Horario'];
     }
     if (isset($_POST['submit2'])) {
         header("Location:baja_asiste.php");

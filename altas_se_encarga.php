@@ -163,14 +163,14 @@ include('db.php');
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha: </span>
+                <span class="label-input100">Fecha de alta: </span>
                 <input class="input100" type="date" id="fechaA" name="fechaA" placeholder="20" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora: </span>
-                <input class="input100" type="time" id="horaA" name="horaA" placeholder="20" required>
+                <span class="label-input100">Horario: </span>
+                <input class="input100" type="text" id="horaA" name="horaA" placeholder="20" required>
                 <span class="focus-input100"></span>
             </div>
 

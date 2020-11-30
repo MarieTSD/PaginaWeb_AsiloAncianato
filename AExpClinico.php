@@ -1,7 +1,7 @@
 <?php
 //Admin
 session_start();
-
+include('db.php');
 error_reporting(0);
 ?>
 
@@ -64,29 +64,68 @@ error_reporting(0);
 
     <!--Dialogo-->
     <?php
-    if ($_SESSION['exito1'] == "si") {
+    if ($_SESSION['exito2'] == "si") {
         echo '<script>swal("Actualizacion Exitosa", "Los cambios se guardaron", "success");</script>';
-        $_SESSION['exito1'] = "";
+        $_SESSION['exito2'] = "";
     }
     ?>
 
     <section class="hero3 hero7">
         <p class="hero__paragraph">Ingresa id a actualizar: </p>
-        <form action="">
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
-                <input class="input100" type="number" name="idR" placeholder="Ingresa id Residente">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Residente: </span>
+                <select name="idR" id="idR" class="input100">
+                    <option value="Selecciona un residente">Selecciona un residente</option>
+                    <?php
+                    $result = mysqli_query($con, "SELECT * FROM `DataResidente`");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <option value="<?php echo $row['ID']; ?>">
+                            <?php echo $row['ID'], " - ", $row['NombreCompleto']; ?>
+                        </option>
+                    <?php }
+                    //mysqli_close($con);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
-                <input class="input100" type="number" name="idM" placeholder="Ingresa id Medicina">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Residente: </span>
+                <select name="idM" id="idM" class="input100">
+                    <option value="Selecciona un residente">Selecciona una Medicina</option>
+                    <?php
+                    $result = mysqli_query($con, "SELECT * FROM `Medicina`");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <option value="<?php echo $row['ID']; ?>">
+                            <?php echo $row['ID'], " - ", $row['Nombre']; ?>
+                        </option>
+                    <?php }
+                    //mysqli_close($con);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Requerido">
-                <input class="input100" type="number" name="idA" placeholder="Ingresa id Atencion Medica">
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Residente: </span>
+                <select name="idA" id="idA" class="input100">
+                    <option value="Selecciona un residente">Selecciona la Atencion Medica</option>
+                    <?php
+                    $result = mysqli_query($con, "SELECT * FROM `Atencion_Medica`");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <option value="<?php echo $row['ID']; ?>">
+                            <?php echo $row['ID'], " - ", $row['Nombre']; ?>
+                        </option>
+                    <?php }
+                    //mysqli_close($con);
+                    ?>
+                </select>
                 <span class="focus-input100"></span>
             </div>
             <div class="contact100-form validate-form">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataEx()" name="submit">
+                <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
                         BUSCAR EXPEDIENTE CLINICO
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>

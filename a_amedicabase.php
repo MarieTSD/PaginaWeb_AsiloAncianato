@@ -32,7 +32,7 @@ if ($conexion->connect_error) {
         $_SESSION['calleno'] = $fila['CalleNo'];
         $_SESSION['colonia'] = $fila['Colonia'];
         $_SESSION['cp'] = $fila['CP'];
-        $_SESSION['ciudad'] = $fila['Cuidad'];
+        $_SESSION['ciudad'] = $fila['Ciudad'];
         $_SESSION['estado'] = $fila['Estado'];
         $_SESSION['rfc'] = $fila['RFC'];
         $_SESSION['telefono'] = $fila['Telefono'];
@@ -49,7 +49,7 @@ if ($conexion->connect_error) {
         $nueve = $_POST["ciudadA"];
 
         $modificar = $_SESSION["mod"];
-        $ne = "UPDATE atencion_medica set ID='$uno', Nombre='$dos', CalleNo='$tres', Colonia='$cuatro', CP='$cinco', Cuidad='$seis', Estado='$siete', RFC='$ocho', Telefono='$nueve' WHERE ID='$modificar'";
+        $ne = "UPDATE atencion_medica set ID='$uno', Nombre='$dos', CalleNo='$tres', Colonia='$cuatro', CP='$cinco', Ciudad='$seis', Estado='$siete', RFC='$ocho', Telefono='$nueve' WHERE ID='$modificar'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {

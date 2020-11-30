@@ -23,7 +23,7 @@ if ($conexion->connect_error) {
     $hora = $_POST['horaA'];
 
     //hacemos cadena con la sentencia mysql para insertar datos
-    $sql = "INSERT INTO se_encarga (ID, ID_Empleado, ID_Residente, Fecha, Hora) 
+    $sql = "INSERT INTO se_encarga (ID, ID_Empleado, ID_Residente, Fecha, Horario) 
                     VALUES('$ida', '$ide','$idr','$fecha', '$hora')";
 
     $_SESSION['exito'] = "si";

@@ -10,7 +10,6 @@ $contra = '';
 $BaseD = 'ancianato';
 
 //Variables de session
-$_SESSION['idA'] = '';
 $_SESSION['idE'] = '';
 $_SESSION['idR'] = '';
 $_SESSION['fecha'] = '';
@@ -24,25 +23,26 @@ if ($conexion->connect_error) {
     die('Ocurrio un error en la conexion con la BD');
 } else {
     $modificar = $_SESSION['mod'];
-    $sql2 = "select * from Data_SeEncarga where ID = '$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $modificar2 = $_SESSION['mod2'];
+    $sql2 = "select * from Data_SeEncarga where ID_Empleado='$modificar' and ID_Residente='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
-        $_SESSION['idA'] = $fila['ID'];
         $_SESSION['idE'] = $fila['ID_Empleado'];
         $_SESSION['fnE'] = $fila['FullNameEmpleado'];
         $_SESSION['idR'] = $fila['ID_Residente'];
         $_SESSION['fnR'] = $fila['FullNameResidente'];
-        $_SESSION['fecha'] = $fila['fecha'];
-        $_SESSION['hora'] = $fila['hora'];
+        $_SESSION['fecha'] = $fila['Fecha'];
+        $_SESSION['hora'] = $fila['Horario'];
     }
     if (isset($_POST['submit'])) {
-        $cero = $_POST["idA"];
         $uno = $_POST["idE"];
         $dos = $_POST["idR"];
         $tres = $_POST["fechaA"];
         $cuatro = $_POST["horaA"];
+        
         $modificar = $_SESSION["mod"];
-        $ne = "update se_encarga set ID='$cero', ID_Empleado='$uno', ID_Residente='$dos', Fecha='$tres', Hora='$cuatro' where ID='$modificar'";
+        $modificar2 = $_SESSION["mod2"];
+        $ne = "update se_encarga set ID_Empleado='$uno', ID_Residente='$dos', Fecha='$tres', Horario='$cuatro' where ID_Empleado='$modificar' and ID_Residente='$modificar2'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
@@ -156,12 +156,6 @@ if ($conexion->connect_error) {
     <section class="hero3">
         <form class="contact100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">ID: </span>
-                <input class="input100" type="number" name="idA" value="<?php echo $_SESSION['idA']; ?>" required>
-                <span class="focus-input100"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Empleado: </span>
                 <select name="idE" id="idE" class="input100">
                     <option value="<?php echo $_SESSION['idE']; ?>"><?php echo $_SESSION['idE'], " - ", $_SESSION['fnE']; ?></option>
@@ -198,14 +192,14 @@ if ($conexion->connect_error) {
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Fecha: </span>
+                <span class="label-input100">Fecha de alta: </span>
                 <input class="input100" type="date" name="fechaA" value="<?php echo $_SESSION['fecha']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Hora: </span>
-                <input class="input100" type="time" name="horaA" value="<?php echo $_SESSION['hora']; ?>" required>
+                <span class="label-input100">Horario: </span>
+                <input class="input100" type="text" name="horaA" value="<?php echo $_SESSION['hora']; ?>" required>
                 <span class="focus-input100"></span>
             </div>
 

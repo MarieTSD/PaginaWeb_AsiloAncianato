@@ -123,7 +123,7 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
             <div class="container-contact100-form-btn; contact100-form validate-form">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
-                        BUSCAR RESIDENTE
+                        BUSCAR
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>
                     </span>
                 </button>

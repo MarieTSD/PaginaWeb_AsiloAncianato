@@ -114,7 +114,7 @@ error_reporting(0);
         <form class="contact100-form validate-form" id="alta">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Nombre(s):</span>
-                <input class="input100" type="text" id="nomA" name="nomA" placeholder="Bodega Aurrera" required>
+                <input class="input100" type="text" id="nomA" name="nomA" placeholder="ISSSTE" required>
                 <span class="focus-input100"></span>
             </div>
 

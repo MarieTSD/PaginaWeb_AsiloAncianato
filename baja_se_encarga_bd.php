@@ -11,7 +11,6 @@ $BaseD = 'ancianato';
 
 //varibales para la consulta
 //Variables de session
-$_SESSION['idA'] = '';
 $_SESSION['idE'] = '';
 $_SESSION['idR'] = '';
 $_SESSION['fecha'] = '';
@@ -25,16 +24,16 @@ if ($conexion->connect_error) {
     die('Ocurrio un error en la conexion con la BD');
 } else {
     $modificar = $_SESSION['mod'];
-    $sql2 = "select * from Data_SeEncarga where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $modificar2 = $_SESSION['mod2'];
+    $sql2 = "select * from Data_SeEncarga where ID_Empleado='$modificar' and ID_Residente ='$modificar2'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion->query($sql2); //aplicamos sentencia  
     while ($fila = $resultado->fetch_assoc()) {
-        $_SESSION['idA'] = $fila['ID'];
         $_SESSION['idE'] = $fila['ID_Empleado'];
         $_SESSION['fnE'] = $fila['FullNameEmpleado'];
         $_SESSION['idR'] = $fila['ID_Residente'];
         $_SESSION['fnR'] = $fila['FullNameResidente'];
-        $_SESSION['fecha'] = $fila['fecha'];
-        $_SESSION['hora'] = $fila['hora'];
+        $_SESSION['fecha'] = $fila['Fecha'];
+        $_SESSION['hora'] = $fila['Horario'];
     }
     if (isset($_POST['submit2'])) {
         header("Location:baja_se_encarga.php");
@@ -167,10 +166,6 @@ if ($conexion->connect_error) {
         <p class="">Datos a eliminar:</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <table class="table table-hover table-bordered w-50">
-                <tr>
-                    <td>ID: </td>
-                    <td><?php echo $_SESSION['idA']; ?></td>
-                </tr>
                 <tr>
                     <td>Empleado: </td>
                     <td><?php echo $_SESSION['idE'], " - ", $_SESSION['fnE']; ?></td>
