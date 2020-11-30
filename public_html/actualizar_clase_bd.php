@@ -42,7 +42,7 @@
       die('Ocurrio un error en la conexion con la BD');
   }else{  
     $modificar = $_SESSION['mod']; 
-    $sql2 = "select * from clase where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
+    $sql2 = "call selClases($modificar)";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     
     $resultado = $conexion -> query($sql2); //aplicamos sentencia  
             while( $fila = $resultado -> fetch_assoc() ){
