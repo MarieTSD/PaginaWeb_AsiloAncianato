@@ -1,6 +1,17 @@
 <?php
-//Admin
 session_start();
+if ($_SESSION['exito'] == "si") {
+    echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
+    $_SESSION['exito'] = "";
+} else if ($_SESSION['exito'] == "no") {
+    echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
+    $_SESSION['exito'] = "";
+}
+?>
+
+<?php
+//Admin
+
 
 //conexion a la base de datos
 $servidor = 'localhost';
@@ -102,7 +113,6 @@ error_reporting(0);
     <?php
     if ($_SESSION['exito'] == "si") {
         echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
         $_SESSION['exito'] = "";
     } else if ($_SESSION['exito'] == "no") {
         echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
