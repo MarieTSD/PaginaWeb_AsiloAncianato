@@ -105,36 +105,83 @@ include('db.php');
 
     <section class="bg-primary text-white h-25">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">VER DONACIONES</h2>
+            <h2 class="mb-2 pt-5">VER DONACIONES FAMILIARES</h2>
         </div>
     </section>
 
-    <section class="characteristics">
-        <section class="characteristics__container">
-            <?php
-            $result = mysqli_query($con, "SELECT * FROM `donacion`");
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          SUMINISTRO
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+      <?php
+            $result = mysqli_query($con, "SELECT * FROM donaciones where ID_Residente is not null");
             while ($row = mysqli_fetch_assoc($result)) {
             ?>
                 <article class="characteristics__item; card bg-light mb-3 border-dark">
                     <ul class="list-group list-group-flush">
                         <form method='post' action=''>
                             <div class="card-header font-weight-bold">
-                                ID: <?php echo $row['ID']; ?>
+                                ID DONACION : <?php echo $row['ID']; ?>
                             </div>
                             <li class="list-group-item">
-                                Aporte: <?php echo $row['Aporte']; ?>
+                                ID RESIDENTE : <?php echo $row['ID_Residente']; ?>
                             </li>
                             <li class="list-group-item">
-                                <div>Fecha : <?php echo $row['Fecha']; ?></div>
+                                <div>RESIDENTE : <?php echo $row['NombreCompleto']; ?></div>
                             </li>
                             <li class="list-group-item">
-                                <div>Hora : <?php echo $row['Hora']; ?></div>
+                                <div>ID SUMINISTRO : <?php echo $row['idsum']; ?></div>
                             </li>
                             <li class="list-group-item">
-                                <div>Residente: <?php echo $row['ID_Residente']; ?></div>
+                                <div>Suministro : <?php echo $row['suministro']; ?></div>
+                            </li>
+                        </form>
+                    </ul>
+                </article>
+            <?php }
+            //mysqli_close($con);
+            ?>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          MEDICAMENTO
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+      <?php
+            $resultado = mysqli_query($con, "SELECT * FROM donaciones where ID_Residente is not null");
+            while ($row = mysqli_fetch_assoc($resultado)) {
+            ?>
+                <article class="characteristics__item; card bg-light mb-3 border-dark">
+                    <ul class="list-group list-group-flush">
+                        <form method='post' action=''>
+                            <div class="card-header font-weight-bold">
+                                ID DONACION : <?php echo $row['ID']; ?>
+                            </div>
+                            <li class="list-group-item">
+                                ID RESIDENTE : <?php echo $row['ID_Residente']; ?>
                             </li>
                             <li class="list-group-item">
-                                <div>Benefactor: <?php echo $row['ID_Benefactor']; ?></div>
+                                <div>RESIDENTE : <?php echo $row['NombreCompleto']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>ID MEDICAMENTO : <?php echo $row['idmedic']; ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>MEDICAMENTO : <?php echo $row['medicamento']; ?></div>
                             </li>
                         </form>
                     </ul>
@@ -142,9 +189,11 @@ include('db.php');
             <?php }
             mysqli_close($con);
             ?>
-        </section>
-    </section>
-
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">
