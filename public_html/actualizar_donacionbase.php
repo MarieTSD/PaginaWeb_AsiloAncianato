@@ -1,3 +1,4 @@
+  
 <?php
     session_start();
     error_reporting(0);
@@ -12,11 +13,12 @@
    $_SESSION['aporte'] ='';
    $_SESSION['fec'] = '';
    $_SESSION['hora'] = '';
-   $_SESSION['residente']='';
-   $_SESSION['benefactor']='';
-   //$_SESSION['']; 
-   $_SESSION['suministro']; 
-   $_SESSION['cant']; 
+   $_SESSION['resi']='';
+   $_SESSION['bene']='';
+   $_SESSION['sumi']=''; 
+   $_SESSION['medi']='';  
+   $_SESSION['cant']=''; 
+   $_SESSION['cantmed']; 
 
   //Realiar la conexion con la base de datos 
    $conexion = new mysqli($serv,$cuenta,$contra,$BaseD);
@@ -25,58 +27,143 @@
   }else{  
 
     //tabla de DONACION
-    $modificar = $_SESSION['mod'];  
-    $sql2 = "SELECT * from donacion where ID='$modificar'";
+    //$modificar = $_SESSION['mod'];  
+    $idD = $_SESSION['mod']; 
+    $idS = $_SESSION['modS']; 
+    $idM = $_SESSION['modM']; 
+
+    if($idS != null && $idM != null){
+       // echo "entro a ambas";  
+        $sql2 = "SELECT * from donaciones where ID='$idD' and idsum = '$idS' and idmedic = '$idM'";
+    }else if($idS != null && $idM == null){
+       // echo "Aqui inserta el suministro"; 
+        $sql2 = "SELECT * from donaciones where ID='$idD' and idsum = '$idS' and idmedic is null";
+    }else if($ids == null && $idM != null){
+       // echo "Aqui inserta el medicamento"; 
+        $sql2 = "SELECT * from donaciones where ID='$idD' and idsum is null and idmedic = '$idM'";
+    }else if($ids == null && $idM == NULL){
+       // echo "ambas son nulas"; 
+        $sql2 = "SELECT * from donaciones where ID='$idD' and idsum is null and idmedic is null";
+    }
     $resultado = $conexion -> query($sql2);
     while( $fila = $resultado -> fetch_assoc() ){
         $_SESSION['id']= $fila['ID'];
-        $_SESSION['aporte'] = $fila['Aporte'];
+        $_SESSION['aporte'] = $fila['aporte'];
         $_SESSION['fec'] = $fila['Fecha'];
         $_SESSION['hora'] = $fila['Hora'];
-        $_SESSION['residente']=$fila['ID_Residente'];
-        $_SESSION['benefactor']=$fila['ID_Benefactor'];
+        $_SESSION['resi']=$fila['NombreCompleto'];
+        $_SESSION['idresi']=$fila['ID_Residente']; 
+        $_SESSION['bene']=$fila['nombre'];
+        $_SESSION['idben']=$fila['ID_Benefactor']; 
+        $_SESSION['sumi']=$fila['suministro']; 
+        $_SESSION['idsumi']=$fila['idsum']; 
+        $_SESSION['medi']=$fila['medicamento']; 
+        $_SESSION['idmedi']=$fila['idmedic'];
+        $_SESSION['cant']=$fila['Cantidad']; 
+        $_SESSION['cantmed']=$fila['Cant']; 
     }
     
-    //tabla de aparecen_sd
+   /* //tabla de aparecen_sd
     $sql4 = "SELECT * FROM aparecen_sd WHERE ID_Donacion = '$modificar'";
     //echo $sql4; 
-    
     $res2 = $conexion-> query($sql4);
     while($fila = $res2 -> fetch_assoc() ){
         $_SESSION['suministro'] = $fila['Codigo_Suministro'];
-
         $_SESSION['cant'] = $fila['Cantidad'];      
-    } /*echo $_SESSION['suministro']; 
-    echo $_SESSION['cant']; */
+    } */
+
      
  if(isset($_POST['submit'])){
         $uno = $_POST["id"];
         $dos = $_POST["aport"];
         $tres = $_POST["fecha"];
         $cuatro = $_POST["hr"];
-        $cinco = $_POST["resi"];
-        $seis = $_POST['bene'];
-        $siete = $_POST['id_suministro']; 
-        $ocho = $_POST['idC']; 
+        $cinco = $_POST["residente"];
+        $seis = $_POST['benefactor'];
+        $siete = $_POST['suministro'];
+        $ocho = $_POST['medicamento'];  
+        $nueve = $_POST['idC']; 
+        $diez = $_POST['idMedic']; 
 
-        $modificar = $_SESSION["mod"];
+       //VARIABLES DE SESION
 
-        if($cinco == "0")
+       $idD = $_SESSION['mod']; 
+       $idS = $_SESSION['modS']; 
+       $idM = $_SESSION['modM']; 
+       $Resi = $_SESSION['idresi']; 
+       $Bene = $_SESSION['idben']; 
+       $sumi = $_SESSION['idsumi'];
+       $medi = $_SESSION['idmedi'];
+//echo $NomResi; 
+//echo $cinco; 
+       if($Resi != null ){
+            //echo "es diferente"; 
+            //if($Resi != $cinco){
+                $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
+                Hora='$cuatro', ID_Residente='$cinco', ID_Benefactor = NULL WHERE ID='$idD'";
+           // }else
+       }else if($Bene != null){
+           //echo "son iguales "; 
+           //if($$Bene != $seis){
+                $ne="UPDATE donacion set ID='$uno', aporte='$dos', Fecha='$tres', 
+                Hora='$cuatro', ID_Residente = NULL, ID_Benefactor='$seis' WHERE ID='$idD";
+           //}
+       }
+       
+     
+       if($sumi != null && $medi != null){
+         
+           $ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion = '$uno', Cantidad = '$nueve'
+           where ID_Donacion = '$idD' and Codigo_Suministro = $idS"; 
+
+           $ne3 = "UPDATE aparecen_md set ID_Medicamento = '$ocho', ID_Donacion = '$uno', Cantidad = '$diez' 
+           where ID_Donacion = '$idD' and ID_Medicamento = $idM"; 
+       }else if($sumi != null && $medi == null){
+         
+            $ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion='$uno', Cantidad = '$nueve' 
+            where ID_Donacion = '$idD' and Codigo_Suministro = '$idS'";
+       }else if($sumi == null && $medi != null){ 
+            $ne3 = "UPDATE aparecen_md set ID_Medicamento = '$ocho', ID_Donacion = '$uno', Cantidad = '$diez' 
+            where ID_Donacion = '$idD' and ID_Medicamento = $idM"; 
+       }
+       /*echo $ne2; 
+       echo $ne3; */
+
+       /* if($cinco == "0")
         {
-            $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
+            $ne="UPDATE donacion set ID='$uno', aporte='$dos', Fecha='$tres', 
             Hora='$cuatro', ID_Residente = NULL, ID_Benefactor='$seis' WHERE ID='$modificar'";
         }else{
             $ne="UPDATE donacion set ID='$uno', Aporte='$dos', Fecha='$tres', 
             Hora='$cuatro', ID_Residente='$cinco', ID_Benefactor = NULL WHERE ID='$modificar'";
-        }
+        }*/
 
-        $ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion = '$uno', Cantidad = $ocho 
-        where ID_Donacion = '$modificar'"; 
         
-        //echo $ne2; 
+        //var_dump(is_null($siete)); 
+
+        /*if($siete != null ) {
+            /*$ne2 = "UPDATE aparecen_md set ID_Medicamento = '$siete', ID_Donacion = '$uno', Cantidad = $ocho 
+            where ID_Donacion = '$modificar'"; */
+           /* $ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion = '$uno', Cantidad = '$nueve' 
+            where ID_Donacion = '$modificar' and Codigo_Suministro = '$siete'";
+             echo $ne2; 
+
+        }
         
+        if($ocho != null){
+
+            echo $ocho; 
+            /*$ne2 = "UPDATE aparecen_sd set Codigo_Suministro = '$siete', ID_Donacion = '$uno', Cantidad = $nueve 
+            where ID_Donacion = '$modificar'"; */
+         /*   $ne2="UPDATE aparecen_md set ID_Medicamento = '$ocho', ID_Donacion = '$uno', Cantidad = '$diez' 
+            where ID_Donacion = '$modificar' and ID_Medicamento='$ocho'"; 
+            echo $ne2; 
+              
+        }
+    */  
         $fin = $conexion -> query($ne);
-        $fin2 = $conexion -> query($ne2); 
+        $fin2 = $conexion -> query($ne2);
+        $fin3 = $conexion -> query($ne3);
         if ($conexion->affected_rows >= 1){ 
             $_SESSION['exito2'] = "si";
                 header("Location: actualizar_donacion.php");
@@ -222,10 +309,10 @@ rel="stylesheet" type="text/css" />
 
     <div class="container-contact100-form-btn p-1">
         <span class="label-input100">Residente:</span>
-        <select name="resi" id="residente" class="input100">
-            <option value="0">Seleccion Residente: </option>
+        <select name="residente" id="residente" class="input100">
+            <option value="<?php echo $_SESSION['idresi']; ?>"><?php echo $_SESSION['resi']; ?></option>
             <?php 
-                    $sql2 = $conexion->query( "SELECT * FROM residente"); 
+                    $sql2 = $conexion->query( "SELECT * from residente"); 
 
                     while($fila = $sql2->fetch_array()){
                         echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
@@ -235,9 +322,9 @@ rel="stylesheet" type="text/css" />
     </div>
 
     <div class="container-contact100-form-btn p-1">
-        <span class="label-input100">Medicina:</span>
-        <select name="bene" id="medicina" class="input100">
-            <option value="0">Seleccion Benefactor:</option>
+        <span class="label-input100">Benefactor:</span>
+        <select name="benefactor" id="benefactor" class="input100">
+            <option value="<?php echo $_SESSION['idben']; ?>"><?php echo $_SESSION['bene']; ?></option>
             <?php 
                     $sql2 = $conexion->query( "SELECT * FROM benefactor"); 
 
@@ -249,8 +336,8 @@ rel="stylesheet" type="text/css" />
     </div>
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Suministro:</span>
-                <select name="id_suministro" id="id_suministro" class="input100">
-                    <option value = "0">Seleccion Suministro</option>
+                <select name="suministro" id="suministro" class="input100">
+                    <option value = "<?php echo $_SESSION['idsumi']; ?>"><?php echo $_SESSION['sumi']; ?></option>
                     <?php 
                             $sql2 = $conexion->query( "SELECT * from suministro"); 
 
@@ -261,11 +348,34 @@ rel="stylesheet" type="text/css" />
                 </select>
             </div>
 
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Medicamento:</span>
+                <select name="medicamento" id="medicamento" class="input100">
+                    <option value = "<?php echo $_SESSION['idmedi']; ?>"><?php echo $_SESSION['medi']; ?></option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * from medicina"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
-                <span class="label-input100">Cantidad:</span>
-                <input class="input100" type="number" name="idC" value="<?php echo $_SESSION['cant']; ?>" required>
+                <span class="label-input100">Cantidad Suministro:</span>
+                <input class="input100" type="number" name="idC" value="<?php echo $_SESSION['cant']; ?>">
                 <span class="focus-input100"></span>
             </div>
+            
+            <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
+                <span class="label-input100">Cantidad Medicamento:</span>
+                <input class="input100" type="number" name="idMedic" value="<?php echo $_SESSION['cantmed']; ?>">
+                <span class="focus-input100"></span>
+            </div>
+            
+            
+
     <div class="container-contact100-form-btn p-1">
         <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
             <span>

@@ -66,8 +66,8 @@ error_reporting(0);
                             <!--<a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>-->
                             <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
                             <ul>
-								<li><a href="">Familiar</a></li>
-								<li><a href="">Benefactor</a></li>
+								<li><a href="familiar.php">Familiar</a></li>
+								<li><a href="benefactor.php">Benefactor</a></li>
 							</ul>
                         </div>
                     </li>
@@ -186,16 +186,35 @@ error_reporting(0);
             </div>
 
             <hr>
+                
+            <!--Aqui va lo que borre del suministro-->
+
             <span>SI El SUMINISTRO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="#suministro">Suministro</a></span>
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Suministro:</span>
                 <select name="id_suministro" id="id_suministro" class="input100">
-                    <option value = "0">Seleccion Suministro</option>
+                    <option value = "1">Seleccion Suministro</option>
                     <?php 
                             $sql2 = $conexion->query( "SELECT * from suministro"); 
 
                             while($fila = $sql2->fetch_array()){
                                 echo "<option value='".$fila['Codigo']."'>".$fila['Nombre']."</option>";
+                            }
+                    ?>
+                </select>
+            </div>
+<br>
+
+            <span>SI El MEDICAMENTO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="#Medicamento">Medicamento</a></span>
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Medicamento:</span>
+                <select name="id_medicamento" id="id_medicamento" class="input100">
+                    <option value = "1">Selecciona Medicamento</option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * from medicina"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
                             }
                     ?>
                 </select>

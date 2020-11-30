@@ -125,10 +125,24 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     <section class="hero3 hero8">
         <p class="hero__paragraph">Ingresa id de Donacion a actualizar:</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">
-                <input class="input100 w-25" type="number" name="idD" placeholder="Ingresa id">
-                <span class="focus-input100"></span>
+
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Donacion:</span>
+                <select name="Donaciones" id="Donaciones" class="input100">
+                    <option value = "0">Donaciones: </option>
+                    <?php 
+                            $sql2 = $conexion->query( "SELECT * from donaciones"); 
+
+                            while($fila = $sql2->fetch_array()){
+                                echo "<option value='".$fila['ID'], '|', $fila['idsum'], '|', $fila['idmedic']."'>".$fila['aporte'] ,' ', $fila['NombreCompleto'], $fila['nombre'].
+                                $fila['suministro'],' ', $fila['medicamento']."</option>";
+                            }
+                    ?>
+                </select>
             </div>
+
+
+
             <div class="container-contact100-form-btn; contact100-form validate-form">
                 <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
                     <span>
@@ -152,15 +166,23 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
         die('Ocurrio un error en la conexion con la BD');
     } else {
         if (isset($_POST['submit'])) {
-            $modificar = $_POST['idD'];
-            $_SESSION['mod'] = $modificar;
-            $sql2 = "select * from donacion where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-            $resultado = $conexion->query($sql2); //aplicamos sentencia  
+            $modificar = $_POST['Donaciones'];
+            $modificar_explode = explode('|', $modificar); 
+            $idD = $modificar_explode[0]; 
+            $idS = $modificar_explode[1]; 
+            $idM = $modificar_explode[2]; 
+           /* echo $idD; 
+            echo $idS; 
+            echo $idM; */
+            
+           $_SESSION['mod'] = $idD;
+            $_SESSION['modS'] = $idS; 
+            $_SESSION['modM'] = $idM; 
+            $sql2 = "SELECT * FROM donaciones where ID = '$idD'"; 
+            $resultado = $conexion->query($sql2);  
             $fila = $resultado->fetch_assoc();
             if ($fila) {
-                echo "<script>
-                                        document.location='actualizar_donacionbase.php';
-                                    </script>";
+                echo "<script>document.location='actualizar_donacionbase.php';</script>";
             } else {
                 echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
             }

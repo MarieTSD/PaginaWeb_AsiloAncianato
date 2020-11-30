@@ -23,6 +23,7 @@ $_SESSION['exito'] = "";
             $benefactor = $_POST['id_benefactor'];  
             $cantidad = $_POST['idC']; 
             $suministro = $_POST['id_suministro']; 
+            $medicina = $_POST['id_medicamento'];
             if($residente == "0"){
                 $sql = "INSERT INTO donacion (ID, Aporte, Fecha, Hora, ID_Benefactor) 
             VALUES('$id','$aporte','$fecha','$hora','$benefactor')";
@@ -33,19 +34,23 @@ $_SESSION['exito'] = "";
                 $_SESSION['exito'] = "si";
             }
             
-            $sql2 = "INSERT INTO aparecen_sd( Codigo_Suministro, ID_Donacion, Cantidad)
+            if($medicina == "1"){
+                $sql2 = "INSERT INTO aparecen_sd( Codigo_Suministro, ID_Donacion, Cantidad)
                 VALUES('$suministro','$id', '$cantidad')";
-
+            }else{
+                $sql2 = "INSERT INTO aparecen_md (ID_Medicamento, ID_Donacion, Cantidad)
+                VALUES('$medicina', '$id', '$cantidad')";
+            }
             echo $sql2; 
-            
-    $conexion->query($sql);
-    $conexion->query($sql2); 
+    
+            $conexion->query($sql);
+            $conexion->query($sql2); 
 
-   if ($conexion->affected_rows >= 1) {
-        $_SESSION['exito'] = "si";
-        header("Location: alta_donacion.php");
-    } else {
-        $_SESSION['exito'] = "no";
-        echo "<script>document.location='alta_donacion.php';</script>";
-        }
+        if ($conexion->affected_rows >= 1) {
+                $_SESSION['exito'] = "si";
+                header("Location: alta_donacion.php");
+            } else {
+                $_SESSION['exito'] = "no";
+                echo "<script>document.location='alta_donacion.php';</script>";
+                }
     }
