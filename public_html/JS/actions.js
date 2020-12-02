@@ -56,7 +56,7 @@ var getDataMed=function(){
 var getDataCla=function(){
     var nomA=document.getElementById("nomA").value;
     var apA=document.getElementById("apA").value;
-    var amA=document.getElementById("amA").value;
+    var amA=document.getElementById("idE").value;
     var clase=new Clase(nomA,apA,amA,"altas_clase_bd.php");
     clase.altaClase();
 }
