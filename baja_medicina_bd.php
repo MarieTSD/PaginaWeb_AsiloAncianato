@@ -15,6 +15,7 @@ $_SESSION['id'] = '';
 $_SESSION['nombre'] = '';
 $_SESSION['des'] = '';
 $_SESSION['via'] = '';
+$_SESSION['exis'] = '';
 
 
 //Realiar la conexion con la base de datos 
@@ -30,6 +31,7 @@ if ($conexion->connect_error) {
         $_SESSION['nombre'] = $fila['Nombre'];
         $_SESSION['des'] = $fila['Descripcion'];
         $_SESSION['via'] = $fila['Via'];
+        $_SESSION['exis'] = $fila['Existencia'];
     }
     if (isset($_POST['submit2'])) {
         header("Location:baja_medicina.php");
@@ -143,6 +145,10 @@ if ($conexion->connect_error) {
                 <tr>
                     <td>Via: </td>
                     <td><?php echo $_SESSION['via']; ?></td>
+                </tr>
+                <tr>
+                    <td>Existencia: </td>
+                    <td><?php echo $_SESSION['exis']; ?></td>
                 </tr>
 
             </table>

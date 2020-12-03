@@ -1,8 +1,9 @@
 class Medicina{
-    constructor(nom,desc,via,action){
+    constructor(nom,desc,via,exis,action){
         this.nom=nom;
         this.desc=desc;
         this.via=via;
+        this.exis=exis;
         this.action=action;
     }
 
@@ -13,7 +14,8 @@ class Medicina{
             data: {
                     nom: this.nom,
                     desc: this.desc,
-                    via: this.via
+                    via: this.via,
+                    exis: this.exis
                 },
             success: function(response){
             if(response==1){

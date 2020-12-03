@@ -109,8 +109,14 @@ error_reporting(0);
                 <input class="input100" type="text" id="via" name="via" placeholder="Oral">
                 <span class="focus-input100"></span>
             </div>
+
+            <div class="wrap-input100 validate-input p-1">
+                <span class="label-input100">Existencia:</span>
+                <input class="input100" type="number" id="exis" name="exis" placeholder="100">
+                <span class="focus-input100"></span>
+            </div>
             <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDatafam()" name="submit">
+                <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getDataMed()" name="submit">
                     <span>
                         AGREGAR
                         <i class="fan fan-long-arrow-right m-l-7" aria-hidden="true"></i>

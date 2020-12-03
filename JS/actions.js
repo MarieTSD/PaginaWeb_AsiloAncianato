@@ -49,7 +49,8 @@ var getDataMed=function(){
     var nomA=document.getElementById("nomA").value;
     var des=document.getElementById("des").value;
     var via=document.getElementById("via").value;
-    var med=new Medicina(nomA,des,via,"altas_medicina_bd.php");
+    var exis=document.getElementById("exis").value;
+    var med=new Medicina(nomA,des,via,exis,"altas_medicina_bd.php");
     med.altaMedicina();
 }
 

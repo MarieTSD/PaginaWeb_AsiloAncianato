@@ -116,8 +116,8 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
             $fila = $resultado->fetch_assoc();
             if ($fila) {
                 echo "<script>
-                                        document.location='actualizar_medicina_bd.php';
-                                    </script>";
+                        document.location='actualizar_medicina_bd.php';
+                    </script>";
             } else {
                 echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
             }

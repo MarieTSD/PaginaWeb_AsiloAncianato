@@ -12,6 +12,7 @@ $_SESSION['id'] = '';
 $_SESSION['nombre'] = '';
 $_SESSION['desc'] = '';
 $_SESSION['via'] = '';
+$_SESSION['exis'] = '';
 
 
 //Realiar la conexion con la base de datos 
@@ -27,16 +28,18 @@ if ($conexion->connect_error) {
         $_SESSION['nombre'] = $fila['Nombre'];
         $_SESSION['desc'] = $fila['Descripcion'];
         $_SESSION['via'] = $fila['Via'];
+        $_SESSION['exis'] = $fila['Existencia'];
     }
     if (isset($_POST['submit'])) {
         $uno = $_POST["idA"];
         $dos = $_POST["nomA"];
         $tres = $_POST["desc"];
         $cuatro = $_POST['via'];
+        $cinco = $_POST['exis'];
 
 
         $modificar = $_SESSION["mod"];
-        $ne = "update medicina set ID='$uno', Nombre='$dos', Descripcion='$tres',Via='$cuatro' WHERE ID='$modificar'";
+        $ne = "update medicina set ID='$uno', Nombre='$dos', Descripcion='$tres',Via='$cuatro', Existencia='$cinco' WHERE ID='$modificar'";
 
         $fin = $conexion->query($ne);
         if ($conexion->affected_rows >= 1) {
@@ -131,6 +134,11 @@ if ($conexion->connect_error) {
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Via:</span>
                 <input class="input100" type="text" name="via" value="<?php echo $_SESSION['via']; ?>">
+                <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input p-1">
+                <span class="label-input100">Existencia:</span>
+                <input class="input100" type="number" id="exis" value="<?php echo $_SESSION['exis']; ?>" name="exis" placeholder="Oral">
                 <span class="focus-input100"></span>
             </div>
             <div class="container-contact100-form-btn p-1">

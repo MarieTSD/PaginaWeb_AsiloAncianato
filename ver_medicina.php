@@ -87,6 +87,9 @@ include('db.php');
                             <li class="list-group-item">
                                 Via: <?php echo $row['Via']; ?>
                             </li>
+                            <li class="list-group-item">
+                                Existencia: <?php echo $row['Existencia']; ?>
+                            </li>
                         </form>
                     </ul>
                 </article>
