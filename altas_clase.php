@@ -78,7 +78,7 @@ include('db.php');
                             <a class="dropdown-item" href="baja_clase.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
-                            <a class="dropdown-item" href="ver_clase.php">LISTAS DE ALUMNOS</a>
+                            <a class="dropdown-item" href="listas_clases.php">LISTAS DE ALUMNOS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
@@ -119,7 +119,6 @@ include('db.php');
     <?php
     if ($_SESSION['exito'] == "si") {
         echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
         $_SESSION['exito'] = "";
     } else if ($_SESSION['exito'] == "no") {
         echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
@@ -133,13 +132,13 @@ include('db.php');
         <form action="" id="form">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Descripcion:</span>
-                <input class="input100" type="text" id="nomA" name="nomA" placeholder="Yoga" required>
+                <input class="input100" type="text" id="nomA" name="des" placeholder="Yoga" required>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Area:</span>
-                <input class="input100" type="text" id="apA" name="apA" placeholder="Jardines" required>
+                <input class="input100" type="text" id="apA" name="area" placeholder="Jardines" required>
                 <span class="focus-input100"></span>
             </div>
 

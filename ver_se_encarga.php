@@ -115,13 +115,10 @@ include('db.php');
                     <ul class="list-group list-group-flush">
                         <form method='post' action=''>
                             <div class="card-header font-weight-bold">
-                                ID: <?php echo $row['ID']; ?>
-                            </div>
-                            <div class="list-group-item">
                                 Empleado: <?php echo $row['ID_Empleado']; ?>
                                 - <?php echo $row['FullNameEmpleado']; ?>
                             </div>
-                            <li class="list-group-item">
+                            <li class="card-header font-weight-bold">
                                 Residente: <?php echo $row['ID_Residente']; ?>
                                 - <?php echo $row['FullNameResidente']; ?>
                             </li>

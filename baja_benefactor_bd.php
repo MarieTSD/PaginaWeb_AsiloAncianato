@@ -63,8 +63,8 @@ if ($conexion->connect_error) {
 </head>
 
 <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
+     <!-- Navigation-->
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
         <div class="container ml-1">
             <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
             <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
@@ -76,10 +76,11 @@ if ($conexion->connect_error) {
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
+                            <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="familiar.php">DONACIONES POR FAMILIAR</a>
+                            <a class="dropdown-item" href="benefactor.php">DONACIONES POR BENEFACTOR</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">

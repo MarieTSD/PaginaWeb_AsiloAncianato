@@ -16,25 +16,25 @@ if ($conexion->connect_error) {
     //Sacamos los valores con post
 
     //obtenemos datos del formulario
-    $ida = $_POST['idA'];
     $ide = $_POST['idE'];
     $idr = $_POST['idR'];
-    $fecha = $_POST['fechaA'];
-    $hora = $_POST['horaA'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
 
     //hacemos cadena con la sentencia mysql para insertar datos
-    $sql = "INSERT INTO se_encarga (ID, ID_Empleado, ID_Residente, Fecha, Horario) 
-                    VALUES('$ida', '$ide','$idr','$fecha', '$hora')";
-
-    $_SESSION['exito'] = "si";
+    $sql = "INSERT INTO se_encarga VALUES('$ide','$idr','$fecha','$hora')";
 
     //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
     $conexion->query($sql);
     if ($conexion->affected_rows >= 1) { //revisamos que se inserto un registro
         $_SESSION['exito'] = "si";
-        header("Location: altas_se_encarga.php");
+        echo $sql;
+        echo "<script>alert('$sql')</script>";
+        //header("Location: altas_se_encarga.php");
     } else {
         $_SESSION['exito'] = "no";
-        echo "<script>document.location='altas_se_encarga.php';</script>";
+        echo $sql;
+        echo "<script>alert('$sql')</script>";
+        //echo "<script>document.location='altas_se_encarga.php';</script>";
     }
 }

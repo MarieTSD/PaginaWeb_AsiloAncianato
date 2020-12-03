@@ -1,14 +1,7 @@
 <?php
-//Admin
 session_start();
 error_reporting(0);
-
-//conexion a la base de datos
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'ancianato';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+include('db.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,11 +20,12 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
     <link href="css/styles.css" rel="stylesheet" />
     <!--  Para el los menajes de confimacion ets-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
-     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
         <div class="container ml-1">
             <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
             <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
@@ -92,62 +86,104 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
     <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">ACTUALIZAR BENEFACTOR</h2>
+            <h2 class="mb-2 pt-5">DONACIONES POR BENEFACTOR</h2>
         </div>
     </section>
 
-    <?php
-    if ($_SESSION['exito2'] == "si") {
-        echo '<script>swal("Actualizacion Exitosa", "Continua Actualizando", "success");</script>';
-        $_SESSION['exito2'] = "";
-    }
-    ?>
-
-    <section class="hero3">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="wrap-input100 validate-input; contact100-form validate-form;" data-validate="Name is required">
-                <span class="label-input100">ID a actualizar:</span>
-                <input class="input100 pl-2" type="number" name="idA" placeholder="Ingresa id">
+    <div id="accordion">
+        <div class="card m-5">
+            <div class="card-header text-center" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        SUMINISTRO
+                    </button>
+                </h5>
             </div>
-            <div class="container-contact100-form-btn p-1">
-                <button class="btn btn-outline-info w-50 p-3 m-1" name="submit">
-                    <span>
-                        Buscar
-                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-                    </span>
-                </button>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <section class="characteristics" style="line-height: 1;">
+                        <section class="characteristics__container">
+                            <?php
+                            $result = mysqli_query($con, "SELECT * FROM donaciones where ID_Benefactor is not null");
+                            while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                <article class="characteristics__item; card bg-light mb-3 border-dark">
+                                    <ul class="list-group list-group-flush">
+                                        <form method='post' action=''>
+                                            <div class="card-header font-weight-bold">
+                                                ID DONACION : <?php echo $row['ID']; ?>
+                                            </div>
+                                            <li class="list-group-item">
+                                                ID BENEFACTOR : <?php echo $row['ID_Benefactor']; ?>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>BENEFACTOR : <?php echo $row['nombre']; ?></div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>ID SUMINISTRO : <?php echo $row['idsum']; ?></div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>Suministro : <?php echo $row['suministro']; ?></div>
+                                            </li>
+                                        </form>
+                                    </ul>
+                                </article>
+                            <?php }
+                            //mysqli_close($con);
+                            ?>
+                        </section>
+                    </section>
+                </div>
             </div>
-        </form>
-    </section>
+        </div>
 
-    <?php
-    $serv = 'localhost';
-    $cuenta = 'root';
-    $contra = '';
-    $BaseD = 'ancianato';
-
-    //Realiar la conexion con la base de datos 
-    $conexion = new mysqli($serv, $cuenta, $contra, $BaseD);
-    if ($conexion->connect_error) {
-        die('Ocurrio un error en la conexion con la BD');
-    } else {
-        if (isset($_POST['submit'])) {
-            $modificar = $_POST['idA'];
-            $_SESSION['mod'] = $modificar;
-            $sql2 = "select * from benefactor where ID='$modificar'"; //hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
-            $resultado = $conexion->query($sql2); //aplicamos sentencia  
-            $fila = $resultado->fetch_assoc();
-            if ($fila) {
-                echo "<script>
-                                        document.location='actualizar_benefactor_bd.php';
-                                    </script>";
-            } else {
-                echo '<script>swal("Campo no encontrado", "El id que introduciste no esta asosciado a ningun atributo", "error");</script>';
-            }
-        }
-    }
-    ?>
-
+        <div class="card m-5">
+            <div class="card-header text-center" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        MEDICAMENTO
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <section class="characteristics" style="line-height: 1;">
+                        <section class="characteristics__container">
+                            <?php
+                            $resultado = mysqli_query($con, "SELECT * FROM donaciones where ID_Benefactor is not null");
+                            while ($row = mysqli_fetch_assoc($resultado)) {
+                            ?>
+                                <article class="characteristics__item; card bg-light mb-3 border-dark">
+                                    <ul class="list-group list-group-flush">
+                                        <form method='post' action=''>
+                                            <div class="card-header font-weight-bold">
+                                                ID DONACION : <?php echo $row['ID']; ?>
+                                            </div>
+                                            <li class="list-group-item">
+                                                ID BENEFACTOR : <?php echo $row['ID_Benefactor']; ?>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>BENEFACTOR : <?php echo $row['nombre']; ?></div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>ID MEDICAMENTO : <?php echo $row['idmedic']; ?></div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>MEDICAMENTO : <?php echo $row['medicamento']; ?></div>
+                                            </li>
+                                        </form>
+                                    </ul>
+                                </article>
+                            <?php }
+                            mysqli_close($con);
+                            ?>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">

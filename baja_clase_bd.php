@@ -29,7 +29,7 @@ if ($conexion->connect_error) {
         $_SESSION['id'] = $fila['ID'];
         $_SESSION['des'] = $fila['Descripcion'];
         $_SESSION['area'] = $fila['Area'];
-        $_SESSION['idE'] = $fila['ID_Empledao'];
+        $_SESSION['idE'] = $fila['ID_Empleado'];
     }
     if (isset($_POST['submit2'])) {
         header("Location:baja_clase.php");
@@ -97,7 +97,7 @@ if ($conexion->connect_error) {
                             <a class="dropdown-item" href="baja_clase.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
-                            <a class="dropdown-item" href="ver_clase.php">LISTAS DE ALUMNOS</a>
+                            <a class="dropdown-item" href="listas_clases.php">LISTAS DE ALUMNOS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">

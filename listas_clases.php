@@ -12,12 +12,15 @@ include('db.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
     <!--  Para el los menajes de confimacion ets-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -99,37 +102,53 @@ include('db.php');
 
     <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
-            <h2 class="mb-2 pt-5">CLASES</h2>
+            <h2 class="mb-2 pt-5">LISTAS DE CLASES</h2>
         </div>
     </section>
 
     <section class="characteristics" style="line-height: 1;">
         <section class="characteristics__container">
             <?php
-            $result = mysqli_query($con, "SELECT * FROM `clase`");
+            $result = mysqli_query($con, "SELECT * FROM `listas_clases`");
+            $temp2 = '';
             while ($row = mysqli_fetch_assoc($result)) {
+                $temp = $row['ID clase'];
+                if ($temp != $temp2) {
             ?>
-                <article class="characteristics__item; card bg-light mb-3 border-dark">
-                    <ul class="list-group list-group-flush">
-                        <form method='post' action=''>
-                            <div class="card-header font-weight-bold">
-                                ID: <?php echo $row['ID']; ?>
-                            </div>
-                            <li class="list-group-item">
-                                Descripcion: <?php echo $row['Descripcion']; ?>
-                            </li>
-                            <li class="list-group-item">
-                                Area: <?php echo $row['Area']; ?>
-                            </li>
-                            <li class="list-group-item">
-                                ID Empleado: <?php echo $row['ID_Empledao']; ?>
-                            </li>
-                        </form>
-                    </ul>
-                </article>
-            <?php }
+                    <article class="characteristics__item; card bg-light mb-3 border-dark">
+                        <ul class="list-group list-group-flush">
+                            <form method='post' action=''>
+                                <div class="card-header font-weight-bold">
+                                    Clase: <?php echo $row['ID clase']; ?> - <?php echo $row['namC']; ?>
+                                </div>
+                                <div class="card-header font-weight-bold">
+                                    Profesor: <?php echo $row['ID Empleado']; ?>
+                                    - <?php echo $row['namE']; ?>
+                                </div>
+                                <div class="card-header font-weight-bold">
+                                    Inscritos:
+                                </div>
+                                <?php
+                                $result2 = mysqli_query($con, "SELECT * FROM `listas_clases`");
+
+                                while ($row2 = mysqli_fetch_assoc($result2)) {
+                                    if ($temp == $row2['ID clase']) { ?>
+                                        <li class="list-group-item">
+                                            Residente: <?php echo $row2['ID Residente']; ?>
+                                            - <?php echo $row2['namR']; ?>
+                                        </li>
+                                <?php
+                                        $temp2 = $row['ID clase'];
+                                    }
+                                }
+                            }
+                            ?>
+                            </form>
+                        </ul>
+                    </article>
+                <?php }
             mysqli_close($con);
-            ?>
+                ?>
         </section>
     </section>
 

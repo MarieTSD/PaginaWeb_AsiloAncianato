@@ -24,7 +24,7 @@ if ($conexion2->connect_error) {
     $sql = "INSERT INTO atencion_medica (Nombre, CalleNo, Colonia, CP, Ciudad, Estado, RFC, Telefono) 
             VALUES('$nombre','$calle','$col', '$CodigoPostal', '$ciud', '$est', '$rfc', '$telefono')";
     $conexion2->query($sql); 
-    
+
    if ($conexion2->affected_rows >= 1) {
         $_SESSION['exito'] = "si";
         header("Location: al_amedica.php");

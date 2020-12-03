@@ -128,7 +128,7 @@ include('db.php');
     ?>
 
     <section class="hero3">
-        <form class="contact100-form validate-form" action="" id="alta">
+        <form id="form">
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido">
                 <span class="label-input100">Empleado: </span>
                 <select name="idE" id="idE" class="input100">
@@ -141,7 +141,7 @@ include('db.php');
                             <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
                         </option>
                     <?php }
-                    mysqli_close($con2);
+                    //mysqli_close($con2);
                     ?>
                 </select>
                 <span class="focus-input100"></span>
@@ -152,11 +152,11 @@ include('db.php');
                 <select name="idR" id="idR" class="input100">
                     <option value="">Selecciona un residente</option>
                     <?php
-                    $result2 = mysqli_query($con, "SELECT * FROM `DataResidente`");
-                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                    $result3 = mysqli_query($con, "SELECT * FROM `DataResidente`");
+                    while ($row3 = mysqli_fetch_assoc($result3)) {
                     ?>
-                        <option value="<?php echo $row2['ID']; ?>">
-                            <?php echo $row2['ID'], " - ", $row2['NombreCompleto']; ?>
+                        <option value="<?php echo $row3['ID']; ?>">
+                            <?php echo $row3['ID'], " - ", $row3['NombreCompleto']; ?>
                         </option>
                     <?php }
                     mysqli_close($con2);

@@ -19,12 +19,9 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="css/style.css">
     <link href="css/styles.css" rel="stylesheet" />
@@ -38,36 +35,47 @@ error_reporting(0);
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="inicio_admin.php">Adminitrador</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
+        <div class="container ml-1">
+            <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
+            <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            EMPLEADO
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
-                        </div>
-                    </li>
+            <div class="collapse navbar-collapse ml-5 text-center" id="navbarResponsive">
+                <ul class="navbar-nav nav text-center mr-5">
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_donacion.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="familiar.php">DONACIONES POR FAMILIAR</a>
+                            <a class="dropdown-item" href="benefactor.php">DONACIONES POR BENEFACTOR</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">MEDICAMENTO</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">CLASE</a></li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            FAMILIAR
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_familiar.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            BENEFACTOR
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="altas_benefactor.php">ALTA</a>
+                            <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
+                            <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ATENCION MEDICA
@@ -79,37 +87,14 @@ error_reporting(0);
                             <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            RESIDENTE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="alResidente.php">ALTA</a>
-                            <a class="dropdown-item" href="bResidente.php">BAJA</a>
-                            <a class="dropdown-item" href="aResidente.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="vResidente.php">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Expediente Cinico
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="AlExpClinico.php">ALTA</a>
-                            <a class="dropdown-item" href="BExpClinico">BAJA</a>
-                            <a class="dropdown-item" href="AExpClinico.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="VExpClinico">VISUALIZAR</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">SUMINISTRO</a></li>
                 </ul>
             </div>
+            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
         </div>
     </nav>
 
-    <!-- Call to action-->
-    <section class="bg-primary text-white h-25">
+    <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
             <h2 class="mb-2 pt-5">ALTA DONACION</h2>
         </div>
@@ -152,34 +137,81 @@ error_reporting(0);
                 <span class="focus-input100"></span>
             </div>
 
+            <hr>
+            <span>APORTADOR (SELECCIONE SOLO UNO)</span>
+            <br>
+
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Residente :</span>
-                <select name="id_residente" id="id_residente" class="input100">
-                    <option>Seleccion Residente</option>
-                    <?php 
-                            $sql = $conexion->query( "select * from residente"); 
+                <select name="id_residente" id="id_residente" class="input100 mr-3">
+                    <option value="0">Seleccion Residente</option>
+                    <?php
+                    $sql = $conexion->query("SELECT * from residente");
 
-                            while($fila = $sql->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
+                    while ($fila = $sql->fetch_array()) {
+                        echo "<option value='" . $fila['ID'] . "'>" . $fila['Nombre'] . "</option>";
+                    }
                     ?>
                 </select>
-            </div>
-
-            <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Benefactor :</span>
                 <select name="id_benefactor" id="id_benefactor" class="input100">
-                    <option >Seleccion Benefactor</option>
-                    <?php 
-                            $sql2 = $conexion->query( "select * from benefactor"); 
+                    <option value="0">Seleccion Benefactor</option>
+                    <?php
+                    $sql2 = $conexion->query("SELECT * from benefactor");
 
-                            while($fila = $sql2->fetch_array()){
-                                echo "<option value='".$fila['ID']."'>".$fila['Nombre']."</option>";
-                            }
+                    while ($fila = $sql2->fetch_array()) {
+                        echo "<option value='" . $fila['ID'] . "'>" . $fila['Nombre'] . "</option>";
+                    }
                     ?>
                 </select>
             </div>
+            <hr>
 
+            <span>SI El SUMINISTRO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="altas_suministro.php">Suministro</a></span>
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Suministro:</span>
+                <select name="id_suministro" id="id_suministro" class="input100">
+                    <option value="0">Seleccion Suministro</option>
+                    <?php
+                    $sql2 = $conexion->query("SELECT * from suministro");
+
+                    while ($fila = $sql2->fetch_array()) {
+                        echo "<option value='" . $fila['Codigo'] . "'>" . $fila['Nombre'] . "</option>";
+                    }
+                    ?>
+                </select>
+                <span class="label-input100 pl-3">Cantidad:</span>
+                <input class="input100" type="number" id="cantidadS" name="cantidadS" placeholder="123">
+                <span class="focus-input100"></span>
+                <button class="btn btn-danger pl-2 pr-3 pt-2 pb-2 m-1" name="addSuministro">
+                    <span>+</span>
+                </button>
+                <?php 
+                    if (isset($_POST['addSuministro'])) {
+                        echo '<h1>Hola</h1>';
+                    }
+                ?>
+            </div>
+            <br>
+
+            <span>SI El MEDICAMENTO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="altas_medicina.php">Medicamento</a></span>
+            <div class="container-contact100-form-btn p-1">
+                <span class="label-input100">Medicamento:</span>
+                <select name="id_medicamento" id="id_medicamento" class="input100">
+                    <option value="0">Selecciona Medicamento</option>
+                    <?php
+                    $sql2 = $conexion->query("SELECT * from medicina");
+
+                    while ($fila = $sql2->fetch_array()) {
+                        echo "<option value='" . $fila['ID'] . "'>" . $fila['Nombre'] . "</option>";
+                    }
+                    ?>
+                </select>
+                <span class="label-input100 pl-3">Cantidad:</span>
+                <input class="input100" type="number" id="cantidadM" name="cantidadM" placeholder="123">
+                <span class="focus-input100"></span>
+            </div>
+            <hr>
             <div class="container-contact100-form-btn p-1">
                 <button class="btn btn-outline-info w-50 p-3 m-1" onclick="getData()" name="submit">
                     <span>
@@ -190,7 +222,7 @@ error_reporting(0);
             </div>
         </form>
     </section>
-    
+
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">

@@ -87,7 +87,7 @@ if ($conexion->connect_error) {
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="altas_medicina.php">ALTA</a>
-                            
+                            <a class="dropdown-item" href="baja_medicina.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_medicina.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_medicina.php">VISUALIZAR</a>
                         </div>

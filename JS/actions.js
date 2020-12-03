@@ -103,7 +103,6 @@ var getDataATM=function(){
     var estado=document.getElementById("estadoA").value;
     var rfc=document.getElementById("rfc").value;
     var tel=document.getElementById("tel").value;
-
     var atm=new Atencion_medica(nom,calle,colonia,cp,ciudad,estado,rfc,tel,"al_amedicabd.php");
     atm.altaAtencion_Medica();
 }

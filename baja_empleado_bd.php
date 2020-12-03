@@ -74,8 +74,8 @@ if ($conexion->connect_error) {
 </head>
 
 <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-0 " id="mainNav">
+   <!-- Navigation-->
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-0 " id="mainNav">
         <div class="container ml-1">
             <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
             <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
@@ -115,7 +115,7 @@ if ($conexion->connect_error) {
                             <a class="dropdown-item" href="baja_clase.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
-                            <a class="dropdown-item" href="ver_clase.php">LISTAS DE ALUMNOS</a>
+                            <a class="dropdown-item" href="listas_clases.php">LISTAS DE ALUMNOS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">

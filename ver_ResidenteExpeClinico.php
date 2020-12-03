@@ -69,7 +69,7 @@ include('db.php');
                             <a class="dropdown-item" href="baja_clase.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_clase.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_clase.php">VISUALIZAR</a>
-                            <a class="dropdown-item" href="ver_clase.php">LISTAS DE ALUMNOS</a>
+                            <a class="dropdown-item" href="listas_clases.php">LISTAS DE ALUMNOS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown show">
@@ -100,7 +100,6 @@ include('db.php');
             <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
         </div>
     </nav>
-
     <section class="bg-dark text-white h-20 " style="height:20%;">
         <div class="container text-center pt-5">
             <h2 class="mb-2 pt-5">EXPEDIENTE CLINICO POR RESIDENTES</h2>

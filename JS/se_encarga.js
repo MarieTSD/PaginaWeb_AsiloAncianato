@@ -1,39 +1,33 @@
-class Se_encarga{
-    constructor(idR,idE,hora,fecha,action){
-        this.idR=idR;
-        this.idE=idE;
-        this.hora=hora;
-        this.fecha=fecha;
-        this.action=action;
-    }
+class Se_encarga {
+  constructor(idE, idR, fecha, hora, action) {
+    this.idE = idE;
+    this.idR = idR;
+    this.fecha = fecha;
+    this.hora = hora;
+    this.action = action;
+  }
 
-    altase_encarga(){
-        $.ajax({
-            type: "POST",
-            url: this.action,
-            data: {
-                    idR: this.idR,
-                    idE: this.idE,
-                    hora: this.hora,
-                    fecha: this.fecha
-                },
-            success: function(response){
-            if(response==1){
-                    alert("Datos insertados");
-            }
-            }
-        })
-    }
+  altase_encarga() {
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: {
+        idE: this.idE,
+        idR: this.idR,
+        fecha: this.fecha,
+        hora: this.hora,
+      },
+      success: function (response) {
+        if (response == 1) {
+          alert("Datos insertados");
+        }
+      },
+    });
+  }
 
-    bajase_encarga(){
+  bajase_encarga() {}
 
-    }
+  modificase_encarga() {}
 
-    modificase_encarga(){
-
-    }
-
-    buscase_encarga(){
-        
-    }
+  buscase_encarga() {}
 }

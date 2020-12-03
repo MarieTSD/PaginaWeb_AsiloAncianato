@@ -22,8 +22,8 @@ include('db.php');
 </head>
 
 <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
+     <!-- Navigation-->
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 ml-2 w-100" id="mainNav">
         <div class="container ml-1">
             <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo5.png" class="logo" id="logo" alt=""></a>
             <a class="navbar-brand js-scroll-trigger mr-5" href="inicio_admin.php" style="font-size: 18px;">ADMIN</a>
@@ -35,11 +35,12 @@ include('db.php');
                             DONACION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="altas_empleado.php">ALTA</a>
-                            <a class="dropdown-item" href="baja_empleado.php">BAJA</a>
-                            <a class="dropdown-item" href="actualizar_empleado.php">ACTUALIZAR</a>
-                            <a class="dropdown-item" href="ver_empleados.php">VISUALIZAR</a>
-
+                            <a class="dropdown-item" href="alta_donacion.php">ALTA</a>
+                            <a class="dropdown-item" href="actualizar_donacion.php">ACTUALIZAR</a>
+                            <a class="dropdown-item" href="visualizar_donacion.php">VISUALIZAR</a>
+                            <a class="dropdown-item" href="familiar.php">DONACIONES POR FAMILIAR</a>
+                            <a class="dropdown-item" href="benefactor.php">DONACIONES POR BENEFACTOR</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +51,7 @@ include('db.php');
                             <a class="dropdown-item" href="baja_familiar.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_familiar.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_familiar.php">VISUALIZAR</a>
-
+                        </div>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +62,7 @@ include('db.php');
                             <a class="dropdown-item" href="baja_benefactor.php">BAJA</a>
                             <a class="dropdown-item" href="actualizar_benefactor.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="ver_benefactor.php">VISUALIZAR</a>
-
+                        </div>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link js-scroll-trigger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,13 +73,13 @@ include('db.php');
                             <a class="dropdown-item" href="b_amedica.php">BAJA</a>
                             <a class="dropdown-item" href="a_amedica.php">ACTUALIZAR</a>
                             <a class="dropdown-item" href="v_amedica.php">VISUALIZAR</a>
-
+                        </div>
                     </li>
                 </ul>
-
-                <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
-                <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
-
+            </div>
+            <a class="btn btn-outline-light ml-4" href="#"><span class="glyphicon glyphicon-user"></span> LOGIN</a>
+            <a class="btn btn-outline-light" href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>
+        </div>
     </nav>
 
     <section class="bg-dark text-white h-20 " style="height:20%;">
