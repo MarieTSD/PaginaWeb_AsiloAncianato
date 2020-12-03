@@ -16,15 +16,13 @@
     
                 //obtenemos datos del formulario
                
-                $des =$_POST['desc'];
+                $desc =$_POST['desc'];
                 $area =$_POST['area'];
                 $idE =$_POST['idE'];
                
-                $sql3="select ID from empleado where ID='$idE'";
-                $conexion->query($sql3);
-                if($conexion->affected_rows>=1){
+                
                     //hacemos cadena con la sentencia mysql para insertar datos
-                    $sql = "insert into clase (Descripcion,Area,ID_Empledao) values('$des','$area', '$idE')";
+                    $sql = "insert into clase (Descripcion,Area,ID_Empleado) values('$desc','$area', '$idE')";
                 
                 //aplicamos sentencia que inserta datos en la tabla usuarios de la base de datos
                 $conexion->query($sql);  
@@ -35,12 +33,6 @@
                         $_SESSION['exito'] = "no";
                         echo "<script>document.location='altas_clase.php';</script>";
                     }
-                }else{
-                    echo '<script>swal("ID de empleado incorrecto", "El id no existe", "error");</script>';
-
-
                 }
-                
-         
-  }
+  
 ?>

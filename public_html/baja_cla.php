@@ -15,15 +15,14 @@
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION["mod"];
-        $sql2="DELETE FROM inscrito WHERE ID_Clase='$modificar'";
-        $conexion->query($sql2);
-        if ($conexion->affected_rows >= 1){ 
+        
+      
         $sql =  "DELETE FROM clase WHERE ID='$modificar'";
             $conexion->query($sql); 
             if ($conexion->affected_rows >= 1){ 
                 $_SESSION['exito1'] = "si";
                 header("Location: baja_clase.php");
             }
-        }    
+          
     }
  ?>

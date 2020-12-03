@@ -25,6 +25,7 @@
         die('Ocurrio un error en la conexion con la BD');
     }else{
         $modificar = $_SESSION['mod']; 
+        
         $sql2 = "SELECT * from residente where ID='$modificar'";//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
         $resultado = $conexion -> query($sql2); //aplicamos sentencia  
         while( $fila = $resultado -> fetch_assoc() ){
@@ -38,6 +39,9 @@
         } 
         if(isset($_POST['submit2'])){
             header("Location:bResidente.php");
+        }
+        if(isset($_POST['submit'])){
+            header("Location:bResi.php");
         }
     }
 ?>
