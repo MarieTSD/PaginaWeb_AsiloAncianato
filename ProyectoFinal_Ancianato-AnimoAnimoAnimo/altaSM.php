@@ -29,11 +29,11 @@ if ($conexion->connect_error) {
 
             $sql3 = "INSERT INTO aparecen_md (ID_Medicamento, ID_Donacion, Cantidad)
                 VALUES('$medicina', '$idd', '$cantidadM')";
-             $sql4 = "CALL actualizarMedic($medicina,$cantidadM)";
+             $sql4 = "call actualizarMedic('$medicina','$cantidadM')";
         }else if($medicina!='1' && $suministro == '1'){
             $sql3 = "INSERT INTO aparecen_md (ID_Medicamento, ID_Donacion, Cantidad)
             VALUES('$medicina', '$idd', '$cantidadM')";
-            $sql4 = "CALL actualizarMedic($medicina,$cantidadM)"; 
+            $sql4 = "call actualizarMedic('$medicina','$cantidadM')"; 
         }else if($medicina == '1' && $suministro != '1'){
             $sql2 = "INSERT INTO aparecen_sd( Codigo_Suministro, ID_Donacion, Cantidad)
                 VALUES('$suministro','$idd', '$cantidadS')";
