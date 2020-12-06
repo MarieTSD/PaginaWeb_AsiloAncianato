@@ -43,15 +43,13 @@ if ($conexion->connect_error) {
     $conexion->query($sql2);
     $conexion->query($sql3);
     $conexion->query($sql4);
-   if ($conexion->affected_rows >= 1) {
-        $_SESSION['exito'] = "si";
+   
+    if ($conexion->affected_rows >= 1) {
+        $_SESSION['exitoA'] = "si";
         header("Location: alta_donacionbase.php");
-        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
     } else {
-        $_SESSION['exito'] = "no";
-        echo "<script>document.location='alta_donacionbase.php';</script>";
-        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
-
+        $_SESSION['exitoA'] = "no";
+        header("Location: alta_donacionbase.php");
     }
     if (isset($_POST['submit2'])) {
         header("Location:alta_donacion.php");

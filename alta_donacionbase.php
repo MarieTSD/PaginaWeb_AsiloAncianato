@@ -22,23 +22,21 @@ if ($conexion->connect_error) {
     $residente = $_POST['id_residente'];
     $benefactor = $_POST['id_benefactor'];
 
-
     if ($residente == "0") {
         $sql = "INSERT INTO donacion ( Aporte, Fecha, Hora, ID_Benefactor) 
             VALUES('$aporte','$fecha','$hora','$benefactor')";
-        $_SESSION['exito'] = "si";
+        $_SESSION['exitoD'] = "si";
     } else {
         $sql = "INSERT INTO donacion ( Aporte, Fecha, Hora, ID_Residente) 
                 VALUES('$aporte','$fecha','$hora', '$residente')";
-        $_SESSION['exito'] = "si";
+        $_SESSION['exitoD'] = "si";
     }
     $conexion->query($sql); //Agregamos la donacion a la base de datos
-    $sql2 = "SELECT MAX(ID) FROM donacion";
+    $sql2 = "select * from lastIDDonacion";
     $resultado = $conexion->query($sql2);
     while ($fila = $resultado->fetch_assoc()) {
-        $_SESSION['id'] = $fila['MAX(ID)'];
+        $_SESSION['id'] = $fila['ID'];
     }
-    
 }
 ?>
 
@@ -127,8 +125,19 @@ if ($conexion->connect_error) {
         </div>
     </section>
 
+    <?php
+    if ($_SESSION['exitoA'] == "si") {
+        echo '<script>swal("Articulo añadido", "Continua agregando mas articulos", "success");</script>';
+        $_SESSION['exitoA'] = "";
+    } else if ($_SESSION['exitoA'] == "no") {
+        echo '<script>swal("Error", "Hubo problamas al agregar el articulo", "error");</script>';
+        $_SESSION['exitoA'] = "";
+    }
+    ?>
+
     <section class="hero3">
         <form class="contact100-form validate-form" action="altaSM.php" enctype="multipart/form-data" method="post" id="alta">
+
             <div class="wrap-input100 validate-input p-1" data-validate="Requerido" readonly>
                 <span class="label-input100">ID:</span>
                 <input class="input100" type="number" name="id" value="<?php echo $_SESSION['id']; ?>" readonly>
@@ -157,7 +166,7 @@ if ($conexion->connect_error) {
             <span>SI El MEDICAMENTO NO SE ENCUENTRA EN ESTA LISTA IR A <a href="altas_medicina.php">Medicamento</a></span>
             <div class="container-contact100-form-btn p-1">
                 <span class="label-input100">Medicamento:</span>
-                <select name="id_medicamento" id="id_medicamento" class="input100">
+                <select name="medicamento" id="medicamento" class="input100">
                     <option value="1">Selecciona Medicamento</option>
                     <?php
                     $sql2 = $conexion->query("SELECT * from medicina");
@@ -168,7 +177,7 @@ if ($conexion->connect_error) {
                     ?>
                 </select>
                 <span class="label-input100 pl-3">Cantidad:</span>
-                <input class="input100" type="number" id="idMedic" name="idMedic" placeholder="12">
+                <input class="input100" type="cantidadM" id="idMedic" name="idMedic" placeholder="12">
                 <span class="focus-input100"></span>
             </div>
             <hr>
@@ -182,7 +191,7 @@ if ($conexion->connect_error) {
                 <button class="btn btn-outline-danger w-25 p-3 m-1" name="submit2">
                     <span>
                         TERMINAR
-                        <i class="fan fan-long-arrow-right m-l-7" ></i>
+                        <i class="fan fan-long-arrow-right m-l-7"></i>
                     </span>
                 </button>
             </div>

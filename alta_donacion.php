@@ -101,13 +101,12 @@ error_reporting(0);
     </section>
 
     <?php
-    if ($_SESSION['exito'] == "si") {
-        echo '<script>swal("Alta Exitosa", "Continua dando de alta", "success");</script>';
-
-        $_SESSION['exito'] = "";
-    } else if ($_SESSION['exito'] == "no") {
-        echo '<script>swal("ID Repetido", "El id debe ser unico", "error");</script>';
-        $_SESSION['exito'] = "";
+    if ($_SESSION['exitoD'] == "si") {
+        echo '<script>swal("Donacion agregada", "Continua agregando donaciones", "success");</script>';
+        $_SESSION['exitoD'] = "";
+    } else if ($_SESSION['exitoD'] == "no") {
+        echo '<script>swal("Error", "Hubo problamas al dar de alta", "error");</script>';
+        $_SESSION['exitoD'] = "";
     }
     ?>
 

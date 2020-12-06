@@ -33,11 +33,11 @@ if ($conexion->connect_error) {
     }
     if (isset($_POST['submit'])) {
         //$value['quantity'] = $_SESSION["Existencia"] - $_POST["exist"];//se hace la eliminacion
-        $cuatro = $_SESSION["Existencia"] - $_POST["exist"];
+        $cuatro = $_POST["exist"];
         $modificar = $_SESSION["mod"];
-        $ne = "update medicina set Existencia='$cuatro' where ID='$modificar'";
-
-        $fin = $conexion->query($ne);
+        $sql = "call restarMedicina('$modificar','$cuatro')";
+        
+        $fin = $conexion->query($sql);
         if ($conexion->affected_rows >= 1) {
             $_SESSION['exito2'] = "si";
             header("Location: solicitarMedicamento.php");
