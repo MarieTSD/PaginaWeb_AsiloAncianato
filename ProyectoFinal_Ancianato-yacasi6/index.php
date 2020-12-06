@@ -38,6 +38,7 @@ error_reporting(0);
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Servicio</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Actividades</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contactanos</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="nosotros.php">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php">Login</a></li>
                 </ul>
             </div>
