@@ -12,18 +12,12 @@ include('db.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Ancianato</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
-    <!--  Para el los menajes de confimacion ets-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -137,7 +131,7 @@ include('db.php');
                                             Residente: <?php echo $row2['ID Residente']; ?>
                                             - <?php echo $row2['namR']; ?>
                                         </li>
-                                <?php
+                            <?php
                                         $temp2 = $row['ID clase'];
                                     }
                                 }

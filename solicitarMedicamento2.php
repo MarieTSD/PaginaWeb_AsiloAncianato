@@ -32,7 +32,6 @@ if ($conexion->connect_error) {
         $_SESSION['Existencia'] = $fila['Existencia'];
     }
     if (isset($_POST['submit'])) {
-        //$value['quantity'] = $_SESSION["Existencia"] - $_POST["exist"];//se hace la eliminacion
         $cuatro = $_SESSION["Existencia"] - $_POST["exist"];
         $modificar = $_SESSION["mod"];
         $ne = "update medicina set Existencia='$cuatro' where ID='$modificar'";
