@@ -194,14 +194,6 @@ foreign key (ID_Residente)
 primary key (ID_Clase,ID_Residente)
 );
 
-#TABLA DE HISTORIAL
-create table HistorialRes(
-	ID smallint primary key auto_increment,
-    fecha date,
-    accion varchar(100),
-    usuario smallint,
-    nombre varchar(50)
-);
 
 #para el inventario
 create table aux2 (
@@ -370,6 +362,7 @@ AS SELECT a.ID_Empleado, dE.NombreCompleto as "FullNameEmpleado", a.ID_Residente
 from se_encarga a
 join DataEmpleado dE on dE.ID = a.ID_Empleado
 join DataResidente dR on dR.ID = a.ID_Residente;
+select * from Data_SeEncarga;
 
 create or replace view Data_Inscrito
 as select a.ID_Clase, c.Descripcion, a.ID_Residente, dR.NombreCompleto as "FullNameResidente", a.Fecha, a.Horario
@@ -478,6 +471,7 @@ BEGIN
   END IF;
  END;//
 delimiter ;
+
 delimiter //
 CREATE TRIGGER TR_chekUpdate_SD BEFORE update ON aparecen_sd
  FOR EACH ROW
@@ -487,6 +481,7 @@ BEGIN
   END IF;
  END;//
 delimiter ;
+
 #Medicina en donacion, tabla aparecen_md
 delimiter //
 CREATE TRIGGER TR_checkInsert_MD BEFORE insert ON aparecen_md
@@ -517,13 +512,6 @@ begin
 end// 
 DELIMITER ;
 
-DELIMITER //
-create trigger Historial_Res before delete on residente 
-for each row
-begin
-	 insert into HistorialRes(fecha,accion,usuario,nombre) values(curdate(),'eliminacion',old.ID,concat(old.Nombre," ",old.Apellido_P," ",old.Apellido_M));
-end// 
-DELIMITER ;
 
 
 
