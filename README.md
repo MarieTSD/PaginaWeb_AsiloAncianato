@@ -13,4 +13,3 @@ saber en donde inicia, directamente te manda al index de nuestra página.
 Nota: Solo en caso de que no cargue el index tendrás que entrar con esta otra liga
 http://localhost/public_html/index.php
 5. ¡Listo! Ahora ya podrás de disfrutar de nuestra página web.
-Nota: No podrás comprar hasta que no estés logeado.
